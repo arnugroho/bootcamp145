@@ -15,7 +15,7 @@ import com.xsis.bootcamp.service.DosenService;
 public class DosenServiceImpl implements DosenService {
 	
 	@Autowired
-	private DosenDao dosenDao;
+	DosenDao dosenDao;
 	
 	@Override
 	public Collection<Dosen> listDosen() throws Exception {
