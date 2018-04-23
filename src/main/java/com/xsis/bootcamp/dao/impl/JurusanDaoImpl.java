@@ -25,6 +25,19 @@ public class JurusanDaoImpl extends HibernateDaoSupport implements JurusanDao {
 		Query query = session.createQuery(hql);
 		return query.list();
 	}
+	
+	@Override
+	public Jurusan getJurusan(int idJurusan) throws Exception {
+		Session session = this.getSessionFactory().getCurrentSession();
+		String hql = "from fakultas where idFakultas =: idFakultas";
+		Query query = session.createQuery(hql);
+		query.setInteger("idJurusan", idJurusan);
+		if (query.list().size() > 0) {
+			return (Jurusan) query.list().get(0);
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public void insertJurusan(Jurusan jurusan) throws Exception {

@@ -14,4 +14,6 @@ public interface JurusanDao {
 
 	public void deleteJurusan(Jurusan jurusan) throws Exception;
 
+	public Jurusan getJurusan(int idJurusan) throws Exception;
+
 }
