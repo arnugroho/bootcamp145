@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
-@Entity(name="Ruangan")
+@Entity(name="ruangan")
 public class Ruangan {
 	private int idRuangan;
 	private String namaRuangan;
