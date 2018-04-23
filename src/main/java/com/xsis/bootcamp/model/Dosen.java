@@ -1,7 +1,5 @@
 package com.xsis.bootcamp.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,43 +7,35 @@ import javax.persistence.Id;
 
 @Entity(name =  "dosen")
 public class Dosen {
-	private int idDosen;
-	private String firstName;
-	private String lastName;
-	private String address;
+	private int nikDosen;
+	private String namaDosen;
+	private String alamat;
 	
 	@GeneratedValue
 	@Id
-	@Column(name = "iddosen", length = 11, nullable = false)
-	public int getIdDosen() {
-		return idDosen;
+	@Column(name = "nikdosen", length = 11, nullable = false)
+	public int getNikDosen() {
+		return nikDosen;
 	}
-	public void setIdDosen(int idDosen) {
-		this.idDosen = idDosen;
-	}
-	
-	@Column(name = "firstname", length = 45, nullable = false)
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setNikDosen(int nikDosen) {
+		this.nikDosen = nikDosen;
 	}
 	
-	@Column(name = "lastname", length = 45, nullable = false)
-	public String getLastName() {
-		return lastName;
+	@Column(name = "namadosen", length = 45, nullable = false)
+	public String getNamaDosen() {
+		return namaDosen;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setNamaDosen(String namaDosen) {
+		this.namaDosen = namaDosen;
 	}
 	
-	@Column(name = "address", length = 100, nullable = false)
-	public String getAddress() {
-		return address;
+	@Column(name = "alamat", length = 60, nullable = false)
+	public String getAlamat() {
+		return alamat;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
 	}
+	
 	
 }
