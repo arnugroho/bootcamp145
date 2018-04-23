@@ -1,0 +1,21 @@
+{
+	"bundle" : "my-bundle",
+	"assets": [
+		{
+			"name": "datatables",
+			"version": "1.10.16",
+			"type": "js",
+			"locations": {
+				"webapp": "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"
+			}
+		},
+		{
+			"name": "datatables",
+			"version": "1.10.16",
+			"type": "css",
+			"locations": {
+				"webapp": "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/jquery.dataTables.min.css"
+			}
+		}
+	]
+}

@@ -1,0 +1,102 @@
+ul {
+	list-style: none;
+}
+
+a {
+	-webkit-transition: all 0.2s linear 0s;
+	-moz-transition: all 0.2s linear 0s;
+	-o-transition: all 0.2s linear 0s;
+	transition: all 0.2s linear 0s;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	outline: none !important;
+}
+
+a:hover, a:active, a:focus {
+	text-decoration: none;
+}
+
+a {
+	color: #12cca7;
+}
+
+.
+.cnt-account ul>li a:hover, .top-bar .cnt-account ul>li a:focus {
+	color: #12cca7;
+}
+
+.top-bar {
+	padding: 0px;
+	font-size: 11px;
+	background: #DB2B2B;
+	background-image: linear-gradient(to bottom, #900D22, #FF000F);
+}
+
+.top-bar .cnt-account {
+	float: right;
+	padding: 6px 0px;
+}
+
+.top-bar .cnt-account ul {
+	margin: 0px;
+}
+
+.top-bar .cnt-account ul>li {
+	display: inline-block;
+	line-height: 12px;
+	padding: 3px 8px 3px 7px;
+}
+
+.top-bar .cnt-account ul>li:last-child {
+	border: none;
+	padding-right: 0px;
+}
+
+.top-bar .cnt-account ul>li a {
+	color: #fff;
+	padding: 0px;
+	font-weight: 400;
+	-webkit-transition: all 0.2s linear 0s;
+	-moz-transition: all 0.2s linear 0s;
+	-o-transition: all 0.2s linear 0s;
+	transition: all 0.2s linear 0s;
+}
+
+.top-bar .cnt-account ul>li a:hover, .top-bar .cnt-account ul>li a:focus
+	{
+	text-decoration: none;
+}
+
+.offer-text {
+	float: left;
+	color: #fff;
+	padding-top: 5px;
+}
+
+@media ( max-width : 767px) {
+	.top-bar .header-top-inner {
+		text-align: center;
+	}
+	.top-bar .header-top-inner .cnt-account {
+		clear: both;
+		display: inline-block;
+		float: none;
+		margin: auto;
+		text-align: center;
+	}
+	.top-bar .header-top-inner .cnt-account li {
+		margin-bottom: 8px;
+	}
+	.offer-text {
+		display: none;
+	}
+	.top-bar .cnt-account {
+		padding-bottom: 0px;
+	}
+}
