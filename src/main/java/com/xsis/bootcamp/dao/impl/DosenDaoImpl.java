@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.xsis.bootcamp.dao.DosenDao;
 import com.xsis.bootcamp.model.Dosen;
 
+@Repository
 public class DosenDaoImpl extends HibernateDaoSupport implements DosenDao{
 	@Autowired
 	public DosenDaoImpl(SessionFactory sessionFactory) {

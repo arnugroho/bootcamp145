@@ -55,7 +55,7 @@ public class DosenController {
 		} else {
 			request.setAttribute("action", "insert");
 		}
-		return "dosen";
+		return "home";
 	}
 	
 	@RequestMapping(value = {"/dosen-update.html","/dosen-insert"}, method = RequestMethod.POST)
@@ -75,7 +75,7 @@ public class DosenController {
 			}
 			request.setAttribute("action", "insert");
 		}
-		return "dosen";
+		return "home";
 	}
 	
 	public void defaultList(HttpServletRequest request) {
