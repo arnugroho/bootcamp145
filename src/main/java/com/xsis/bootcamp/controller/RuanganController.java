@@ -43,7 +43,7 @@ public class RuanganController {
 			request.setAttribute("action", "insert");
 		}
 		defaultList(request);
-		return "ruangan-list";
+		return "display-ruangan";
 	}
 
 	

@@ -10,16 +10,16 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.xsis.bootcamp.dao.RuanganDao;
+import com.xsis.bootcamp.model.Fakultas;
 import com.xsis.bootcamp.model.Ruangan;
 
 @Repository
 public class RuanganDaoImpl extends HibernateDaoSupport implements RuanganDao {
- @Autowired public RuanganDaoImpl(SessionFactory sessionFactory) {
+	@Autowired
+	public RuanganDaoImpl(SessionFactory sessionFactory) {
 		setSessionFactory(sessionFactory);
 	}
-  
- 
- 
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Ruangan> listRuangan() throws Exception {
@@ -53,12 +53,14 @@ public class RuanganDaoImpl extends HibernateDaoSupport implements RuanganDao {
 
 	@Override
 	public Ruangan getRuangan(int idruangan) throws Exception {
-		// TODO Auto-generated method stub
 		Session session = this.getSessionFactory().getCurrentSession();
-		String hql ="from Ruangan where idruangan= :idruangan";
-		Query query= session.createQuery(hql);
+		String hql = "from idruangan where idruangan=: idruangan";
+		Query query = session.createQuery(hql);
 		query.setInteger("idruangan", idruangan);
-		return null;
+		if (query.list().size() > 0) {
+			return (Ruangan) query.list().get(0);
+		} else {
+			return null;
+		}
 	}
-
 }
