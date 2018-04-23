@@ -21,7 +21,7 @@ public class RuanganController {
 	RuanganService ruanganService;
 	
 	
-	 @RequestMapping(value = { "/", "/ruangan.html", "/ruangan-update.html" }, method = RequestMethod.GET)
+	 @RequestMapping(value = {"/ruangan.html","ruangan-update"}, method = RequestMethod.GET)
 	public String ruangan(Model model, HttpServletRequest request) {
 		request.setAttribute("action", "insert");
 		if (request.getParameter("idruangan") != null) {
