@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.xsis.bootcamp.dao.MahasiswaDao;
 import com.xsis.bootcamp.model.Mahasiswa;
 
+@Repository
 public class MahasiswaDaoImpl extends HibernateDaoSupport implements MahasiswaDao {
 	@Autowired
 	public MahasiswaDaoImpl(SessionFactory sessionFactory) {
