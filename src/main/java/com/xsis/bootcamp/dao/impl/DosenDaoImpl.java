@@ -25,6 +25,19 @@ public class DosenDaoImpl extends HibernateDaoSupport implements DosenDao{
 		Query query = session.createQuery(hql);
 		return query.list();
 	}
+	
+	@Override
+	public Dosen getDosen(int nikDosen) throws Exception {
+		Session session = this.getSessionFactory().getCurrentSession();
+		String hql = "from dosen where nikDosen = :nikDosen";
+		Query query = session.createQuery(hql);
+		query.setInteger("nikDosen", nikDosen);
+		if (query.list().size() > 0) {
+			return (Dosen) query.list().get(0);
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public void insertDosen(Dosen dosen) throws Exception {

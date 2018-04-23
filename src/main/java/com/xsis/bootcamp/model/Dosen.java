@@ -53,7 +53,7 @@ public class Dosen {
 	}
 	
 	@ManyToOne
-	@JoinColumn(name = "Jurusan", updatable = false, insertable = false)
+	@JoinColumn(name = "jurusan", updatable = false, insertable = false)
 	public Jurusan getJurusanDesc() {
 		return jurusanDesc;
 	}
