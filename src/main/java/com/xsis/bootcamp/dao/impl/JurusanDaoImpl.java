@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.xsis.bootcamp.dao.JurusanDao;
 import com.xsis.bootcamp.model.Jurusan;
+
 @Repository
 public class JurusanDaoImpl extends HibernateDaoSupport implements JurusanDao {
 	@Autowired
