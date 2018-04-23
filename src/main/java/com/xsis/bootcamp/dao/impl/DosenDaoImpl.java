@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.xsis.bootcamp.dao.DosenDao;
 import com.xsis.bootcamp.model.Dosen;
 
+@Repository
 public class DosenDaoImpl extends HibernateDaoSupport implements DosenDao{
 	@Autowired
 	public DosenDaoImpl(SessionFactory sessionFactory) {
@@ -21,17 +23,17 @@ public class DosenDaoImpl extends HibernateDaoSupport implements DosenDao{
 	@Override
 	public Collection<Dosen> listDosen() throws Exception {
 		Session session = this.getSessionFactory().getCurrentSession();
-		String hql = "from dosen";
+		String hql = "from Dosen";
 		Query query = session.createQuery(hql);
 		return query.list();
 	}
 	
 	@Override
-	public Dosen getDosen(int nikDosen) throws Exception {
+	public Dosen getDosen(int nikdosen) throws Exception {
 		Session session = this.getSessionFactory().getCurrentSession();
-		String hql = "from dosen where nikDosen = :nikDosen";
+		String hql = "from Dosen where nikdosen = :nikdosen";
 		Query query = session.createQuery(hql);
-		query.setInteger("nikDosen", nikDosen);
+		query.setInteger("nikdosen", nikdosen);
 		if (query.list().size() > 0) {
 			return (Dosen) query.list().get(0);
 		} else {
