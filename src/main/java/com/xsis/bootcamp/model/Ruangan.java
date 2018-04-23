@@ -13,7 +13,7 @@ public class Ruangan {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "idRuangan", length = 11, nullable = false)
+	@Column(name = "idruangan", length = 11, nullable = false)
 	public int getIdRuangan() {
 		return idRuangan;
 	}
@@ -21,7 +21,7 @@ public class Ruangan {
 		this.idRuangan = idRuangan;
 	}
 	
-	@Column(name = "namaRuangan", length = 100)
+	@Column(name = "namaruangan", length = 100)
 	public String getNamaRuangan() {
 		return namaRuangan;
 	}
