@@ -12,6 +12,9 @@ public class Dosen {
 	private int nikDosen;
 	private String namaDosen;
 	private String alamat;
+	private int fakultas;
+	private int jurusan;
+	private int matkul;
 	private Fakultas fakultasDesc;
 	private Jurusan jurusanDesc;
 	private Matkul matkulDesc;
@@ -41,6 +44,30 @@ public class Dosen {
 	}
 	public void setAlamat(String alamat) {
 		this.alamat = alamat;
+	}
+	
+	@Column(name="fakultas", length = 11)
+	public int getFakultas() {
+		return fakultas;
+	}
+	public void setFakultas(int fakultas) {
+		this.fakultas = fakultas;
+	}
+	
+	@Column(name="jurusan", length = 11)
+	public int getJurusan() {
+		return jurusan;
+	}
+	public void setJurusan(int jurusan) {
+		this.jurusan = jurusan;
+	}
+	
+	@Column(name="matkul", length = 11)
+	public int getMatkul() {
+		return matkul;
+	}
+	public void setMatkul(int matkul) {
+		this.matkul = matkul;
 	}
 	
 	@ManyToOne
