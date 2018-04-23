@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
-@Entity(name="Jurusan")
+@Entity(name="jurusan")
 public class Jurusan {
 	
 	private int idJurusan;
