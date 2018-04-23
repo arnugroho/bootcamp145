@@ -4,12 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name =  "dosen")
 public class Dosen {
 	private int nikDosen;
 	private String namaDosen;
 	private String alamat;
+	private Fakultas fakultasDesc;
+	
 	
 	@GeneratedValue
 	@Id
@@ -37,5 +41,13 @@ public class Dosen {
 		this.alamat = alamat;
 	}
 	
+	@ManyToOne
+	@JoinColumn(name = "fakultas", updatable = false, insertable = false)
+	public Fakultas getFakultasDesc() {
+		return fakultasDesc;
+	}
+	public void setFakultasDesc(Fakultas fakultasDesc) {
+		this.fakultasDesc = fakultasDesc;
+	}
 	
 }
