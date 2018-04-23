@@ -79,46 +79,7 @@
 		      
 		    </div>
 		  </div>
-
-		<script type="text/javascript">
-		var formReg = $("#formRegistrasi").parsley();
-			$(function(){
-				$("#formLogin").submit(function() {
-					var pass = $("#password").val();
-					$("#view").val(CryptoJS.MD5(pass).toString());
-				});
-				$("#btnDaftar").click(function(){
-					var pass = $("#formRegistrasi .password").val();
-					var rePass = $("#formRegistrasi .retypePassword").val();
-					var user = $("#formRegistrasi .username").val();
-					if(formReg.validate()){
-						if(pass == rePass){
-							$.ajax({
-								type 	: "POST",
-								url 	: '${contextName}/registrasi-user.json',
-								data 	: {
-											username : user,
-											password : CryptoJS.MD5(pass).toString()
-								},
-								beforeSend : function(xhr){
-									xhr.setRequestHeader('X-CSRF-Token', $('meta[name="_csrf"]').attr('content'));
-								},
-								success : function(data){
-									if(data.success){
-										notifySuccess(data.message);
-										$("#registrasiUser").modal("hide");
-									} else{
-										notifyError(data.message);
-									}
-								}
-							});
-						} else {
-							notifyError("Retype password tidak sama dengan password yang anda masukkan!");
-						}	
-					}
-				});
-			});
-		</script>		
+	
 
 	</div>
 	<!-- /.login-box-body -->
