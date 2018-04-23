@@ -51,4 +51,14 @@ public class RuanganDaoImpl extends HibernateDaoSupport implements RuanganDao {
 		session.delete(ruangan);
 	}
 
+	@Override
+	public Ruangan getRuangan(int idruangan) throws Exception {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		String hql ="from Ruangan where idruangan= :idruangan";
+		Query query= session.createQuery(hql);
+		query.setInteger("idruangan", idruangan);
+		return null;
+	}
+
 }

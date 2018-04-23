@@ -42,4 +42,10 @@ public class RuanganServiceImpl extends HibernateDaoSupport implements RuanganSe
 		ruanganDao.deleteRuangan(ruangan);
 	}
 
+	@Override
+	public Ruangan getRuangan(int idruangan) throws Exception {
+		// TODO Auto-generated method stub
+		return ruanganDao.getRuangan(idruangan);
+	}
+
 }
