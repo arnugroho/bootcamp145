@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.xsis.bootcamp.dao.MatkulDao;
 import com.xsis.bootcamp.model.Matkul;
 
+@Repository
 public class MatkulDaoImpl extends HibernateDaoSupport implements MatkulDao {
 	@Autowired
 	public MatkulDaoImpl(SessionFactory sessionFactory) {
