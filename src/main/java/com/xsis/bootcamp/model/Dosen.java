@@ -13,6 +13,8 @@ public class Dosen {
 	private String namaDosen;
 	private String alamat;
 	private Fakultas fakultasDesc;
+	private Jurusan jurusanDesc;
+	private Matkul matkulDesc;
 	
 	
 	@GeneratedValue
@@ -48,6 +50,24 @@ public class Dosen {
 	}
 	public void setFakultasDesc(Fakultas fakultasDesc) {
 		this.fakultasDesc = fakultasDesc;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "Jurusan", updatable = false, insertable = false)
+	public Jurusan getJurusanDesc() {
+		return jurusanDesc;
+	}
+	public void setJurusanDesc(Jurusan jurusanDesc) {
+		this.jurusanDesc = jurusanDesc;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "matkul", updatable = false, insertable = false)
+	public Matkul getMatkulDesc() {
+		return matkulDesc;
+	}
+	public void setMatkulDesc(Matkul matkulDesc) {
+		this.matkulDesc = matkulDesc;
 	}
 	
 }
