@@ -36,7 +36,7 @@ public class FakultasController {
 
 		}
 		fakultasList(request);
-		return "display_fakultas";
+		return "DisplayFakultas";
 	}
 
 	@RequestMapping(value = { "/fakultas-update.html", "/fakultas-insert" }, method = RequestMethod.POST)
@@ -55,7 +55,7 @@ public class FakultasController {
 
 		}
 		fakultasList(request);
-		return "display_fakultas";
+		return "DisplayFakultas";
 
 	}
 
