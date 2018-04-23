@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<table>
+	<table border=1px width="30%">
 		<thead>
 			<tr>
 				<td>ID</td>
