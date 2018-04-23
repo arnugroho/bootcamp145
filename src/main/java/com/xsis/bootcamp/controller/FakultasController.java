@@ -20,7 +20,7 @@ public class FakultasController {
 	@Autowired
 	FakultasService fakultasService;
 
-	@RequestMapping(value = "/fakultas.html", method = RequestMethod.POST)
+	@RequestMapping(value = { "/fakultas.html", "/fakultas-update.html" }, method = RequestMethod.POST)
 	public String fakultas(Model model, HttpServletRequest request) {
 		request.setAttribute("action", "insert");
 		if (request.getParameter("idFakultas") != null) {
@@ -37,6 +37,26 @@ public class FakultasController {
 		}
 		fakultasList(request);
 		return "fakultas";
+	}
+
+	@RequestMapping(value = { "/fakultas-update.html", "/fakultas-insert" }, method = RequestMethod.POST)
+	public String insert(Model model, HttpServletRequest request) {
+		String action = request.getParameter("action");
+		if (action.equalsIgnoreCase("insert")) {
+			try {
+				Fakultas fakultas = new Fakultas();
+				fakultas.setNamaFakultas(request.getParameter("namaFakultas"));
+				fakultasService.insertFakultas(fakultas);
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("errorMessage", ExceptionUtils.getRootCauseMessage(e));
+			}
+			request.setAttribute("action", "insert");
+
+		}
+		fakultasList(request);
+		return "fakultas";
+
 	}
 
 	private void fakultasList(HttpServletRequest request) {
