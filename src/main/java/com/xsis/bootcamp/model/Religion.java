@@ -2,22 +2,20 @@ package com.xsis.bootcamp.model;
 
 public class Religion {
 	private int idAgama;
-	private String namaReligion;
-
-	public int getIdReligion() {
+	private String namaAgama;
+	public int getIdAgama() {
 		return idAgama;
 	}
-
-	public void setIdReligion(int idReligion) {
-		this.idAgama = idReligion;
+	public void setIdAgama(int idAgama) {
+		this.idAgama = idAgama;
 	}
-
-	public String getNamaReligion() {
-		return namaReligion;
+	public String getNamaAgama() {
+		return namaAgama;
 	}
-
-	public void setNamaReligion(String namaReligion) {
-		this.namaReligion = namaReligion;
+	public void setNamaAgama(String namaAgama) {
+		this.namaAgama = namaAgama;
 	}
+	
+	
 
 }
