@@ -1,5 +1,7 @@
 package com.xsis.bootcamp.model;
 
-public class address {
-
+public class Address {
+	public void alamat() {
+		
+	}
 }
