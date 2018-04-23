@@ -27,6 +27,19 @@ public class FakultasDaoImpl extends HibernateDaoSupport implements FakultasDao 
 	}
 
 	@Override
+	public Fakultas getFakultas(int idFakultas) throws Exception {
+		Session session = this.getSessionFactory().getCurrentSession();
+		String hql = "from fakultas where idFakultas =: idFakultas";
+		Query query = session.createQuery(hql);
+		query.setInteger("idFakultas", idFakultas);
+		if (query.list().size() > 0) {
+			return (Fakultas) query.list().get(0);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
 	public void insertFakultas(Fakultas fakultas) throws Exception {
 		Session session = this.getSessionFactory().getCurrentSession();
 		session.save(fakultas);

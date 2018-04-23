@@ -1,10 +1,10 @@
-package com.xsis.bootcamp.dao;
+package com.xsis.bootcamp.service;
 
 import java.util.Collection;
 
 import com.xsis.bootcamp.model.Fakultas;
 
-public interface FakultasDao {
+public interface FakultasService {
 
 	public Collection<Fakultas> listFakultas() throws Exception;
 
