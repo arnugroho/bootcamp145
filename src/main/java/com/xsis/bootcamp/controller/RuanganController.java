@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,15 +21,18 @@ public class RuanganController {
 	RuanganService ruanganService;
 	
 	
-	 @RequestMapping(value = { "/", "/home.html", "/person-update.html" }, method = RequestMethod.GET)
-	public String home(Model model, HttpServletRequest request) {
+	 @RequestMapping(value = { "/", "/ruangan.html", "/ruangan-update.html" }, method = RequestMethod.GET)
+	public String ruangan(Model model, HttpServletRequest request) {
 		request.setAttribute("action", "insert");
 		if (request.getParameter("idruangan") != null) {
 			try {
 				Ruangan ruangan = new Ruangan();
 				ruangan = ruanganService.getRuangan(Integer.parseInt(request.getParameter("idruangan")));
+				request.setAttribute("idruangan",Integer.parseInt(request.getParameter("idruangan")));
+				request.setAttribute("namaruangan", ruangan.getNamaRuangan());
 				request.setAttribute("Ruangan", ruangan);
-							} catch (Exception e) {
+							
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 
