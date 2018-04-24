@@ -21,7 +21,7 @@ public class RuanganController {
 	RuanganService ruanganService;
 	
 	
-	 @RequestMapping(value = {"/ruangan.html","ruangan-update"}, method = RequestMethod.GET)
+	 @RequestMapping(value = { "/", "/ruangan.html", "/ruangan-update.html" }, method = RequestMethod.GET)
 	public String ruangan(Model model, HttpServletRequest request) {
 		request.setAttribute("action", "insert");
 		if (request.getParameter("idruangan") != null) {
@@ -30,6 +30,7 @@ public class RuanganController {
 				ruangan = ruanganService.getRuangan(Integer.parseInt(request.getParameter("idruangan")));
 				request.setAttribute("idruangan",Integer.parseInt(request.getParameter("idruangan")));
 				request.setAttribute("namaruangan", ruangan.getNamaRuangan());
+//				request.setAttribute("Ruangan", ruangan);
 							
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -42,7 +43,7 @@ public class RuanganController {
 			request.setAttribute("action", "insert");
 		}
 		defaultList(request);
-		return "display-ruangan";
+		return "ruangan-list";
 	}
 
 	

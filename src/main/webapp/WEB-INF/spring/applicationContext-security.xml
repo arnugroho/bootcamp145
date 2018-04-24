@@ -20,8 +20,8 @@
 		<intercept-url pattern="/user-register.json" access="permitAll()" />
 		<intercept-url pattern="/registrasi-user.json" access="permitAll()"/>
 		
-	<!-- 	<intercept-url pattern="/**" access="isAuthenticated()"/>
-	 -->	 
+<!-- 		<intercept-url pattern="/**" access="isAuthenticated()"/> -->
+		
 		
 
 		<!-- access denied page -->

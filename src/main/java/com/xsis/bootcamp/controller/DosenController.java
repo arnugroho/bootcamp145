@@ -33,7 +33,7 @@ public class DosenController {
 	@Autowired
 	MatkulService matkulService;
 	
-	@RequestMapping(value = {"dosen-update.html"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/dosen-update.html"}, method = RequestMethod.GET)
 	public String dosen(Model model, HttpServletRequest request) {
 		
 		request.setAttribute("action", "insert");
