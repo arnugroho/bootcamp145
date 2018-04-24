@@ -25,7 +25,7 @@ public class RuanganDaoImpl extends HibernateDaoSupport implements RuanganDao {
 	public Collection<Ruangan> listRuangan() throws Exception {
 		// TODO Auto-generated method stub
 		Session session = this.getSessionFactory().getCurrentSession();
-		String hql = "from Ruangan";
+		String hql = "from ruangan";
 		Query query = session.createQuery(hql);
 		return query.list();
 	}

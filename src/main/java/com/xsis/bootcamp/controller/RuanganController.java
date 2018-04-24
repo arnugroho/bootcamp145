@@ -30,7 +30,6 @@ public class RuanganController {
 				ruangan = ruanganService.getRuangan(Integer.parseInt(request.getParameter("idruangan")));
 				request.setAttribute("idruangan",Integer.parseInt(request.getParameter("idruangan")));
 				request.setAttribute("namaruangan", ruangan.getNamaRuangan());
-				request.setAttribute("Ruangan", ruangan);
 							
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
