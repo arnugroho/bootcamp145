@@ -85,10 +85,10 @@ public class LoginController {
 					Personel personel = new Personel();
 					personel.setUsername(username);
 					personel.setPassword(pass);
-					personel.setCreatedOn(new Date());
+					personel.setUpdateDate(new Date());
 					personel.setRoleId(GeneralVariable.USER_ROLE_USERSD);
 					personel.setUserCode(username);
-					personel.setCreatedBy(1L);
+					personel.setCreatedBy(username);
 					personel.setIsActive(1);
 					personel.setEmail(email);
 					personelService.insert(personel);

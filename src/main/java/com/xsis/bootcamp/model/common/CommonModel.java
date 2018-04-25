@@ -16,49 +16,51 @@ public abstract class CommonModel implements Serializable{
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "createdon", nullable = false)
-	private Date createdOn;
-	@Column(name = "createdby", nullable = false)
-	private Long createdBy;
+	@Column(name = "created_date", nullable = false)
+	private Date createdDate;
+	
+	
+	@Column(name = "created_by", nullable = false)
+	private String createdBy;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "modifiedon")
-	private Date modifiedOn;
-	@Column(name = "modifiedby")
-	private Long modifiedBy;
+	@Column(name = "update_date")
+	private Date updateDate;
 	
+	@Column(name = "update_by")
+	private String updateBy;
+	
+/*	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "deleteon")
 	private Date deleteOn;
+	
 	@Column(name = "deleteby")
 	private Long deletedBy;
-	public Date getCreatedOn() {
-		return createdOn;
+	*/
+	@Column(name = "is_delete", nullable = false)
+	private Integer isDelete; //
+	
+	
+	public Integer getIsDelete() {
+		return isDelete;
 	}
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
 	}
-	public Long getCreatedBy() {
+	
+	
+	public String getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(Long createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	public Date getModifiedOn() {
-		return modifiedOn;
-	}
-	public void setModifiedOn(Date modifiedOn) {
-		this.modifiedOn = modifiedOn;
-	}
-	public Long getModifiedBy() {
-		return modifiedBy;
-	}
-	public void setModifiedBy(Long modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-	public Date getDeleteOn() {
+	
+	
+/*	public Date getDeleteOn() {
 		return deleteOn;
 	}
 	public void setDeleteOn(Date deleteOn) {
@@ -70,8 +72,25 @@ public abstract class CommonModel implements Serializable{
 	public void setDeletedBy(Long deletedBy) {
 		this.deletedBy = deletedBy;
 	}
-
-	
+*/
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	public String getUpdateBy() {
+		return updateBy;
+	}
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
 	
 
 }
