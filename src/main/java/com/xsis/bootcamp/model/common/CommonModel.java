@@ -25,11 +25,11 @@ public abstract class CommonModel implements Serializable{
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date")
-	private Date updateDate;
+	@Column(name = "updated_date")
+	private Date updatedDate;
 	
-	@Column(name = "update_by")
-	private String updateBy;
+	@Column(name = "updated_by")
+	private String updatedBy;
 	
 /*	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -79,17 +79,17 @@ public abstract class CommonModel implements Serializable{
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-	public Date getUpdateDate() {
-		return updateDate;
+	public Date getUpdatedDate() {
+		return updatedDate;
 	}
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
 	}
-	public String getUpdateBy() {
-		return updateBy;
+	public String getUpdatedBy() {
+		return updatedBy;
 	}
 	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
+		this.updatedBy = updatedBy;
 	}
 	
 

@@ -19,12 +19,12 @@
 		<intercept-url pattern="/restapi/**" access="permitAll()" />
 		<intercept-url pattern="/user-register.json" access="permitAll()" />
 		<intercept-url pattern="/registrasi-user.json" access="permitAll()"/>
- 		<intercept-url pattern="/**" access="isAuthenticated()"/> 
+<!--  		<intercept-url pattern="/**" access="isAuthenticated()"/>  -->
 		
 		
 
 		<!-- access denied page -->
-<!-- 		<access-denied-handler error-page="/home.html?denied" /> -->
+		<access-denied-handler error-page="/home.html?denied" />
 
 		<form-login login-page="/home.html"
 		    default-target-url="/home.html"

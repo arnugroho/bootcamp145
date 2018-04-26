@@ -26,8 +26,8 @@ public class Event extends CommonModel {
 	private int id;
 	@Column(name = "code", length = 50, nullable = false)
 	private String code;
-	@Column(name = "eventName", length = 255, nullable = false)
-	private String eventname;
+	@Column(name = "event_name", length = 255, nullable = false)
+	private String eventName;
 	@Column(name = "start_date")
 	private Date startDate;
 	@Column(name = "end_date")
@@ -52,10 +52,11 @@ public class Event extends CommonModel {
 	private String note;
 	@Column(name = "status", length = 255)
 	private int status;
+	@Column(name = "reject_reason", length = 255)
+	private String rejectReason;
+	
+	
 
-	private CommonModel commonModel;
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -73,11 +74,11 @@ public class Event extends CommonModel {
 	}
 
 	public String getEventname() {
-		return eventname;
+		return eventName;
 	}
 
 	public void setEventname(String eventname) {
-		this.eventname = eventname;
+		this.eventName = eventname;
 	}
 
 	public Date getStartDate() {
@@ -176,5 +177,11 @@ public class Event extends CommonModel {
 		this.status = status;
 	}
 	
-	
+	public String getRejectReason() {
+		return rejectReason;
+	}
+
+	public void setRejectReason(String rejectReason) {
+		this.rejectReason = rejectReason;
+	}
 }
