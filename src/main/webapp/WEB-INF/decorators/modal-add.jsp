@@ -18,28 +18,22 @@
 							class="glyphicon glyphicon-user form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback">
-						<input type="email" name="email"
-							class="form-control email" placeholder="Email" required> 
-							<span class="glyphicon glyphicon-envelope form-control-feedback"> </span>
+						<input type="email" name="email" class="form-control email"
+							placeholder="Email" required> <span
+							class="glyphicon glyphicon-envelope form-control-feedback">
+						</span>
 					</div>
 					<div class="form-group has-feedback">
-						<input type="password" id="registerPassword" name="password"
-							class="form-control password" placeholder="Password" minlength="6" required>
-						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+						<input type="hidden" id="registerPassword" name="password"
+							placeholder="Password" minlength="6" required> <span></span>
 					</div>
-					
-					
-					<div class="form-group has-feedback">
-						<input type="password" name="retypePassword"
-							class="form-control retypePassword" placeholder="Retype Password"
-							data-parsley-equalto="#registerPassword" required> <span
-							class="glyphicon glyphicon-lock form-control-feedback"> </span>
-					</div>
+					<button type="button" id="btnDaftar" class="btn btn-primary">Next</button>
+					<button type="reset" class="btn btn-warning" data-dismiss="modal" value="reset">Cancel</button>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" id="btnDaftar" class="btn btn-primary">Daftar</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+<!-- 				<button type="button" id="btnDaftar" class="btn btn-primary">Next</button> -->
+<!-- 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
 			</div>
 		</div>
 
