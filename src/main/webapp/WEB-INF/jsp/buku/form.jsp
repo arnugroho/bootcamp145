@@ -23,13 +23,43 @@
 				<!-- /.box-body -->
 
 				<div class="box-footer">
-					<button type="submit" class="btn btn-primary">Insert</button>
+					<button type="button" id="btnInsert" class="btn btn-primary">Insert</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
 </div>
+
+<script type="text/javascript">
+//mendefinisikan ketika tombol btnInsert diklik memanggil insertData()
+$("#btnInsert").click(function(){
+	insertData();
+});
+
+
+function insertData() {
+	$.ajax({
+		url : contextName + '/buku/insert.json',
+		data : {
+			'namaBuku' : $("#namaBuku").val(),
+			'pengarang' : $("#pengarang").val(),
+		},
+		type : 'post',
+		dataType : 'json',
+		success : function(result) {
+			if(result.success){
+				notifySuccess('Berhasil Insert Data');
+			}else {
+				notifyError('Gagal Insert Data');
+			}
+		},
+		error : function() {
+			notifyError('Gagal Insert Data');
+		}
+	});
+}
+</script>
 
 
 
