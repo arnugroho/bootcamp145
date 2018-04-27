@@ -169,10 +169,6 @@
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/demo.js"></script> -->
 	
 	
-	
-
-	
-	
 	<script type="text/javascript">
 		$.widget.bridge('uibutton', $.ui.button);
 	</script>
