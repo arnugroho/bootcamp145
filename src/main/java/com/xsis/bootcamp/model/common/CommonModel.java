@@ -31,66 +31,51 @@ public abstract class CommonModel implements Serializable{
 	@Column(name = "updated_by")
 	private String updatedBy;
 	
-/*	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "deleteon")
-	private Date deleteOn;
-	
-	@Column(name = "deleteby")
-	private Long deletedBy;
-	*/
 	@Column(name = "is_delete", nullable = false)
 	private Integer isDelete; //
-	
-	
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
 	public Integer getIsDelete() {
 		return isDelete;
 	}
+
 	public void setIsDelete(Integer isDelete) {
 		this.isDelete = isDelete;
 	}
 	
 	
-	public String getCreatedBy() {
-		return createdBy;
-	}
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
 	
-	
-/*	public Date getDeleteOn() {
-		return deleteOn;
-	}
-	public void setDeleteOn(Date deleteOn) {
-		this.deleteOn = deleteOn;
-	}
-	public Long getDeletedBy() {
-		return deletedBy;
-	}
-	public void setDeletedBy(Long deletedBy) {
-		this.deletedBy = deletedBy;
-	}
-*/
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-	public Date getUpdatedDate() {
-		return updatedDate;
-	}
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-	public void setUpdateBy(String updateBy) {
-		this.updatedBy = updatedBy;
-	}
 	
 
 }
