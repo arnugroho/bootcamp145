@@ -65,8 +65,8 @@
 													<td>${promotion.statusDesc.status}</td>
 													<td>${promotion.createdBy}</td>
 													<td>${promotion.createdDate}</td>
-													<td><a href="#" class="fa fa-search"> &nbsp <a
-															href="%" class="fa fa-pencil"></td>
+													<td><a href="#" class="fa fa-search"> &nbsp 
+													    <a href="%" class="fa fa-pencil"></td>
 												</tr>
 											</c:forEach>
 										</tbody>
