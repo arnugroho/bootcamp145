@@ -4,11 +4,12 @@
 	<section class="sidebar">
 		<ul class="sidebar-menu">
 			<li class="header">MAIN NAVIGATION</li>
-			<li><a href="${contextName}/home.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+			<li><a href="${contextName}/home.html"><i class="fa fa-home"></i><span>Home</span></a></li>				
 				
 			<!-- <sec:authorize access="!hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')"> -->
-				<li><a href="${contextName}/form/biodata/index.html"><i class="fa fa-user"></i><span>Biodata Diri</span></a></li>
 				<li><a href="${contextName}/buku/form.html"><i class="fa fa-book"></i><span>Form Buku</span></a></li>
+				<li><a href="${contextName}/role"><i class="fa fa-book"></i><span>Role</span></a></li>
+				<li><a href="${contextName}/user"><i class="fa fa-book"></i><span>User</span></a></li>
 				
 				<li class="treeview">
 					<a href="#"> 
