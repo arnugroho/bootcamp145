@@ -54,9 +54,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/extras/loadingoverlay_progress/loadingoverlay_progress.min.js"></script>
 	<script src="${contextName}/assets/js/default.js"></script>
 	
-	<!-- Default required-Jquery -->
-	<script src="${contextName}/assets/js/default-jquery.js"></script>
-	
 	<!-- Parsley.js-2.8.1-->
 	<script src="${contextName}/assets/Parsley.js-2.8.1/dist/parsley.min.js"></script>
 	<script src="${contextName}/assets/Parsley.js-2.8.1/dist/i18n/id.js"></script>
@@ -82,8 +79,6 @@
 <%--     <link href="${contextName}/assets/plugins/datatables/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet"/> --%>
 	<script src="${contextName}/assets/plugins/datatables/1.10.7/js/jquery.dataTables.min.js"></script>
 	
-	<!-- Register Dosen -->
-	<script src="${contextName}/assets/js/form/dosen-register.js"></script>
 	
 	<script type="text/javascript">
 		var header = $("meta[name='_csrf_header']").attr("content");
@@ -143,6 +138,7 @@
 	    	</section>
 		</div>
 		<%@include file="modal-login.jsp" %>
+		<%@include file="modal-add.jsp" %>
 		<%@include file="modal-register.jsp" %>
 		<%@include file="modal-register-role.jsp" %>
 		<%@include file="modal-register-user.jsp" %>

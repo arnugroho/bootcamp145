@@ -52,9 +52,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/extras/loadingoverlay_progress/loadingoverlay_progress.min.js"></script>
 	<script src="${contextName}/assets/js/default.js"></script>
 	
-	<!-- Default required-Jquery -->
-	<script src="${contextName}/assets/js/default-jquery.js"></script>
-	
 	<!-- Parsley.js-2.8.1-->
 	<script src="${contextName}/assets/Parsley.js-2.8.1/dist/parsley.js"></script>
 	<script src="${contextName}/assets/Parsley.js-2.8.1/dist/i18n/id.js"></script>
