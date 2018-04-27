@@ -143,6 +143,7 @@
 	    	</section>
 		</div>
 		<%@include file="modal-login.jsp" %>
+		<%@include file="modal-add.jsp" %>
 		<%@include file="modal-register.jsp" %>
 		<%@include file="modal-register-dosen.jsp" %>
 		<%@include file="footer.jsp" %>
