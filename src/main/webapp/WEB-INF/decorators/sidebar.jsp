@@ -9,6 +9,7 @@
 			<!-- <sec:authorize access="!hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')"> -->
 				<li><a href="${contextName}/form/biodata/index.html"><i class="fa fa-user"></i><span>Biodata Diri</span></a></li>
 				<li><a href="${contextName}/buku/form.html"><i class="fa fa-book"></i><span>Form Buku</span></a></li>
+				<li><a href="${contextName}/design/form-design.html"><i class="fa fa-book"></i><span>Form Design</span></a></li>
 				
 				<li class="treeview">
 					<a href="#"> 
