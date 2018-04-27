@@ -9,7 +9,12 @@
 			<!-- <sec:authorize access="!hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')"> -->
 				<li><a href="${contextName}/buku/form.html"><i class="fa fa-book"></i><span>Form Buku</span></a></li>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<li><a href="${contextName}/design/form-design.html"><i class="fa fa-book"></i><span>Form Design</span></a></li>
+=======
+				<li><a href="${contextName}/role"><i class="fa fa-book"></i><span>Role</span></a></li>
+				<li><a href="${contextName}/user"><i class="fa fa-book"></i><span>User</span></a></li>
+>>>>>>> 5abd25972a1cc30107f6657610d52db2e56e3ae1
 =======
 				<li><a href="${contextName}/role"><i class="fa fa-book"></i><span>Role</span></a></li>
 				<li><a href="${contextName}/user"><i class="fa fa-book"></i><span>User</span></a></li>
