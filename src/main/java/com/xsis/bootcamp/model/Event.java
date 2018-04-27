@@ -1,6 +1,6 @@
 package com.xsis.bootcamp.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,7 +55,11 @@ public class Event extends CommonModel {
 	@Column(name = "reject_reason", length = 255)
 	private String rejectReason;
 	
+	@ManyToOne
+	@JoinColumn(name = "status", updatable = false, insertable = false)
+	private Status statusDesc;
 	
+
 
 	public int getId() {
 		return id;
@@ -184,4 +188,22 @@ public class Event extends CommonModel {
 	public void setRejectReason(String rejectReason) {
 		this.rejectReason = rejectReason;
 	}
+
+	public String getEventName() {
+		return eventName;
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	public Status getStatusDesc() {
+		return statusDesc;
+	}
+
+	public void setStatusDesc(Status statusDesc) {
+		this.statusDesc = statusDesc;
+	}
+
+
 }
