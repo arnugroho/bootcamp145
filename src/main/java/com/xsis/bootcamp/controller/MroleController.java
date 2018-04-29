@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xsis.bootcamp.model.Mrole;
-import com.xsis.bootcamp.model.Personel;
 import com.xsis.bootcamp.service.MroleService;
 
 @Controller
@@ -45,27 +44,36 @@ public class MroleController extends BaseController {
 		return "mrole";
 	}
 
-	@RequestMapping("/insert")
-	public void insert(Model model, HttpServletRequest request) {
-		try {
-			String code = request.getParameter("code");
-			String name = request.getParameter("name");
-			String description = request.getParameter("description");
-			Personel user = getUser();
-			Date currentDate = new Date();
-
-			Mrole mrole = new Mrole();
-			mrole.setCode(code);
-			mrole.setName(name);
-			mrole.setDescription(description);
-			mrole.setCreatedBy(user.getUsername());
-			mrole.setCreatedDate(currentDate);
-			mrole.setIsDelete(0);
-			mroleService.insert(mrole);
-
-			model.addAttribute("success", true);
-		} catch (Exception e) {
-			model.addAttribute("success", false);
+	@RequestMapping(value="/registrasi-role")
+	public void registrasiRole(Model model, HttpServletRequest request) {
+		String code = request.getParameter("code");
+		String name = request.getParameter("name");
+		String description = request.getParameter("description");
+		if((name !=null) && (!name.equals(""))) {
+			try {
+				Mrole checkName = mroleService.getRole(0);
+				if(checkName==null) {
+					Mrole mrole = new Mrole();
+					mrole.setName(name);
+					mrole.setCode(code);
+					mrole.setDescription(description);
+					mrole.setCreatedBy(name);
+					mrole.setCreatedDate(new Date());
+					mrole.setIsDelete(0);
+					mrole.setUpdatedBy(name);
+					mrole.setUpdatedDate(new Date());
+					mroleService.insert(mrole);
+					
+					model.addAttribute("message","Registrasi Role Berhasil");
+					model.addAttribute("success", true);
+				} else{
+					model.addAttribute("message","Role Name sudah ada");
+					model.addAttribute("success", false);
+				}
+			} catch (Exception e) {
+				model.addAttribute("message", e.getMessage());
+				model.addAttribute("success", false);
+			}
 		}
 	}
 
