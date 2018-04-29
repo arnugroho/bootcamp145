@@ -140,8 +140,6 @@
 		<%@include file="modal-login.jsp" %>
 		<%@include file="modal-add.jsp" %>
 		<%@include file="modal-register.jsp" %>
-		<%@include file="modal-register-role.jsp" %>
-		<%@include file="modal-register-user.jsp" %>
 		<%@include file="footer.jsp" %>
 		
 		<%-- <%@include file="controlSidebar.jsp" %> --%>

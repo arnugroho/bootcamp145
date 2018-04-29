@@ -16,8 +16,8 @@ import com.xsis.bootcamp.model.Mrole;
 import com.xsis.bootcamp.service.MroleService;
 
 @Controller
-
-public class MroleController extends BaseController {
+@RequestMapping("/role")
+public class MroleController  {
 
 	@Autowired
 	MroleService mroleService;
@@ -41,10 +41,10 @@ public class MroleController extends BaseController {
 			request.setAttribute("action", request.getParameter("action"));
 		}
 		defaultList(request);
-		return "mrole";
+		return "role/role";
 	}
 
-	@RequestMapping(value="/registrasi-role")
+	@RequestMapping(value="/role-insert")
 	public void registrasiRole(Model model, HttpServletRequest request) {
 		String code = request.getParameter("code");
 		String name = request.getParameter("name");
