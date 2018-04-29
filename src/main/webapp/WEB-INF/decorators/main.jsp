@@ -75,9 +75,9 @@
     <script src="${contextName}/assets/plugins/dropzone/dropzone.js"></script>
     
     <!-- -Datatables- -->
-    <link href="${contextName}/assets/plugins/datatables/1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet"/>
 <%--     <link href="${contextName}/assets/plugins/datatables/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet"/> --%>
-	<script src="${contextName}/assets/plugins/datatables/1.10.7/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	
 	
 	<script type="text/javascript">
@@ -138,8 +138,8 @@
 	    	</section>
 		</div>
 		<%@include file="modal-login.jsp" %>
+		<%@include file="modal-add.jsp" %>
 		<%@include file="modal-register.jsp" %>
-		<%@include file="modal-register-dosen.jsp" %>
 		<%@include file="footer.jsp" %>
 		
 		<%-- <%@include file="controlSidebar.jsp" %> --%>

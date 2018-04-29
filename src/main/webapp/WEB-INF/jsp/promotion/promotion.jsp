@@ -28,21 +28,14 @@
 								<div class="col-sm-6">
 									<div class="dataTables_length" id="example1_length"></div>
 								</div>
-								<!-- 								<div class="col-sm-6"> -->
-								<!-- 									<div id="example1_filter" class="dataTables_filter"> -->
-								<!-- 										<label>Search:<input type="search" -->
-								<!-- 											class="form-control input-sm" placeholder="" -->
-								<!-- 											aria-controls="example1"></label> -->
-								<!-- 									</div> -->
-								<!-- 								</div> -->
 							</div>
+
 							<div class="col-md-11"></div>
 							<div class="col-md-1">
-									<a data-toggle="modal" href="#loginUser">
-									<button type="button" class="btn btn-block btn-primary">Add</button>
+								<button type="button" class="btn btn-block btn-primary"
+									data-toggle="modal" data-target="#modalAdd">Add</button>
+
 							</div>
-
-
 							<div class="row">
 								<div class="col-sm-12">
 									<table id="example1"
@@ -72,8 +65,8 @@
 													<td>${promotion.statusDesc.status}</td>
 													<td>${promotion.createdBy}</td>
 													<td>${promotion.createdDate}</td>
-													<td><a href="#" class="fa fa-search"> &nbsp <a
-															href="%" class="fa fa-pencil"></td>
+													<td><a href="#" class="fa fa-search"> &nbsp 
+													    <a href="%" class="fa fa-pencil"></td>
 												</tr>
 											</c:forEach>
 										</tbody>
