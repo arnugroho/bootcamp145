@@ -39,11 +39,11 @@
 <script type="text/javascript">
 //mendefinisikan ketika tombol btnInsert diklik memanggil insertData()
 $("#btnDaftar").click(function(){
-	insertData();
+	insertDataOld();
 });
 
 
-function insertData() {
+function insertDataOld() {
 	$.ajax({
 		url : contextName + '/role/insert.json',
 		data : {
