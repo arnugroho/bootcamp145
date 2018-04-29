@@ -49,7 +49,7 @@ function insertData() {
 		data : {
 			'code' : $("#code").val(),
 			'name' : $("#name").val(),
-			'description' : $(#description).val(),
+			'description' : $("#description").val(),
 		},
 		type : 'post',
 		dataType : 'json',
