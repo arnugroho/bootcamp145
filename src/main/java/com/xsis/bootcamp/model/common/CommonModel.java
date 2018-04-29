@@ -16,11 +16,11 @@ public abstract class CommonModel implements Serializable{
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_date", nullable = false)
+	@Column(name = "created_date", nullable = true)
 	private Date createdDate;
 	
 	
-	@Column(name = "created_by", nullable = false)
+	@Column(name = "created_by", nullable = true)
 	private String createdBy;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -31,7 +31,7 @@ public abstract class CommonModel implements Serializable{
 	@Column(name = "updated_by")
 	private String updatedBy;
 	
-	@Column(name = "is_delete", nullable = false)
+	@Column(name = "is_delete", nullable = true)
 	private Integer isDelete; //
 
 	public Date getCreatedDate() {

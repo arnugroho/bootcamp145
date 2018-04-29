@@ -53,6 +53,7 @@ public class EventController extends BaseController {
 				request.setAttribute("createDate", event.getCreatedDate());
 				request.setAttribute("updatedBy", event.getUpdatedBy());
 				request.setAttribute("updatedDate", event.getUpdatedDate());
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -74,32 +75,17 @@ public class EventController extends BaseController {
 	@RequestMapping("/insert")
 	public void insert(Model model, HttpServletRequest request) {
 		try {
+			
 			Event event = new Event();
-			String code = request.getParameter("code");
-			String eventName = request.getParameter("eventName");
-			String place = request.getParameter("place");
-			Date endDate = sdf.parse(request.getParameter("endDate"));
-			Long budget = Long.parseLong(request.getParameter("budget"));
-			Date requestDate = sdf.parse(request.getParameter("requestDate"));
-			int requestBy =Integer.parseInt(request.getParameter("requestBy"));
+			event.setCode(request.getParameter("code"));
+			event.setStatus(1);
+			eventService.insert(event);
 			
-			
-			Personel user = getUser();
-			Date currentDate = new Date();
-			
-			event.setCode(code);
-			event.setEventname(eventName);
-			event.setPlace(place);
-			event.setStartDate(currentDate);
-			event.setEndDate(endDate);
-			event.setBudget(budget);
-			event.setRequestBy(requestBy);
-			event.setRequestDate(requestDate);
-			
-			
+
 			model.addAttribute("success", true);
+			
 		} catch (Exception e) {
-			model.addAttribute("success", false);
+			model.addAttribute("gagal nih", false);
 		}
 	}
 

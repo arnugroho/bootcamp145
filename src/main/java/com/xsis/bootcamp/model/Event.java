@@ -24,9 +24,9 @@ public class Event extends CommonModel {
 	@TableGenerator(name = Event.TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = Event.TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = Event.TABLE_NAME)
 	private int id;
-	@Column(name = "code", length = 50, nullable = false)
+	@Column(name = "code", length = 50, nullable = true)
 	private String code;
-	@Column(name = "event_name", length = 255, nullable = false)
+	@Column(name = "event_name", length = 255, nullable = true)
 	private String eventName;
 	@Column(name = "start_date")
 	private Date startDate;
@@ -36,11 +36,11 @@ public class Event extends CommonModel {
 	private String place;
 	@Column(name = "budget", length = 50)
 	private Long budget;
-	@Column(name = "request_by", length = 11, nullable = false)
+	@Column(name = "request_by", length = 11, nullable = true)
 	private int requestBy;
-	@Column(name = "request_date", nullable = false)
+	@Column(name = "request_date", nullable = true)
 	private Date requestDate;
-	@Column(name = "approved_by", length = 11, nullable = false)
+	@Column(name = "approved_by", length = 11, nullable = true)
 	private int approvedBy;
 	@Column(name = "approved_date")
 	private Date approvedDate;
@@ -59,7 +59,6 @@ public class Event extends CommonModel {
 	@JoinColumn(name = "status", updatable = false, insertable = false)
 	private Status statusDesc;
 	
-
 
 	public int getId() {
 		return id;

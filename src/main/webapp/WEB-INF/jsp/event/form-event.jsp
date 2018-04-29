@@ -65,7 +65,12 @@
 				url : contextName + '/event/insert.json',
 				data : {
 					'code' : $("#code").val(),
-					'eventName' : $("#eventName").val(),
+// 					'eventName' : $("#eventName").val(),
+// 					'place':$("#place").val(),
+// 					'startDate':$("#startDate").val(),
+// 					'endDate':$("#endDate").val(),
+// 					'budget':$("#budget").val(),
+// 					'requestBy':$("#requestBy").val(),
 				},
 				type : 'post',
 				dataType : 'json',

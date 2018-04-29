@@ -10,7 +10,7 @@ public class Status {
 	private String status;
 	
 	@Id
-	@Column(name = "id", length = 11, nullable = false)
+	@Column(name = "id", length = 11, nullable = true)
 	public int getId() {
 		return id;
 	}
