@@ -1,37 +1,11 @@
 <%@ include file="/taglibs.jsp"%>
+<%@ include file="modal-form.jsp"%>
 
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalFormBuku">Tambah</button>
+<hr>
 <table id="tableBuku" class="display" width="100%"></table>
-<div class="row">
-	<div class="col-md-12">
 
-		<div class="box box-primary">
-			<div class="box-header with-border">
-				<h3 class="box-title">Form Buku</h3>
-			</div>
-			<!-- /.box-header -->
-			<!-- form start -->
-			<form role="form">
-				<div class="box-body">
-					<div class="form-group">
-						<label for="namaBuku">Nama Buku</label> 
-						<input class="form-control" id="namaBuku" name="namaBuku" placeholder="Nama Buku" type="text">
-					</div>
-					<div class="form-group">
-						<label for="[engarang]">Pengarang</label> 
-						<input class="form-control" id="pengarang" name="pengarang" placeholder="Pengarang" type="text">
-					</div>
-					
-				</div>
-				<!-- /.box-body -->
-
-				<div class="box-footer">
-					<button type="button" id="btnInsert" class="btn btn-primary">Insert</button>
-				</div>
-			</form>
-		</div>
-	</div>
-
-</div>
 
 <script type="text/javascript">
 
@@ -70,6 +44,11 @@ function insertData() {
 				prepareDatatable()
 				// ------ //
 				
+				//modal di hide 
+				$('#modalFormBuku').modal('hide');
+				// ----//
+				
+				
 				notifySuccess('Berhasil Insert Data');
 			}else {
 				notifyError('Gagal Insert Data');
@@ -106,6 +85,8 @@ function prepareDatatable() {
 				            { title: "Pengarang" }
 				           ]
 				    } );
+				    
+				
 				notifySuccess('Berhasil Create Table');
 			}else {
 				notifyError('Gagal Create Table');
