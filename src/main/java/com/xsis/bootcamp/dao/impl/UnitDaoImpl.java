@@ -26,7 +26,7 @@ public class UnitDaoImpl extends SessionHibernate implements UnitDao {
 
 	@SuppressWarnings("unchecked")
 	public Collection<Unit> listAll() throws Exception {
-		String query = new StringBuilder().append("from Unit").toString();
+		String query = new StringBuilder().append("from Unit where is_delete=0").toString();
 		return getSession().createQuery(query).list();
 	}
 

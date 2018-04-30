@@ -68,7 +68,8 @@ public class MroleController extends BaseController {
 				ViewRole v = new ViewRole();
 				v.setCode(mrole.getCode());
 				v.setName(mrole.getName());
-				v.setDescription(mrole.getDescription());
+				v.setCreatedDate(mrole.getCreatedDate());
+				v.setCreatedBy(mrole.getCreatedBy());
 				listViewRole.add(v);
 			}
 			model.addAttribute("listRole", listViewRole);

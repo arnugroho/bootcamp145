@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Query;
-import org.hibernate.Session;
+/*import org.hibernate.Query;
+import org.hibernate.Session;*/
 import org.springframework.stereotype.Repository;
 
 import com.xsis.bootcamp.dao.MroleDao;
@@ -40,7 +40,7 @@ public class MroleDaoImpl extends SessionHibernate implements MroleDao {
 	@Override
 	public Collection<Mrole> listAll() throws Exception {
 		// TODO Auto-generated method stub
-		String query = new StringBuilder().append("from Mrole").toString();
+		String query = new StringBuilder().append("from Mrole where is_delete=0").toString();
 		return getSession().createQuery(query).list();
 	}
 
