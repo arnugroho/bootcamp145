@@ -74,8 +74,7 @@
 
 					});
 					
-// 					DateTime date = new DateTime(long.Parse(requestDate));
-// 					date.ToString("MM/dd/yyyy");
+ 					
 					var dataSet = listEvent;
 
 					$('#tableEvent').DataTable({
@@ -89,8 +88,7 @@
 							{title : "Status"},
 							{title : "Created Date"},
 							{title : "Create By"},
-							{title : "Action" 
-							
+							{title : "Action" 	
 							
 							}
 							

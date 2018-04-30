@@ -15,7 +15,7 @@ public abstract class CommonModel implements Serializable{
 	private static final long serialVersionUID = -4336637522858803239L;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "created_date", nullable = true)
 	private Date createdDate;
 	
@@ -24,7 +24,7 @@ public abstract class CommonModel implements Serializable{
 	private String createdBy;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "updated_date")
 	private Date updatedDate;
 	

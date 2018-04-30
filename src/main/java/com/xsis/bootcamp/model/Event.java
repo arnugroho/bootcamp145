@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.xsis.bootcamp.model.common.CommonModel;
 
@@ -28,8 +30,10 @@ public class Event extends CommonModel {
 	private String code;
 	@Column(name = "event_name", length = 255, nullable = true)
 	private String eventName;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
 	private Date startDate;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "end_date")
 	private Date endDate;
 	@Column(name = "place", length = 255)
@@ -38,14 +42,17 @@ public class Event extends CommonModel {
 	private Long budget;
 	@Column(name = "request_by", length = 11, nullable = true)
 	private Long requestBy;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "request_date", nullable = true)
 	private Date requestDate;
 	@Column(name = "approved_by", length = 11, nullable = true)
 	private int approvedBy;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "approved_date")
 	private Date approvedDate;
 	@Column(name = "assign_to", length = 11)
 	private int assignTo;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "close_date")
 	private Date closeDate;
 	@Column(name = "note", length = 255)
