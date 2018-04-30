@@ -37,7 +37,7 @@ public class Event extends CommonModel {
 	@Column(name = "budget", length = 50)
 	private Long budget;
 	@Column(name = "request_by", length = 11, nullable = true)
-	private int requestBy;
+	private Long requestBy;
 	@Column(name = "request_date", nullable = true)
 	private Date requestDate;
 	@Column(name = "approved_by", length = 11, nullable = true)
@@ -56,9 +56,17 @@ public class Event extends CommonModel {
 	private String rejectReason;
 	
 	@ManyToOne
-	@JoinColumn(name = "status", updatable = false, insertable = false)
+	@JoinColumn(name="status",insertable=false,updatable=false)
 	private Status statusDesc;
 	
+	
+	public Status getStatusDesc() {
+		return statusDesc;
+	}
+
+	public void setStatusDesc(Status statusDesc) {
+		this.statusDesc = statusDesc;
+	}
 
 	public int getId() {
 		return id;
@@ -116,11 +124,11 @@ public class Event extends CommonModel {
 		this.budget = budget;
 	}
 
-	public int getRequestBy() {
+	public Long getRequestBy() {
 		return requestBy;
 	}
 
-	public void setRequestBy(int requestBy) {
+	public void setRequestBy(Long requestBy) {
 		this.requestBy = requestBy;
 	}
 
@@ -194,14 +202,6 @@ public class Event extends CommonModel {
 
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
-	}
-
-	public Status getStatusDesc() {
-		return statusDesc;
-	}
-
-	public void setStatusDesc(Status statusDesc) {
-		this.statusDesc = statusDesc;
 	}
 
 

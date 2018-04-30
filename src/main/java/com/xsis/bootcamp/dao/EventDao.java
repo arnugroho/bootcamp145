@@ -6,8 +6,6 @@ import com.xsis.bootcamp.model.Event;
 
 public interface EventDao {
 	
-	public Event getEvent(int id) throws Exception;
-
 	public abstract void insert(Event event) throws Exception;
 
 	public abstract void update(Event event) throws Exception;

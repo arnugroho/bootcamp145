@@ -5,8 +5,6 @@ import java.util.Collection;
 import com.xsis.bootcamp.model.Event;
 
 public interface EventService {
-
-	public Event getEvent(int id) throws Exception;
 	
 	public abstract void insert(Event event) throws Exception;
 

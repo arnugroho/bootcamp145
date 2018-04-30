@@ -72,9 +72,9 @@ public class Promotion extends CommonModel {
 	@ManyToOne
 	@JoinColumn(name ="m_employee", updatable = false, insertable = false)
 	private Employee assignToDesc;
-	@ManyToOne
-	@JoinColumn(name ="status", updatable = false, insertable = false)
-	private Status statusDesc;
+//	@ManyToOne
+//	@JoinColumn(name ="status", updatable = false, insertable = false)
+//	private Status statusDesc;
 //	GETTER SETTER
 	public Integer getId() {
 		return id;
@@ -198,12 +198,12 @@ public class Promotion extends CommonModel {
 	public void setAssignToDesc(Employee assignToDesc) {
 		this.assignToDesc = assignToDesc;
 	}
-	public Status getStatusDesc() {
-		return statusDesc;
-	}
-	public void setStatusDesc(Status statusDesc) {
-		this.statusDesc = statusDesc;
-	}
-	
+//	public Status getStatusDesc() {
+//		return statusDesc;
+//	}
+//	public void setStatusDesc(Status statusDesc) {
+//		this.statusDesc = statusDesc;
+//	}
+//	
 	
 }

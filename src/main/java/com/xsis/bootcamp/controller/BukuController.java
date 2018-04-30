@@ -72,6 +72,7 @@ public class BukuController extends BaseController{
 				ViewBuku v = new ViewBuku();
 				v.setNamaBuku(buku.getNamaBuku());
 				v.setPengarang(buku.getPengarang());
+				
 				listViewBuku.add(v);
 			}
 			model.addAttribute("listBuku", listViewBuku);
