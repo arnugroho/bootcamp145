@@ -35,23 +35,23 @@ public class EventController extends BaseController {
 	@RequestMapping("/insert")
 	public void insert(Model model, HttpServletRequest req) {
 		try {
-
+/*
 			String code = req.getParameter("code");
 			String eventName = req.getParameter("eventName");
 			String place = req.getParameter("place");
-			//Date startDate = sdf.parse(req.getParameter("startDate"));
-			//Date endDate = sdf.parse(req.getParameter("endDate"));
+			Date startDate = sdf.parse(req.getParameter("startDate"));
+			Date endDate = sdf.parse(req.getParameter("endDate"));
 			Long budget = Long.parseLong(req.getParameter("budget"));
 			String note = req.getParameter("note");
-
+*/
 			Event event = new Event();
-			event.setCode(code);
-			event.setEventname(eventName);
-			event.setPlace(place);
-			//event.setStartDate(startDate);
-			//event.setEndDate(endDate);
-			event.setBudget(budget);
-			event.setNote(note);
+			event.setCode(req.getParameter("code"));
+			event.setEventname(req.getParameter("eventName"));
+			event.setPlace(req.getParameter("place"));
+			event.setStartDate(sdf.parse(req.getParameter("startDate")));
+			event.setEndDate(sdf.parse(req.getParameter("endDate")));
+			event.setBudget(Long.parseLong(req.getParameter("budget")));
+			event.setNote(req.getParameter("note"));
 
 			Personel user = getUser();
 			Date currentDate = new Date();
