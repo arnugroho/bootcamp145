@@ -15,6 +15,7 @@
 
 				<li><a href="${contextName}/role/role.html"><i class="fa fa-book"></i><span>Role</span></a></li>
 				<li><a href="${contextName}/member/user.html"><i class="fa fa-book"></i><span>User</span></a></li>
+				<li><a href="${contextName}/unit/unit.html"><i class="fa fa-book"></i><span>Unit</span></a></li>
 
 				
 				<li class="treeview">
