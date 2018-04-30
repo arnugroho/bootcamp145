@@ -29,10 +29,10 @@
 				'code' : $("#code").val(),
 				'eventName' : $("#eventName").val(),
 				'place' : $("#place").val(),
-				'startDate' : $("#startDate").val(),
-				'endDate' : $("#endDate").val(),
-				'budget' : $("#budget").val(),
-				'note' : $("#note").val(),
+ 				'startDate' : $("#startDate").val(),
+ 				'endDate' : $("#endDate").val(),
+ 				'budget' : $("#budget").val(),
+ 				'note' : $("#note").val(),
 			},
 			type : 'post',
 			dataType : 'json',
@@ -71,8 +71,11 @@
 					var listEvent = $.map(result.listEvent, function(value,
 							index) {
 						return [ Object.values(value) ];
-					});
 
+					});
+					
+// 					DateTime date = new DateTime(long.Parse(requestDate));
+// 					date.ToString("MM/dd/yyyy");
 					var dataSet = listEvent;
 
 					$('#tableEvent').DataTable({
@@ -86,7 +89,11 @@
 							{title : "Status"},
 							{title : "Created Date"},
 							{title : "Create By"},
-							{title : "Action"}
+							{title : "Action" 
+							
+							
+							}
+							
 						]
 					});
 

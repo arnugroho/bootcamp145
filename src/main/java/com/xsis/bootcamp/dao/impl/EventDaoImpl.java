@@ -29,7 +29,7 @@ public class EventDaoImpl extends SessionHibernate implements EventDao {
 
 	public Collection<Event> listAll() throws Exception {
 		// TODO Auto-generated method stub
-		String query = new StringBuilder().append("from Event").toString();
+		String query = new StringBuilder().append("from Event where is_delete=0").toString();
 		return getSession().createQuery(query).list();
 	}
 	

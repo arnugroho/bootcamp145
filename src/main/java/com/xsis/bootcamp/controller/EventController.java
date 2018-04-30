@@ -35,15 +35,6 @@ public class EventController extends BaseController {
 	@RequestMapping("/insert")
 	public void insert(Model model, HttpServletRequest req) {
 		try {
-/*
-			String code = req.getParameter("code");
-			String eventName = req.getParameter("eventName");
-			String place = req.getParameter("place");
-			Date startDate = sdf.parse(req.getParameter("startDate"));
-			Date endDate = sdf.parse(req.getParameter("endDate"));
-			Long budget = Long.parseLong(req.getParameter("budget"));
-			String note = req.getParameter("note");
-*/
 			Event event = new Event();
 			event.setCode(req.getParameter("code"));
 			event.setEventname(req.getParameter("eventName"));
@@ -60,6 +51,7 @@ public class EventController extends BaseController {
 			event.setCreatedDate(currentDate);
 			event.setRequestBy(user.getId());
 			event.setRequestDate(currentDate);
+			event.setStatus(1);
 			event.setIsDelete(0);
 			eventService.insert(event);
 
@@ -83,7 +75,7 @@ public class EventController extends BaseController {
 				v.setEventName(event.getEventname());
 				v.setRequestBy(event.getRequestBy());
 				v.setRequestDate(event.getRequestDate());
-				v.setCloseDate(event.getCloseDate());
+				v.setEndDate(event.getEndDate());
 				v.setStatus(event.getStatusDesc().getStatus());
 				v.setCreatedDate(event.getCreatedDate());
 				v.setCreateBy(event.getCreatedBy());

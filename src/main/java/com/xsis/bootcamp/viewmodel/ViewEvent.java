@@ -13,7 +13,7 @@ public class ViewEvent {
 
 	private Date requestDate;
 
-	private Date closeDate;
+	private Date endDate;
 
 	private String status;
 	
@@ -53,14 +53,15 @@ public class ViewEvent {
 		this.requestDate = requestDate;
 	}
 
-	public Date getCloseDate() {
-		return closeDate;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setCloseDate(Date closeDate) {
-		this.closeDate = closeDate;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
+	
 	public String getStatus() {
 		return status;
 	}
@@ -88,6 +89,6 @@ public class ViewEvent {
 		this.createBy = createBy;
 	}
 
-
+	
 
 }
