@@ -18,6 +18,33 @@ public class MroleServiceImpl implements MroleService {
 	private MroleDao mroleDao;
 
 	@Override
+	public void insert(Mrole mrole) throws Exception {
+		// TODO Auto-generated method stub
+		mroleDao.insert(mrole);
+		
+	}
+
+	@Override
+	public void delete(Mrole mrole) throws Exception {
+		// TODO Auto-generated method stub
+		mroleDao.delete(mrole);
+		
+	}
+
+	@Override
+	public void update(Mrole mrole) throws Exception {
+		// TODO Auto-generated method stub
+		mroleDao.delete(mrole);
+		
+	}
+
+	@Override
+	public Collection<Mrole> listAll() throws Exception {
+		// TODO Auto-generated method stub
+		return mroleDao.listAll();
+	}
+
+/*	@Override
 	public Mrole getRole(int id) throws Exception {
 		return mroleDao.getRole(id);
 	}
@@ -40,6 +67,6 @@ public class MroleServiceImpl implements MroleService {
 	@Override
 	public Collection<Mrole> listAll() throws Exception {
 		return mroleDao.listAll();
-	}
+	}*/
 
 }

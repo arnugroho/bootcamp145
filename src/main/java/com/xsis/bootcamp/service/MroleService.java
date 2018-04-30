@@ -6,7 +6,7 @@ import com.xsis.bootcamp.model.Mrole;
 
 public interface MroleService {
 
-	public Mrole getRole(int id) throws Exception;
+	/*public Mrole getRole(int id) throws Exception;*/
 
 	public abstract void insert(Mrole mrole) throws Exception;
 
