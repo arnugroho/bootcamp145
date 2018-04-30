@@ -46,7 +46,7 @@
 									</div>
 									<div class="form-group">
 										<label for="evenetName">budget</label> <input
-											class="form-control" id="budget" name="budget"
+											class="form-control" pattern="[0-9]+"title=" numeric characters only" id="budget" name="budget"
 											placeholder="Budget" type="text">
 									</div>
 									<div class="form-group">

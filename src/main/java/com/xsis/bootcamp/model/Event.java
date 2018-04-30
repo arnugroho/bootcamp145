@@ -41,6 +41,7 @@ public class Event extends CommonModel {
 	@Column(name = "budget", length = 50)
 	private Long budget;
 	@Column(name = "request_by", length = 11, nullable = true)
+	
 	private Long requestBy;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "request_date", nullable = true)
@@ -66,7 +67,18 @@ public class Event extends CommonModel {
 	@JoinColumn(name="status",insertable=false,updatable=false)
 	private Status statusDesc;
 	
+	@ManyToOne
+	@JoinColumn(name="m_employee",insertable=false,updatable=false)
+	private Employee requestByDesc;
 	
+	public Employee getRequestByDesc() {
+		return requestByDesc;
+	}
+
+	public void setRequestByDesc(Employee requestByDesc) {
+		this.requestByDesc = requestByDesc;
+	}
+
 	public Status getStatusDesc() {
 		return statusDesc;
 	}

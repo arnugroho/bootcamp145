@@ -73,7 +73,7 @@ public class EventController extends BaseController {
 				ViewEvent v = new ViewEvent();
 				v.setCode(event.getCode());
 				v.setEventName(event.getEventname());
-				v.setRequestBy(event.getRequestBy());
+				v.setRequestBy(event.getRequestByDesc().getFirstName());
 				v.setRequestDate(event.getRequestDate());
 				v.setEndDate(event.getEndDate());
 				v.setStatus(event.getStatusDesc().getStatus());

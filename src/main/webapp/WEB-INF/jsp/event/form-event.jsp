@@ -3,7 +3,7 @@
 
 <!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-success btn-lg" data-toggle="modal"
-	data-target="#modalFormEvent">Tambah</button>
+	data-target="#modalFormEvent">add</button>
 <hr>
 <table id="tableEvent" class="display" width="100%"></table>
 
@@ -74,7 +74,6 @@
 
 					});
 					
- 					
 					var dataSet = listEvent;
 
 					$('#tableEvent').DataTable({
@@ -88,7 +87,10 @@
 							{title : "Status"},
 							{title : "Created Date"},
 							{title : "Create By"},
-							{title : "Action" 	
+							{title : "Action",
+								 Render:function(row){
+								return "<a title='delete'>edit</a>"
+							}	
 							
 							}
 							
