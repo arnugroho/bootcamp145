@@ -14,4 +14,6 @@ public interface UnitService {
 
 	public Collection<Unit> listAll() throws Exception;
 
+	public Unit get(Long idUnit) throws Exception;
+
 }

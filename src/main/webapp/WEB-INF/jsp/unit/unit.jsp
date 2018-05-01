@@ -56,14 +56,24 @@ function prepareDatatable() {
     				return [Object.values(value)];
 				});
 				var dataSet = listUnit;
-									    $('#tableUnit').DataTable( {
+						$('#tableUnit').DataTable( {
 				        data: dataSet,
 				        columns: [
 				            { title: "Unit Code" },
 				            { title: "Unit Name" },
 				            { title: "Created Date" },
 				            { title: "Created By" },
-				            { title: "Description" }
+				            { title: "Action" }
+				           ],
+				           "columnDefs": [
+				        	   {
+				        		   "render": function (data,type,row){
+				        			   var s = '<button type="button" class="btn btn-danger btn-add" onclick="deleteUnit('+data+')">'
+				        			   s = s + ' <i class ="fa fa-trash"></i></button>'
+				        			   return s;
+				        		   },
+				        		   "targets" : 4
+				        	   }
 				           ]
 				    } );
 				notifySuccess('Berhasil Create Table');
@@ -73,6 +83,29 @@ function prepareDatatable() {
 		},
 		error : function() {
 			notifyError('Gagal Create Table');
+		}
+	});
+}
+
+function deleteUnit(idUnit){
+	$.ajax({
+		url : contextName + '/unit/delete.json',
+		type : 'post',
+		data : {
+			idUnit : idUnit
+		},
+		dataType : 'json',
+		success : function(result){
+			if(result.success){
+				$('#tableUnit').DataTable().destroy()
+				prepareDatatable()
+				notifySuccess('Data Berhasil Di Delete');
+			}else{
+				notifyError('Data Gagal Di Delete');
+			}
+		},
+		error : function(){
+			notifyError('Data Gagal Di Delete');
 		}
 	});
 }

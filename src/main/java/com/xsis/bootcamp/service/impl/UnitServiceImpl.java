@@ -12,7 +12,7 @@ import com.xsis.bootcamp.service.UnitService;
 
 @Transactional
 @Service
-public class UnitServiceImpl implements UnitService{
+public class UnitServiceImpl implements UnitService {
 	@Autowired
 	private UnitDao unitDao;
 
@@ -35,6 +35,10 @@ public class UnitServiceImpl implements UnitService{
 	public Collection<Unit> listAll() throws Exception {
 		return unitDao.listAll();
 	}
-	
+
+	@Override
+	public Unit get(Long idUnit) throws Exception {
+		return unitDao.get(idUnit);
+	}
 
 }

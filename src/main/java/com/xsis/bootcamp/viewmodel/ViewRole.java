@@ -7,6 +7,7 @@ public class ViewRole {
 	private String name;
 	public Date createdDate;
 	public String createdBy;
+	private Long idRole;
 	
 	public String getCode() {
 		return code;
@@ -32,6 +33,15 @@ public class ViewRole {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
+	public Long getIdRole() {
+		return idRole;
+	}
+	public void setIdRole(Long idRole) {
+		this.idRole = idRole;
+	}
+
+
+	
 	
 	
 	

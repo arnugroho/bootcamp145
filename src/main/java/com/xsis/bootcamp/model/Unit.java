@@ -21,7 +21,7 @@ public class Unit extends CommonModel {
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.TABLE, generator=TABLE_NAME)
 	@TableGenerator(name = TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
-	private int id;
+	private Long id;
 	
 	@Column(name="code")
 	private String code;
@@ -32,11 +32,11 @@ public class Unit extends CommonModel {
 	@Column(name="description")
 	private String description;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
