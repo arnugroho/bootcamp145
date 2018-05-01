@@ -82,7 +82,22 @@ function prepareDatatable() {
 				        data: dataSet,
 				        columns: [
 				            { title: "Nama Buku" },
-				            { title: "Pengarang" }
+				            { title: "Pengarang" },
+				            { title: "Action" }
+				           ],
+				           "columnDefs": [
+				               {
+				                   // The `data` parameter refers to the data for the cell (defined by the
+				                   // `data` option, which defaults to the column being worked with, in
+				                   // this case `data: 0`.
+				                   "render": function ( data, type, row ) {
+				                	   var s = '<button type="button" class="btn btn-danger btn-add" onClick="deleteBuku('+data+')">'
+				   					   s = s + ' <i class="fa fa-trash"></i> </button>'
+				                       return s;
+				                   },
+				                   // column keberapa render diaplikasikan
+				                   "targets": 2
+				               }
 				           ]
 				    } );
 				    
@@ -94,6 +109,34 @@ function prepareDatatable() {
 		},
 		error : function() {
 			notifyError('Gagal Create Table');
+		}
+	});
+}
+
+
+function deleteBuku(idBuku){
+	$.ajax({
+		url : contextName + '/buku/delete.json',
+		type : 'post',
+		data : {
+			idBuku : idBuku
+		},
+		dataType : 'json',
+		success : function(result) {
+			if(result.success){
+				//agar table ter refresh
+				$('#tableBuku').DataTable().destroy()
+				prepareDatatable()
+				// ------ //
+				    
+				
+				notifySuccess('Berhasil Delete Data');
+			}else {
+				notifyError('Gagal Delete Data');
+			}
+		},
+		error : function() {
+			notifyError('Gagal Delete Data');
 		}
 	});
 }

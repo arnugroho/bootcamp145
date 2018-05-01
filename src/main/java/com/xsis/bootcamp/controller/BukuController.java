@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.xsis.bootcamp.model.Buku;
 import com.xsis.bootcamp.model.Personel;
 import com.xsis.bootcamp.service.BukuService;
+import com.xsis.bootcamp.util.GeneralVariable;
 import com.xsis.bootcamp.viewmodel.ViewBuku;
 
 @Controller
@@ -72,10 +73,32 @@ public class BukuController extends BaseController{
 				ViewBuku v = new ViewBuku();
 				v.setNamaBuku(buku.getNamaBuku());
 				v.setPengarang(buku.getPengarang());
-				
+				v.setIdBuku(buku.getId());
 				listViewBuku.add(v);
 			}
 			model.addAttribute("listBuku", listViewBuku);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+		
+		
+		
+	}
+	
+	@RequestMapping("/delete")
+	public void delete(Model model, HttpServletRequest req) {
+		try {
+			String idBukuReq = req.getParameter("idBuku");
+			Long idBuku = Long.parseLong(idBukuReq);
+			Buku buku = bukuService.get(idBuku);
+			//set is deletenya 1, artinya delete
+			buku.setIsDelete(GeneralVariable.ISDELETE_TRUE);
+			
+			//update bukunya
+			bukuService.update(buku);
+			
 			model.addAttribute("success", true);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
