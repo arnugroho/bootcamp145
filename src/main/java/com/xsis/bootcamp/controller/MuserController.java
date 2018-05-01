@@ -28,7 +28,7 @@ public class MuserController extends BaseController{
 				Muser muser = new Muser();
 				muser = muserService.getUser(Integer.parseInt(request.getParameter("id")));
 				request.setAttribute("employee_id", muser.getmEmployeeId());
-				request.setAttribute("company_id", muser.getmCompanyId());
+//				request.setAttribute("company_id", muser.getmCompanyId());
 				request.setAttribute("username", muser.getUsername());
 				request.setAttribute("created_date", muser.getCreatedDate());
 				request.setAttribute("created_by", muser.getCreatedBy());				
