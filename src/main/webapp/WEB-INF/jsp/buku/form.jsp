@@ -2,7 +2,7 @@
 <%@ include file="modal-form.jsp"%>
 
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalFormBuku">Tambah</button>
+<button type="button" id="btnTambah" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalFormBuku">Tambah</button>
 <hr>
 <table id="tableBuku" class="display" width="100%"></table>
 
@@ -17,7 +17,22 @@ $(document).ready(function() {
 	
 	//mendefinisikan ketika tombol btnInsert diklik memanggil insertData()
 	$("#btnInsert").click(function(){
+		
 		insertData();
+		
+	});
+	
+	$("#btnUpdate").click(function(){
+		
+		updateData();
+		
+	});
+	
+	$("#btnTambah").click(function(){
+		
+		$("#btnUpdate").hide();
+		$('#btnInsert').show();
+		
 	});
 
 	
@@ -60,6 +75,39 @@ function insertData() {
 	});
 }
 
+function updateData() {
+	$.ajax({
+		url : contextName + '/buku/update.json',
+		data : {
+			'namaBuku' : $("#namaBuku").val(),
+			'pengarang' : $("#pengarang").val(),
+			'id' : $("#idBuku").val(),
+		},
+		type : 'post',
+		dataType : 'json',
+		success : function(result) {
+			if(result.success){
+				//agar table ter refresh
+				$('#tableBuku').DataTable().destroy()
+				prepareDatatable()
+				// ------ //
+				
+				//modal di hide 
+				$('#modalFormBuku').modal('hide');
+				// ----//
+				
+				
+				notifySuccess('Berhasil Update Data');
+			}else {
+				notifyError('Gagal Update Data');
+			}
+		},
+		error : function() {
+			notifyError('Gagal Update Data');
+		}
+	});
+}
+
 
 function prepareDatatable() {
 	$.ajax({
@@ -91,8 +139,11 @@ function prepareDatatable() {
 				                   // `data` option, which defaults to the column being worked with, in
 				                   // this case `data: 0`.
 				                   "render": function ( data, type, row ) {
-				                	   var s = '<button type="button" class="btn btn-danger btn-add" onClick="deleteBuku('+data+')">'
+				                	   var s = '<button type="button" class="btn btn-danger" onClick="deleteBuku('+data+')">'
 				   					   s = s + ' <i class="fa fa-trash"></i> </button>'
+				   						s += '<button type="button" class="btn btn-warning" onClick="updateBuku('+data+')">'
+				   					   s += '<i class="fa fa-edit"></i> </button>'
+				   					   
 				                       return s;
 				                   },
 				                   // column keberapa render diaplikasikan
@@ -137,6 +188,35 @@ function deleteBuku(idBuku){
 		},
 		error : function() {
 			notifyError('Gagal Delete Data');
+		}
+	});
+}
+
+
+function updateBuku(idBuku){
+	$('#btnInsert').hide();
+	$('#btnUpdate').show();
+	$('#modalFormBuku').modal('show');
+	$.ajax({
+		url : contextName + '/buku/view.json',
+		type : 'post',
+		data : {
+			idBuku : idBuku
+		},
+		dataType : 'json',
+		success : function(result) {
+			if(result.success){
+				$("#namaBuku").val(result.buku.namaBuku)
+				$("#pengarang").val(result.buku.pengarang)
+				$("#idBuku").val(result.buku.id)
+				
+				notifySuccess('Berhasil Menampilkan Data');
+			}else {
+				notifyError('Gagal Menampilkan Data');
+			}
+		},
+		error : function() {
+			notifyError('Gagal Menampilkan Data');
 		}
 	});
 }

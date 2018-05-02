@@ -21,10 +21,14 @@
 											placeholder="Nama Buku" type="text">
 									</div>
 									<div class="form-group">
-										<label for="[engarang]">Pengarang</label> <input
+										<label for="pengarang">Pengarang</label> <input
 											class="form-control" id="pengarang" name="pengarang"
 											placeholder="Pengarang" type="text">
 									</div>
+									
+									<input
+											class="form-control" id="idBuku" name="idBuku"
+											 type="hidden">
 
 								</div>
 								<!-- /.box-body -->
@@ -37,6 +41,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" id="btnInsert" class="btn btn-primary">Insert</button>
+				<button type="button" id="btnUpdate" class="btn btn-primary">Update</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
