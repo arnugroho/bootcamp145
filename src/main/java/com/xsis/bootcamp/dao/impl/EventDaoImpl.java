@@ -32,5 +32,6 @@ public class EventDaoImpl extends SessionHibernate implements EventDao {
 		String query = new StringBuilder().append("from Event where is_delete=0").toString();
 		return getSession().createQuery(query).list();
 	}
-	
+
+
 }

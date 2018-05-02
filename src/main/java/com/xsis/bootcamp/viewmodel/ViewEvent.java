@@ -21,6 +21,8 @@ public class ViewEvent {
 
 	private String createBy;
 
+	private int idEvent;
+	
 	public String getCode() {
 		return code;
 	}
@@ -89,6 +91,13 @@ public class ViewEvent {
 		this.createBy = createBy;
 	}
 
-	
+	public int getIdEvent() {
+		return idEvent;
+	}
+
+	public void setIdEvent(int idEvent) {
+		this.idEvent = idEvent;
+	}
+
 
 }

@@ -13,5 +13,6 @@ public interface EventService {
 	public abstract void delete(Event event) throws Exception;
 	
 	public abstract Collection<Event> listAll() throws Exception;
-	 
+
+
 }

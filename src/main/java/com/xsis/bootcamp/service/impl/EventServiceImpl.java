@@ -38,6 +38,5 @@ public class EventServiceImpl implements EventService {
 		return eventDao.listAll();
 	}
 
-	
-	
+
 }

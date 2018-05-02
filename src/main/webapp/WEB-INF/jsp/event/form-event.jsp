@@ -87,16 +87,8 @@
 							{title : "Status"},
 							{title : "Created Date"},
 							{title : "Create By"},
-							{title : "Action",
-								 Render:function(row){
-								return "<a title='delete'>edit</a>"
-							}	
-							
-							}
-							
-						]
-					});
-
+							{title : "Action"}	
+											
 					notifySuccess('Berhasil Create Table');
 				} else {
 					notifyError('Gagal Create Table');
@@ -106,7 +98,40 @@
 				notifyError('Gagal Create Table');
 			}
 		});
+
+					
+					
+					
+
+		function deleteEvent(idEvent){
+			$.ajax({
+				url : contextName + '/event/delete.json',
+				type : 'post',
+				data : {
+					idEvent : idEvent
+				},
+				dataType : 'json',
+				success : function(result) {
+					if(result.success){
+						//agar table ter refresh
+						$('#tableEvent').DataTable().destroy()
+						prepareDatatable()
+						// ------ //
+						    
+						
+						notifySuccess('Berhasil Delete Data');
+					}else {
+						notifyError('Gagal Delete Data');
+					}
+				},
+				error : function() {
+					notifyError('Gagal Delete Data');
+				}
+			});
+		
+		}
 	}
+	
 </script>
 
 

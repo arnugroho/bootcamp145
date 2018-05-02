@@ -2,6 +2,7 @@ package com.xsis.bootcamp.dao;
 
 import java.util.Collection;
 
+import com.xsis.bootcamp.model.Buku;
 import com.xsis.bootcamp.model.Event;
 
 public interface EventDao {
@@ -13,4 +14,5 @@ public interface EventDao {
 	public abstract void delete(Event event) throws Exception;
 
 	public abstract Collection<Event> listAll() throws Exception;
+	
 }
