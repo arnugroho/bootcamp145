@@ -1,9 +1,14 @@
 package com.xsis.bootcamp.viewmodel;
 
+import java.util.Date;
+
 public class ViewRole {
 	private String code;
 	private String name;
-	private String description;
+	public Date createdDate;
+	public String createdBy;
+	private Long idRole;
+	
 	public String getCode() {
 		return code;
 	}
@@ -16,12 +21,29 @@ public class ViewRole {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	public Long getIdRole() {
+		return idRole;
+	}
+	public void setIdRole(Long idRole) {
+		this.idRole = idRole;
+	}
+
+
+	
+	
+	
 	
 
 }

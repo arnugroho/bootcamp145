@@ -1,7 +1,8 @@
 <%@ include file="/taglibs.jsp"%>
 <%@ include file="modal-register-role.jsp"%>
 
-<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#registerRole">Add</button>
+<button type="button" class="btn btn-success btn-lg" data-toggle="modal"
+	data-target="#registerRole">Add</button>
 <hr>
 <table id="tableRole" class="display" width="100%"></table>
 
@@ -33,7 +34,7 @@ function insertData(){
 				
 				notifySuccess('Berhasil Insert Data');
 			} else {
-				notifyError('Gagal Inser Data');
+				notifyError('Gagal Insert Data');
 			}
 		},
 		error : function(){
@@ -64,9 +65,22 @@ function prepareDatatable() {
 				        columns: [
 				            { title: "Role Code" },
 				            { title: "Role Name" },
-				            { title: "Description" }
+				            { title: "Created Date" },
+				            { title: "Created By" },
+				            { title :"Action"}
+				           ],
+				           "columnDefs" : [
+				        	   {
+				        		   "render": function ( data, type, row ) {
+				                	   var s = '<button type="button" class="btn btn-danger btn-add" onClick="deleteRole('+data+')">'
+				   					   s = s + ' <i class="fa fa-trash"></i> </button>'
+				                       return s;
+				                   },
+				        		   "targets" : 4
+				        	   }
 				           ]
 				    } );
+				    
 				notifySuccess('Berhasil Create Table');
 			}else {
 				notifyError('Gagal Create Table');
@@ -74,6 +88,30 @@ function prepareDatatable() {
 		},
 		error : function() {
 			notifyError('Gagal Create Table');
+		}
+	});
+}
+
+function deleteRole(idRole){
+	$.ajax({
+		url : contextName + '/role/delete.json',
+		type : 'post',
+		data : {
+			idRole : idRole
+		},
+		dataType : 'json',
+		success : function(result){
+			if(result.success){
+				$('#tableRole').DataTable().destroy()
+				prepareDatatable()
+				
+				notifySuccess('Berhasil Delete Data');
+			}else{
+				notifyError('Gagal Delete Data');
+			}
+		},
+		error : function(){
+			notifyError('Gagal Delete Data');
 		}
 	});
 }

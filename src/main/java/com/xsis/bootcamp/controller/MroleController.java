@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.xsis.bootcamp.model.Mrole;
 import com.xsis.bootcamp.model.Personel;
 import com.xsis.bootcamp.service.MroleService;
+import com.xsis.bootcamp.util.GeneralVariable;
 import com.xsis.bootcamp.viewmodel.ViewRole;
 
 @Controller
@@ -38,7 +39,6 @@ public class MroleController extends BaseController {
 			String code = request.getParameter("code");
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
-
 			Personel personel = getUser();
 			Date currentDate = new Date();
 
@@ -58,20 +58,38 @@ public class MroleController extends BaseController {
 			model.addAttribute("success", false);
 		}
 	}
-	
+
 	@RequestMapping("/get-data")
 	public void getData(Model model, HttpServletRequest request) {
 		try {
 			Collection<Mrole> listRole = mroleService.listAll();
 			Collection<ViewRole> listViewRole = new ArrayList<>();
-			for(Mrole mrole : listRole) {
+			for (Mrole mrole : listRole) {
 				ViewRole v = new ViewRole();
 				v.setCode(mrole.getCode());
 				v.setName(mrole.getName());
-				v.setDescription(mrole.getDescription());
+				v.setCreatedDate(mrole.getCreatedDate());
+				v.setCreatedBy(mrole.getCreatedBy());
+				v.setIdRole(mrole.getId());
 				listViewRole.add(v);
 			}
 			model.addAttribute("listRole", listViewRole);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+	}
+
+	@RequestMapping("/delete")
+	public void delete(Model model, HttpServletRequest request) {
+		try {
+			String idRoleReq = request.getParameter("idRole");
+			Long idRole = Long.parseLong(idRoleReq);
+			Mrole mrole = mroleService.get(idRole);
+			mrole.setIsDelete(GeneralVariable.ISDELETE_TRUE);
+			
+			mroleService.update(mrole);
 			model.addAttribute("success",true);
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);

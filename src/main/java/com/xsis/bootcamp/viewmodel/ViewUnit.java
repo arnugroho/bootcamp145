@@ -6,10 +6,9 @@ public class ViewUnit {
 
 	private String code;
 	private String name;
-	
 	public Date createdDate;
 	public String createdBy;
-	private String description;
+	private Long idUnit;
 
 	public String getCode() {
 		return code;
@@ -43,13 +42,11 @@ public class ViewUnit {
 		this.createdBy = createdBy;
 	}
 
-	public String getDescription() {
-		return description;
+	public Long getIdUnit() {
+		return idUnit;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setIdUnit(Long idUnit) {
+		this.idUnit = idUnit;
 	}
-
-
 }

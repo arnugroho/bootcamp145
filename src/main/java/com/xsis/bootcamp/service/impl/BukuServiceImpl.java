@@ -39,4 +39,11 @@ public class BukuServiceImpl implements BukuService{
 		return bukuDao.listAll();
 	}
 
+	@Override
+	public Buku get(Long idBuku) throws Exception {
+		return bukuDao.get(idBuku);
+	}
+	
+	
+
 }

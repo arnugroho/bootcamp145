@@ -37,5 +37,9 @@ public interface GeneralVariable {
 		public static final String IS = "IS";
 	}
 	
+	//Status
+	public static final Integer ISDELETE_TRUE = 1;
+	public static final Integer ISDELETE_FALSE = 0;
+	
 
 }

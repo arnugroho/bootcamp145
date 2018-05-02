@@ -13,5 +13,7 @@ public interface BukuService {
 	public void delete(Buku buku) throws Exception;
 	
 	public Collection<Buku> listAll() throws Exception;
+	
+	public Buku get(Long idBuku) throws Exception;
 
 }

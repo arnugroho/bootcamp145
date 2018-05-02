@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.xsis.bootcamp.model.Personel;
 import com.xsis.bootcamp.model.Unit;
 import com.xsis.bootcamp.service.UnitService;
+import com.xsis.bootcamp.util.GeneralVariable;
 import com.xsis.bootcamp.viewmodel.ViewUnit;
 
 @Controller
@@ -63,14 +64,14 @@ public class UnitController extends BaseController {
 		try {
 			Collection<Unit> listUnit = unitService.listAll();
 			Collection<ViewUnit> listViewUnit = new ArrayList<>();
-			/*Date currentDate = new Date();*/
+			/* Date currentDate = new Date(); */
 			for (Unit unit : listUnit) {
 				ViewUnit v = new ViewUnit();
 				v.setCode(unit.getCode());
 				v.setName(unit.getName());
 				v.setCreatedDate(unit.getCreatedDate());
 				v.setCreatedBy(unit.getCreatedBy());
-				v.setDescription(unit.getDescription());
+				v.setIdUnit(unit.getId());
 				listViewUnit.add(v);
 			}
 			model.addAttribute("listUnit", listViewUnit);
@@ -80,4 +81,22 @@ public class UnitController extends BaseController {
 			model.addAttribute("success", false);
 		}
 	}
+
+	@RequestMapping("/delete")
+	public void delete(Model model, HttpServletRequest request) {
+		try {
+			String idUnitReq = request.getParameter("idUnit");
+			Long idUnit = Long.parseLong(idUnitReq);
+			Unit unit = unitService.get(idUnit);
+			unit.setIsDelete(GeneralVariable.ISDELETE_TRUE);
+
+			unitService.update(unit);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+			// TODO: handle exception
+		}
+	}
+
 }
