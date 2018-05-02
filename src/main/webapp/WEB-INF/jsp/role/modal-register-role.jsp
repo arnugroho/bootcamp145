@@ -29,6 +29,9 @@
 											class="form-control" id="description" name="description"
 											placeholder="Description" type="text">
 									</div>
+									<input
+											class="form-control" id="idRole" name="idRole" 
+											type="hidden">
 								</div>
 								<!-- /.box-body -->
 							</form>
@@ -39,6 +42,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" id="btnInsert" class="btn btn-primary">Insert</button>
+				<button type="button" id="btnUpdate" class="btn btn-primary">Update</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>

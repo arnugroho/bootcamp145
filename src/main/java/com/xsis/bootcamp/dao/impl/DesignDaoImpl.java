@@ -53,4 +53,14 @@ public class DesignDaoImpl extends SessionHibernate implements DesignDao {
 		return getSession().createQuery(query).list();
 	}
 
+<<<<<<< HEAD
+	@Override
+	public Design getByCode(String dCode) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
+=======
+}
+>>>>>>> e3fd0fc297b7f8e754e4e8310b71161e68bf5fd1
