@@ -42,7 +42,7 @@
 					$('#tableEvent').DataTable().destroy()
 					prepareDatatable()
 					// ------ //
-
+					
 					//modal di hide 
 					$('#modalFormEvent').modal('hide');
 					// ----//
@@ -58,28 +58,27 @@
 		});
 	}
 
-	function prepareDatatable() {
-		$.ajax({
-			url : contextName + '/event/get-data.json',
-			type : 'post',
-			dataType : 'json',
-			success : function(result) {
-				if (result.success) {
+function prepareDatatable() {
+	$.ajax({
+		url : contextName + '/event/get-data.json',
+		type : 'post',
+		dataType : 'json',
+		success : function(result) {
+			if(result.success){
+				
+				// proses merubah array objeck menjadi array array
+				//{{},{}} menjadi {[],[]}
+				var listEvent = $.map(result.listEvent, function(value, index) {
+    				return [Object.values(value)];
+				});
 
-					// proses merubah array objeck menjadi array array
-					//{{},{}} menjadi {[],[]}
-					var listEvent = $.map(result.listEvent, function(value,
-							index) {
-						return [ Object.values(value) ];
 
-					});
+				var dataSet = listEvent;
 					
-					var dataSet = listEvent;
-
-					$('#tableEvent').DataTable({
-						data : dataSet,
-						columns : [ 
-							{title : "Transaction Code"}, 
+				    $('#tableEvent').DataTable( {
+				        data: dataSet,
+				        columns: [
+				        	{title : "Transaction Code"}, 
 							{title : "Event Name"},
 							{title : "Request By"},
 							{title : "Request Date"},
@@ -87,50 +86,64 @@
 							{title : "Status"},
 							{title : "Created Date"},
 							{title : "Create By"},
-							{title : "Action"}	
-											
-					notifySuccess('Berhasil Create Table');
-				} else {
-					notifyError('Gagal Create Table');
-				}
-			},
-			error : function() {
+							{title : "Action"}
+				           ],
+				            "columnDefs": [
+				               {
+				                   // The `data` parameter refers to the data for the cell (defined by the
+				                   // `data` option, which defaults to the column being worked with, in
+				                   // this case `data: 0`.
+				                   "render": function ( data, type, row ) {
+				                	   var s = '<button type="button" class="btn btn-danger btn-add" onClick="deleteEvent('+data+')">'
+				   					   s = s + ' <i class="fa fa-trash"></i> </button>'
+				                       return s;
+				                   },
+				                   // column keberapa render diaplikasikan
+				                   "targets": 8
+				               }
+				           ] 
+				    } );
+				    
+				
+				notifySuccess('Berhasil Create Table');
+			}else {
 				notifyError('Gagal Create Table');
 			}
-		});
-
-					
-					
-					
-
-		function deleteEvent(idEvent){
-			$.ajax({
-				url : contextName + '/event/delete.json',
-				type : 'post',
-				data : {
-					idEvent : idEvent
-				},
-				dataType : 'json',
-				success : function(result) {
-					if(result.success){
-						//agar table ter refresh
-						$('#tableEvent').DataTable().destroy()
-						prepareDatatable()
-						// ------ //
-						    
-						
-						notifySuccess('Berhasil Delete Data');
-					}else {
-						notifyError('Gagal Delete Data');
-					}
-				},
-				error : function() {
-					notifyError('Gagal Delete Data');
-				}
-			});
-		
+		},
+		error : function() {
+			notifyError('Gagal Create Table');
 		}
-	}
+	});
+}
+				
+function deleteEvent(idEvent){
+	$.ajax({
+		url : contextName + '/event/delete.json',
+		type : 'post',
+		data : {
+			idEvent : idEvent
+		},
+		dataType : 'json',
+		success : function(result) {
+			if(result.success){
+				//agar table ter refresh
+				$('#tableEvent').DataTable().destroy()
+				prepareDatatable()
+				// ------ //
+				    
+				
+				notifySuccess('Berhasil Delete Data');
+			}else {
+				notifyError('Gagal Delete Data');
+			}
+		},
+		error : function() {
+			notifyError('Gagal Delete Data');
+		}
+	});
+}				
+					
+					
 	
 </script>
 

@@ -14,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.xsis.bootcamp.model.Employee;
 import com.xsis.bootcamp.model.Event;
 import com.xsis.bootcamp.model.Personel;
 import com.xsis.bootcamp.service.EventService;
+import com.xsis.bootcamp.util.GeneralVariable;
 import com.xsis.bootcamp.viewmodel.ViewEvent;
 
 @Controller
@@ -36,6 +38,8 @@ public class EventController extends BaseController {
 	public void insert(Model model, HttpServletRequest req) {
 		try {
 			Event event = new Event();
+			Employee employee = new Employee();
+			employee.setId(1);
 			event.setCode(req.getParameter("code"));
 			event.setEventname(req.getParameter("eventName"));
 			event.setPlace(req.getParameter("place"));
@@ -43,7 +47,8 @@ public class EventController extends BaseController {
 			event.setEndDate(sdf.parse(req.getParameter("endDate")));
 			event.setBudget(Long.parseLong(req.getParameter("budget")));
 			event.setNote(req.getParameter("note"));
-
+			//event.setRequestByDesc(employee);
+			
 			Personel user = getUser();
 			Date currentDate = new Date();
 
@@ -73,12 +78,13 @@ public class EventController extends BaseController {
 				ViewEvent v = new ViewEvent();
 				v.setCode(event.getCode());
 				v.setEventName(event.getEventname());
-				v.setRequestBy(event.getRequestByDesc().getFirstName());
+				//v.setRequestBy(event.getRequestByDesc().getFirstName());
 				v.setRequestDate(event.getRequestDate());
 				v.setEndDate(event.getEndDate());
 				v.setStatus(event.getStatusDesc().getStatus());
 				v.setCreatedDate(event.getCreatedDate());
 				v.setCreateBy(event.getCreatedBy());
+				v.setIdEvent(event.getId());
 				listViewEvent.add(v);
 			}
 			model.addAttribute("listEvent", listViewEvent);
@@ -90,5 +96,27 @@ public class EventController extends BaseController {
 		
 	}
 
-
+	@RequestMapping("/delete")
+	public void delete(Model model, HttpServletRequest req) {
+		try {
+			String idEventReq = req.getParameter("idEvent");
+			int idEvent = Integer.parseInt(idEventReq);
+			Event event = eventService.get(idEvent);
+			//set is deletenya 1, artinya delete
+			event.setIsDelete(GeneralVariable.ISDELETE_TRUE);
+			
+			//update bukunya
+			eventService.update(event);
+			
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+		
+		
+		
+	}
+	
+	
 }

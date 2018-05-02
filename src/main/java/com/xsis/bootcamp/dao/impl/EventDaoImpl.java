@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.stereotype.Repository;
 
 import com.xsis.bootcamp.dao.EventDao;
+import com.xsis.bootcamp.model.Buku;
 import com.xsis.bootcamp.model.Event;
 import com.xsis.bootcamp.util.SessionHibernate;
 
@@ -31,6 +32,11 @@ public class EventDaoImpl extends SessionHibernate implements EventDao {
 		// TODO Auto-generated method stub
 		String query = new StringBuilder().append("from Event where is_delete=0").toString();
 		return getSession().createQuery(query).list();
+	}
+
+	public Event get(int idEvent) throws Exception {
+		Event event = getSession().get(Event.class, idEvent);
+		return event;
 	}
 
 

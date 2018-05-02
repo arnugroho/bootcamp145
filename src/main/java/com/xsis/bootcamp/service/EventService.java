@@ -14,5 +14,5 @@ public interface EventService {
 	
 	public abstract Collection<Event> listAll() throws Exception;
 
-
+	public Event  get(int idEvent) throws Exception;
 }

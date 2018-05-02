@@ -38,5 +38,11 @@ public class EventServiceImpl implements EventService {
 		return eventDao.listAll();
 	}
 
+	@Override
+	public Event get(int idEvent) throws Exception {
+	
+		return eventDao.get(idEvent);
+	}
+
 
 }

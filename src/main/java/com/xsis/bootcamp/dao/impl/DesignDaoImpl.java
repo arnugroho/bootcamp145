@@ -16,7 +16,7 @@ import com.xsis.bootcamp.util.SessionHibernate;
 public class DesignDaoImpl extends SessionHibernate implements DesignDao {
 	Log log = LogFactory.getLog(super.getClass());
 	
-/*	@Override
+	@Override
 	public Design getByCode(String dCode) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from t_promotion where code = :dCode";
@@ -27,7 +27,7 @@ public class DesignDaoImpl extends SessionHibernate implements DesignDao {
 		} else {
 			return null;
 		}
-	}*/
+	}
 
 	@Override
 	public void insert(Design design) throws Exception {
