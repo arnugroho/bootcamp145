@@ -11,8 +11,11 @@
 					<div class="col-md-12">
 
 						<div class="box box-primary">
-							<div class="box-header with-border">
+							<div id="judulinsert" class="box-header with-border">
 								<h3 class="box-title">Adds Event</h3>
+							</div>
+							<div id="judulupdate" class="box-header with-border">
+								<h3 class="box-title">Update Event</h3>
 							</div>
 							<!-- /.box-header -->
 							<!-- form start -->
@@ -65,6 +68,10 @@
 										<textarea rows="12" cols="5px" class="form-control" id="note"
 											name="note" placeholder="note" type="text"></textarea>
 									</div>
+									<input
+											class="form-control" id="idEvent" name="idEvent"
+											 type="hidden">
+									
 								</div>
 								<!-- /.box-body -->
 							</form>
@@ -75,6 +82,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" id="btnInsert" class="btn btn-primary">Insert</button>
+				<button type="button" id="btnUpdate" class="btn btn-primary">Update</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
