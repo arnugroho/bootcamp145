@@ -88,12 +88,53 @@ public class MroleController extends BaseController {
 			Long idRole = Long.parseLong(idRoleReq);
 			Mrole mrole = mroleService.get(idRole);
 			mrole.setIsDelete(GeneralVariable.ISDELETE_TRUE);
-			
+
 			mroleService.update(mrole);
-			model.addAttribute("success",true);
+			model.addAttribute("success", true);
 		} catch (Exception e) {
-			log.error(e.getMessage(),e);
-			model.addAttribute("success",false);
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+	}
+
+	@RequestMapping("/view")
+	public void view(Model model, HttpServletRequest request) {
+		try {
+			String idRoleReq = request.getParameter("idRole");
+			Long idRole = Long.parseLong(idRoleReq);
+			Mrole mrole = mroleService.get(idRole);
+
+			model.addAttribute("mrole", mrole);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+	}
+
+	@RequestMapping("/update")
+	public void update(Model model, HttpServletRequest request) {
+		try {
+			Personel user = getUser();
+			Date currentDate = new Date();
+			String idReq = request.getParameter("id");
+			String code = request.getParameter("code");
+			String name = request.getParameter("name");
+			String description = request.getParameter("description");
+			Long idRole = Long.parseLong(idReq);
+
+			Mrole mrole = mroleService.get(idRole);
+			mrole.setCode(code);
+			mrole.setName(name);
+			mrole.setDescription(description);
+			mrole.setUpdatedBy(user.getUsername());
+			mrole.setUpdatedDate(currentDate);
+			mroleService.update(mrole);
+
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
 		}
 	}
 }

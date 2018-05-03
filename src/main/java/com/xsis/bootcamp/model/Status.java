@@ -18,6 +18,11 @@ public class Status {
 	public void setId(int id) {
 		this.id = id;
 	}
+<<<<<<< HEAD
+	
+	@Column(name = "status", length = 12)
+=======
+>>>>>>> be47c04151c6ab36dcc42725692e7ec9dc42fb7b
 	public String getStatus() {
 		return status;
 	}
