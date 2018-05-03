@@ -1,14 +1,18 @@
 <%@ include file="/taglibs.jsp"%>
 <%@ include file="modal-form.jsp"%>
-
+<%@ include file="modal-form2.jsp"%>
 <!-- Trigger the modal with a button -->
 <button type="button" id="btnTambah" class="btn btn-success btn-lg" data-toggle="modal"
-	data-target="#modalFormEvent">add</button>
+	data-target="#modalFormEvent" >add</button>
 <hr>
 <table id="tableEvent" class="display" width="100%"></table>
 
 
 <script type="text/javascript">
+$(function(){
+	$("#modalFormEvent")[0].reset();
+	});
+	
 	$(document).ready(function() {
 		prepareDatatable();
 
@@ -27,12 +31,13 @@
 	});
 
 	$("#btnTambah").click(function() {
-
+		onclick
 		$("#btnUpdate").hide();
 		$('#btnInsert').show();
 		$('#judulinsert').show();
 		$('#judulupdate').hide();
-		
+		$('#status').hide();
+		$('#labelstat').hide();
 	});
 
 	function insertData() {
@@ -77,6 +82,8 @@
 		$('#btnUpdate').show();
 		$('#judulinsert').hide();
 		$('#judulupdate').show();
+		$('#status').show();
+		$('#labelstat').show();
 		$('#modalFormEvent').modal('show');
 		$.ajax({
 			url : contextName + '/event/view.json',
@@ -95,6 +102,7 @@
 					$("#budget").val(result.event.budget)
 					$("#requestBy").val(result.event.requestBy)
 					$("#requestDate").val(result.event.requestDate)
+					$("#status").val(result.event.statusDesc.status)
 					$("#idEvent").val(result.event.id)
 					
 					notifySuccess('Berhasil Menampilkan Data');
@@ -193,14 +201,14 @@
 													// this case `data: 0`.
 													"render" : function(data,
 															type, row) {
-														var s = '<button type="button" onClick="deleteEvent('
-																+ data + ')">'
-														s = s
-																+ ' <i class="fa fa-trash"></i> </button>'
-														s += '<button type="button"  onClick="updateEvent('
-																+ data + ')">'
+														var s = '<button type="button" onClick="deleteEvent('+ data + ')">'															
+														s = s+ ' <i class="fa fa-trash"></i> </button>'
+														
+														s += '<button type="button"  onClick="updateEvent('+ data + ')">'
 														s += '<i class="fa fa-edit"></i> </button>'
-
+		
+														s += '<button type="button"  onClick="view('+ data + ')">'
+														s += '<i class="fa fa-search"></i> </button>'
 														return s;
 													},
 													// column keberapa render diaplikasikan
@@ -246,7 +254,40 @@
 		});
 	}
 
-	
+
+	function view(idEvent){
+		$('#labelstat').show();
+		$('#viewdata').modal('show');
+		 			$.ajax({
+			url : contextName + '/event/view.json',
+			type : 'post',
+			data : {
+				idEvent : idEvent
+			},
+			dataType : 'json',
+			success : function(result) {
+				 if(result.success){
+					 $("#code2").val(result.event.code)
+					$("#eventName2").val(result.event.eventName)
+					$("#place2").val(result.event.place)
+					$("#startDate2").val(result.event.startDate)
+					$("#endDate2").val(result.event.endDate)
+					$("#budget2").val(result.event.budget)
+					$("#requestBy2").val(result.event.requestBy)
+					$("#requestDate2").val(result.event.requestDate)
+					$("#status2").val(result.event.statusDesc.status)
+					$("#idEvent").val(result.event.id)
+					
+				 	notifySuccess('Berhasil Menampilkan Data');
+				}else {
+					notifyError('Gagal Menampilkan Data');
+				}
+			},
+			error : function() {
+				notifyError('Gagal Menampilkan Data');
+			}
+		}); 
+	}
 	
 	
 </script>
