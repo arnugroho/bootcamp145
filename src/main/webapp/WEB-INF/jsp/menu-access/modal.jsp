@@ -1,10 +1,10 @@
 <!-- Modal -->
-<div class="modal fade" id="modalFormBuku" role="dialog">
+<div class="modal fade" id="modalFormMenuAccess" role="dialog">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Form Buku</h4>
+				<h4 class="modal-title">Form MenuAccess</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -16,9 +16,9 @@
 							<form role="form">
 								<div class="box-body">
 									<div class="form-group">
-										<label for="namaBuku">Nama Buku</label> <input
-											class="form-control" id="namaBuku" name="namaBuku"
-											placeholder="Nama Buku" type="text">
+										<label for="namaMenuAccess">Nama MenuAccess</label> <input
+											class="form-control" id="namaMenuAccess" name="namaMenuAccess"
+											placeholder="Nama MenuAccess" type="text">
 									</div>
 									<div class="form-group">
 										<label for="pengarang">Pengarang</label> <input
@@ -26,14 +26,8 @@
 											placeholder="Pengarang" type="text">
 									</div>
 									
-									<div class="form-group">
-										<label for="pengarang">Request By</label> <input
-											class="form-control" id="request" name="request"
-											placeholder="Request By" type="text" disabled>
-									</div>
-									
 									<input
-											class="form-control" id="idBuku" name="idBuku"
+											class="form-control" id="idMenuAccess" name="idMenuAccess"
 											 type="hidden">
 
 								</div>

@@ -9,7 +9,7 @@ public class ViewEvent {
 
 	private String eventName;
 
-	private String requestBy;
+	private Long requestBy;
 
 	private Date requestDate;
 
@@ -39,11 +39,11 @@ public class ViewEvent {
 		this.eventName = eventName;
 	}
 
-	public String getRequestBy() {
+	public Long getRequestBy() {
 		return requestBy;
 	}
 
-	public void setRequestBy(String requestBy) {
+	public void setRequestBy(Long requestBy) {
 		this.requestBy = requestBy;
 	}
 

@@ -18,6 +18,7 @@ public class Status {
 	public void setId(int id) {
 		this.id = id;
 	}
+	@Column(name = "status", length = 12)
 	public String getStatus() {
 		return status;
 	}

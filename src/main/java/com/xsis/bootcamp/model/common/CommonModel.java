@@ -14,7 +14,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public abstract class CommonModel implements Serializable{
 	private static final long serialVersionUID = -4336637522858803239L;
 	
+
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created_date", nullable = true)
 	private Date createdDate;
