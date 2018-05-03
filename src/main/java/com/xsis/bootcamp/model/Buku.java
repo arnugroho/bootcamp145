@@ -26,6 +26,11 @@ public class Buku extends CommonModel{
 	
 	@Column(name = "pengarang")
 	private String pengarang;
+	
+	@Column(name = "kode_buku")
+	private String kodeBuku;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -49,6 +54,14 @@ public class Buku extends CommonModel{
 
 	public void setPengarang(String pengarang) {
 		this.pengarang = pengarang;
+	}
+
+	public String getKodeBuku() {
+		return kodeBuku;
+	}
+
+	public void setKodeBuku(String kodeBuku) {
+		this.kodeBuku = kodeBuku;
 	}
 	
 	

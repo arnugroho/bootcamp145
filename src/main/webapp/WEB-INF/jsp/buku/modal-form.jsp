@@ -26,6 +26,12 @@
 											placeholder="Pengarang" type="text">
 									</div>
 									
+									<div class="form-group">
+										<label for="pengarang">Request By</label> <input
+											class="form-control" id="request" name="request"
+											placeholder="Request By" type="text" disabled>
+									</div>
+									
 									<input
 											class="form-control" id="idBuku" name="idBuku"
 											 type="hidden">

@@ -51,6 +51,20 @@ public class BukuController extends BaseController{
 			buku.setCreatedDate(currentDate);
 			buku.setIsDelete(0);
 			bukuService.insert(buku);
+			StringBuilder kodeBuku = new StringBuilder();
+			kodeBuku.append(GeneralVariable.KODE_BUKU);
+			String idBuku = String.valueOf(buku.getId());
+			if(idBuku.length() < 2) {
+				idBuku = "000"+idBuku;
+			}else if(idBuku.length() < 3) {
+				idBuku = "00"+idBuku;
+			}else if(idBuku.length() < 4) {
+				idBuku = "0"+idBuku;
+			}
+			kodeBuku.append(idBuku);
+			
+			buku.setKodeBuku(kodeBuku.toString());
+			bukuService.update(buku);
 			
 			model.addAttribute("success", true);
 		} catch (Exception e) {
@@ -147,6 +161,13 @@ public class BukuController extends BaseController{
 			log.error(e.getMessage(), e);
 			model.addAttribute("success", false);
 		}
+	}
+	
+	@RequestMapping("/prepare-form")
+	public void prepareForm(Model model) {
+		Personel user = getUser();
+		model.addAttribute("requestBy", user.getUsername());
+		
 	}
 	
 
