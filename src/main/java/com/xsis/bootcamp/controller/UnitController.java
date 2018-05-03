@@ -35,21 +35,33 @@ public class UnitController extends BaseController {
 	@RequestMapping("/insert")
 	public void insert(Model model, HttpServletRequest request) {
 		try {
-			String code = request.getParameter("code");
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
 
 			Personel personel = getUser();
 			Date currentDate = new Date();
-
 			Unit unit = new Unit();
-			unit.setCode(code);
 			unit.setName(name);
 			unit.setCreatedDate(currentDate);
 			unit.setCreatedBy(personel.getUsername());
 			unit.setDescription(description);
 			unit.setIsDelete(0);
 			unitService.insert(unit);
+			StringBuilder codeUnit = new StringBuilder();
+			codeUnit.append(GeneralVariable.KODE_UNIT);
+			String idUnit = String.valueOf(unit.getId());
+			if (idUnit.length() < 2) {
+				idUnit = "000" + idUnit;
+			} else if (idUnit.length() < 3) {
+				idUnit = "00" + idUnit;
+			} else if (idUnit.length() < 4) {
+				idUnit = "0" + idUnit;
+			}
+			codeUnit.append(idUnit);
+			
+			unit.setCode(codeUnit.toString());
+			unitService.update(unit);
+			
 
 			model.addAttribute("success", true);
 
@@ -96,7 +108,7 @@ public class UnitController extends BaseController {
 			model.addAttribute("success", false);
 		}
 	}
-	
+
 	@RequestMapping("/view")
 	public void view(Model model, HttpServletRequest request) {
 		try {

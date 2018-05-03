@@ -69,7 +69,7 @@
 
 					$('#registerUnit').modal('hide');
 
-					notifySuccess('Berhasil Update Data'); 
+					notifySuccess('Berhasil Update Data');
 				} else {
 					notifyError('Gagal show Table');
 				}
@@ -114,14 +114,16 @@
 												"columnDefs" : [ {
 													"render" : function(data,
 															type, row) {
-														var s = '<button type="button" class="btn btn-danger" onclick="deleteUnit('
+														var s = '<button type="button" class="btn btn-default" onclick="deleteUnit('
 																+ data + ')">'
 														s = s
 																+ ' <i class ="fa fa-trash"></i></button>'
-														s += '<button type="button" class="btn btn-warning" onclick="updateUnit('
+														s += '<button type="button" class="btn btn-default" onclick="updateUnit('
 																+ data + ')">'
-														s += 
-																 ' <i class ="fa fa-pencil"></i></button>'
+														s += ' <i class ="fa fa-pencil"></i></button>'
+														s += '<button type="button" class="btn btn-default" onclick="viewUnit('
+																+ data + ')">'
+														s += ' <i class ="fa fa-search"></i></button>'
 														return s;
 													},
 													"targets" : 4
@@ -179,7 +181,7 @@
 					$("#description").val(result.unit.description)
 					$("#idUnit").val(result.unit.id)
 
-					 notifySuccess('Berhasil Update Data');
+					notifySuccess('Berhasil Update Data');
 				} else {
 					notifyError('Gagal Update Data');
 				}
