@@ -17,6 +17,7 @@
 				<li><a href="${contextName}/member/user.html"><i class="fa fa-book"></i><span>User</span></a></li>
 				<li><a href="${contextName}/unit/unit.html"><i class="fa fa-book"></i><span>Unit</span></a></li>
 				<li><a href="${contextName}/menu/form.html"><i class="fa fa-book"></i><span>Menu</span></a></li>
+				<li><a href="${contextName}/menu-access/form.html"><i class="fa fa-book"></i><span>Menu Access</span></a></li>
 
 				
 				<li class="treeview">
