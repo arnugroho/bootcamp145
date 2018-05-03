@@ -13,14 +13,14 @@ import javax.persistence.TableGenerator;
 import com.xsis.bootcamp.model.common.CommonModel;
 
 @Entity
-@Table(name = Muser.TABLE_NAME)
+@Table(name = MenuAccess.TABLE_NAME)
 public class MenuAccess extends CommonModel {
 	private static final long serialVersionUID = -410528525061506841L;
 	public static final String TABLE_NAME = "m_menu_access";
 	@Id
 	@Column(name = "id", length = 11)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = Muser.TABLE_NAME)
-	@TableGenerator(name = Muser.TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = Muser.TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = MenuAccess.TABLE_NAME)
+	@TableGenerator(name = MenuAccess.TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = MenuAccess.TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
 	private Integer id;
 
 	public Integer getId() {
