@@ -29,7 +29,7 @@ public class UnitController extends BaseController {
 
 	@RequestMapping("/unit")
 	public String index() {
-		return "/unit/unit";
+		return "unit/unit";
 	}
 
 	@RequestMapping("/insert")
@@ -64,7 +64,6 @@ public class UnitController extends BaseController {
 		try {
 			Collection<Unit> listUnit = unitService.listAll();
 			Collection<ViewUnit> listViewUnit = new ArrayList<>();
-			/* Date currentDate = new Date(); */
 			for (Unit unit : listUnit) {
 				ViewUnit v = new ViewUnit();
 				v.setCode(unit.getCode());
@@ -95,8 +94,47 @@ public class UnitController extends BaseController {
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			model.addAttribute("success", false);
-			// TODO: handle exception
+		}
+	}
+	
+	@RequestMapping("/view")
+	public void view(Model model, HttpServletRequest request) {
+		try {
+			String idUnitReq = request.getParameter("idUnit");
+			Long idUnit = Long.parseLong(idUnitReq);
+			Unit unit = unitService.get(idUnit);
+
+			model.addAttribute("unit", unit);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
 		}
 	}
 
+	@RequestMapping("/update")
+	public void update(Model model, HttpServletRequest request) {
+		try {
+			Personel user = getUser();
+			Date currentDate = new Date();
+			String idReq = request.getParameter("id");
+			String code = request.getParameter("code");
+			String name = request.getParameter("name");
+			String description = request.getParameter("description");
+			Long idUnit = Long.parseLong(idReq);
+
+			Unit unit = unitService.get(idUnit);
+			unit.setCode(code);
+			unit.setName(name);
+			unit.setDescription(description);
+			unit.setUpdatedBy(user.getUsername());
+			unit.setUpdatedDate(currentDate);
+			unitService.update(unit);
+
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+	}
 }
