@@ -43,6 +43,7 @@ public interface GeneralVariable {
 	
 	//KODE
 	public static final String KODE_BUKU = "KB";
+	public static final String CODE_EVENT = "TRWOEV";
 	
 
 }

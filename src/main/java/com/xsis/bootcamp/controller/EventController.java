@@ -41,7 +41,7 @@ public class EventController extends BaseController {
 			Event event = new Event();
 			Employee employee = new Employee();
 			employee.setId(1);
-			event.setCode(req.getParameter("code"));
+			event.setCode("");
 			event.setEventname(req.getParameter("eventName"));
 			event.setPlace(req.getParameter("place"));
 			event.setStartDate(sdf.parse(req.getParameter("startDate")));
@@ -61,6 +61,22 @@ public class EventController extends BaseController {
 			event.setIsDelete(0);
 			eventService.insert(event);
 
+					 
+			StringBuilder code = new StringBuilder();
+			code.append(GeneralVariable.CODE_EVENT);
+			String idEvent = String.valueOf(event.getId());
+			if(idEvent.length() < 2) {
+				idEvent = "000"+idEvent;
+			}else if(idEvent.length() < 3) {
+				idEvent = "00"+idEvent;
+			}else if(idEvent.length() < 4) {
+				idEvent = "0"+idEvent;
+			}
+			code.append(idEvent);
+			event.setCode(code.toString());
+			eventService.update(event);
+
+			  
 			model.addAttribute("success", true);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

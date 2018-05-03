@@ -6,7 +6,7 @@
 	data-target="#modalFormEvent" >add</button>
 <hr>
 <table id="tableEvent" class="display" width="100%"></table>
-
+<div id="notif"></div>
 
 <script type="text/javascript">
 $(function(){
@@ -31,7 +31,7 @@ $(function(){
 	});
 
 	$("#btnTambah").click(function() {
-		onclick
+		'on click'
 		$("#btnUpdate").hide();
 		$('#btnInsert').show();
 		$('#judulinsert').show();
@@ -62,7 +62,7 @@ $(function(){
 					
 					$('#modalFormEvent').modal('hide');
 					// ----//
-
+					$('#notif').html("berhasil hore")
 					notifySuccess('Berhasil Insert Data');
 				} else {
 					notifyError('Gagal Insert Data');
