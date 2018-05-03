@@ -18,7 +18,7 @@ public class Status {
 		this.id = id;
 	}
 	
-	@Column(name = "status", length = 11)
+	@Column(name = "status", length = 12)
 	public String getStatus() {
 		return status;
 	}
