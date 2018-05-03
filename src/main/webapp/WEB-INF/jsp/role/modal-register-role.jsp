@@ -17,7 +17,7 @@
 									<div class="form-group">
 										<label for="code">Role Code</label> <input
 											class="form-control" id="code" name="code"
-											placeholder="Role Code" type="text">
+											placeholder="Role Code" type="text" disabled>
 									</div>
 									<div class="form-group">
 										<label for="name">Role Name</label> <input
