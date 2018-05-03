@@ -10,19 +10,29 @@ import javax.persistence.TableGenerator;
 
 import com.xsis.bootcamp.model.common.CommonModel;
 
+
 @Entity
-@Table(name = Mrole.TABLE_NAME)
-public class Mrole extends CommonModel {
+@Table(name = Menu.TABLE_NAME)
+public class Menu extends CommonModel{
 	private static final long serialVersionUID = 1806250763168915486L;
 
-	public static final String TABLE_NAME = "m_role";
-
+	public static final String TABLE_NAME = "m_menu";
+	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = TABLE_NAME)
 	@TableGenerator(name = TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
 	private Long id;
-
+	
+	@Column(name = "code", length = 50, nullable = false, unique=true)
+	private String code;
+	@Column(name = "name", length = 50, nullable = false)
+	private String name;
+	@Column(name = "controller", length = 150, nullable = false)
+	private String controller;
+	@Column(name = "parent_id", length = 11, nullable = false)
+	private int parentId;
+	
 	public Long getId() {
 		return id;
 	}
@@ -30,10 +40,7 @@ public class Mrole extends CommonModel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	@Column(name = "code", nullable = false, length = 50)
-	private String code;
-
+	
 	public String getCode() {
 		return code;
 	}
@@ -41,9 +48,6 @@ public class Mrole extends CommonModel {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
-	@Column(name = "name", nullable = false, length = 50)
-	private String name;
 
 	public String getName() {
 		return name;
@@ -53,15 +57,20 @@ public class Mrole extends CommonModel {
 		this.name = name;
 	}
 
-	@Column(name = "description", nullable = false, length = 255)
-	private String description;
-
-	public String getDescription() {
-		return description;
+	public String getController() {
+		return controller;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setController(String controller) {
+		this.controller = controller;
+	}
+
+	public int getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
 	}
 
 }

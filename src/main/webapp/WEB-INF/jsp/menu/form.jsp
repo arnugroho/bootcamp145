@@ -2,9 +2,9 @@
 <%@ include file="modal-form.jsp"%>
 
 <!-- Trigger the modal with a button -->
-<button type="button" id="btnTambah" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalFormBuku">Tambah</button>
+<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalFormMenu">Tambah</button>
 <hr>
-<table id="tableBuku" class="display" width="100%"></table>
+<table id="tableMenu" class="display" width="100%"></table>
 
 
 <script type="text/javascript">
@@ -17,22 +17,7 @@ $(document).ready(function() {
 	
 	//mendefinisikan ketika tombol btnInsert diklik memanggil insertData()
 	$("#btnInsert").click(function(){
-		
 		insertData();
-		
-	});
-	
-	$("#btnUpdate").click(function(){
-		
-		updateData();
-		
-	});
-	
-	$("#btnTambah").click(function(){
-		
-		$("#btnUpdate").hide();
-		$('#btnInsert').show();
-		
 	});
 
 	
@@ -45,22 +30,22 @@ $(document).ready(function() {
 
 function insertData() {
 	$.ajax({
-		url : contextName + '/buku/insert.json',
+		url : contextName + '/menu/insert.json',
 		data : {
-			'namaBuku' : $("#namaBuku").val(),
-			'pengarang' : $("#pengarang").val(),
+			'namaMenu' : $("#namaMenu").val(),
+			'controller' : $("#controller").val(),
 		},
 		type : 'post',
 		dataType : 'json',
 		success : function(result) {
 			if(result.success){
 				//agar table ter refresh
-				$('#tableBuku').DataTable().destroy()
+				$('#tableMenu').DataTable().destroy()
 				prepareDatatable()
 				// ------ //
 				
 				//modal di hide 
-				$('#modalFormBuku').modal('hide');
+				$('#modalFormMenu').modal('hide');
 				// ----//
 				
 				
@@ -75,43 +60,10 @@ function insertData() {
 	});
 }
 
-function updateData() {
-	$.ajax({
-		url : contextName + '/buku/update.json',
-		data : {
-			'namaBuku' : $("#namaBuku").val(),
-			'pengarang' : $("#pengarang").val(),
-			'id' : $("#idBuku").val(),
-		},
-		type : 'post',
-		dataType : 'json',
-		success : function(result) {
-			if(result.success){
-				//agar table ter refresh
-				$('#tableBuku').DataTable().destroy()
-				prepareDatatable()
-				// ------ //
-				
-				//modal di hide 
-				$('#modalFormBuku').modal('hide');
-				// ----//
-				
-				
-				notifySuccess('Berhasil Update Data');
-			}else {
-				notifyError('Gagal Update Data');
-			}
-		},
-		error : function() {
-			notifyError('Gagal Update Data');
-		}
-	});
-}
-
 
 function prepareDatatable() {
 	$.ajax({
-		url : contextName + '/buku/get-data.json',
+		url : contextName + '/menu/get-data.json',
 		type : 'post',
 		dataType : 'json',
 		success : function(result) {
@@ -119,18 +71,18 @@ function prepareDatatable() {
 				
 				// proses merubah array objeck menjadi array array
 				//{{},{}} menjadi {[],[]}
-				var listBuku = $.map(result.listBuku, function(value, index) {
+				var listMenu = $.map(result.listMenu, function(value, index) {
     				return [Object.values(value)];
 				});
 
 
-				var dataSet = listBuku;
+				var dataSet = listMenu;
 					
-				    $('#tableBuku').DataTable( {
+				    $('#tableMenu').DataTable( {
 				        data: dataSet,
 				        columns: [
-				            { title: "Nama Buku" },
-				            { title: "Pengarang" },
+				            { title: "Nama Menu" },
+				            { title: "Controller" },
 				            { title: "Action" }
 				           ],
 				           "columnDefs": [
@@ -139,11 +91,8 @@ function prepareDatatable() {
 				                   // `data` option, which defaults to the column being worked with, in
 				                   // this case `data: 0`.
 				                   "render": function ( data, type, row ) {
-				                	   var s = '<button type="button" class="btn btn-danger" onClick="deleteBuku('+data+')">'
+				                	   var s = '<button type="button" class="btn btn-danger btn-add" onClick="deleteMenu('+data+')">'
 				   					   s = s + ' <i class="fa fa-trash"></i> </button>'
-				   						s += '<button type="button" class="btn btn-warning" onClick="updateBuku('+data+')">'
-				   					   s += '<i class="fa fa-edit"></i> </button>'
-				   					   
 				                       return s;
 				                   },
 				                   // column keberapa render diaplikasikan
@@ -165,18 +114,18 @@ function prepareDatatable() {
 }
 
 
-function deleteBuku(idBuku){
+function deleteMenu(idMenu){
 	$.ajax({
-		url : contextName + '/buku/delete.json',
+		url : contextName + '/menu/delete.json',
 		type : 'post',
 		data : {
-			idBuku : idBuku
+			idMenu : idMenu
 		},
 		dataType : 'json',
 		success : function(result) {
 			if(result.success){
 				//agar table ter refresh
-				$('#tableBuku').DataTable().destroy()
+				$('#tableMenu').DataTable().destroy()
 				prepareDatatable()
 				// ------ //
 				    
@@ -188,35 +137,6 @@ function deleteBuku(idBuku){
 		},
 		error : function() {
 			notifyError('Gagal Delete Data');
-		}
-	});
-}
-
-
-function updateBuku(idBuku){
-	$('#btnInsert').hide();
-	$('#btnUpdate').show();
-	$('#modalFormBuku').modal('show');
-	$.ajax({
-		url : contextName + '/buku/view.json',
-		type : 'post',
-		data : {
-			idBuku : idBuku
-		},
-		dataType : 'json',
-		success : function(result) {
-			if(result.success){
-				$("#namaBuku").val(result.buku.namaBuku)
-				$("#pengarang").val(result.buku.pengarang)
-				$("#idBuku").val(result.buku.id)
-				
-				notifySuccess('Berhasil Menampilkan Data');
-			}else {
-				notifyError('Gagal Menampilkan Data');
-			}
-		},
-		error : function() {
-			notifyError('Gagal Menampilkan Data');
 		}
 	});
 }

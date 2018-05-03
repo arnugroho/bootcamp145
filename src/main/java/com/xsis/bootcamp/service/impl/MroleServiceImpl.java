@@ -13,14 +13,8 @@ import com.xsis.bootcamp.service.MroleService;
 @Service
 @Transactional
 public class MroleServiceImpl implements MroleService {
-
 	@Autowired
 	private MroleDao mroleDao;
-
-	@Override
-	public Mrole getRole(int id) throws Exception {
-		return mroleDao.getRole(id);
-	}
 
 	@Override
 	public void insert(Mrole mrole) throws Exception {
@@ -42,4 +36,8 @@ public class MroleServiceImpl implements MroleService {
 		return mroleDao.listAll();
 	}
 
+	@Override
+	public Mrole get(Long idRole) throws Exception {
+		return mroleDao.get(idRole);
+	}
 }

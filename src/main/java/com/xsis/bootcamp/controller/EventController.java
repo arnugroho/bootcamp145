@@ -7,98 +7,116 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.xsis.bootcamp.model.Employee;
 import com.xsis.bootcamp.model.Event;
 import com.xsis.bootcamp.model.Personel;
 import com.xsis.bootcamp.service.EventService;
+import com.xsis.bootcamp.util.GeneralVariable;
+import com.xsis.bootcamp.viewmodel.ViewEvent;
 
 @Controller
 @RequestMapping("/event")
 public class EventController extends BaseController {
-
+	private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+	private Log log = LogFactory.getLog(getClass());
 	@Autowired
 	EventService eventService;
 
-	private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
-
-	@RequestMapping("/tabel")
-	public void event(Model model, HttpServletRequest request) {
-		request.setAttribute("action", "insert");
-		if (request.getParameter("id") != null) {
-			try {
-				Event event = new Event();
-				event = eventService.getEvent(Integer.parseInt(request.getParameter("id")));
-				request.setAttribute("id", Integer.parseInt(request.getParameter("id")));
-				request.setAttribute("code", event.getCode());
-				request.setAttribute("eventName", event.getEventname());
-				request.setAttribute("startDate", event.getStartDate());
-				request.setAttribute("endDate", event.getEndDate());
-				request.setAttribute("place", event.getPlace());
-				request.setAttribute("budget", event.getBudget());
-				request.setAttribute("requestBy", event.getRequestBy());
-				request.setAttribute("requestDate", event.getRequestDate());
-				request.setAttribute("approveBy", event.getApprovedBy());
-				request.setAttribute("approveDate", event.getApprovedDate());
-				request.setAttribute("assignTo", event.getAssignTo());
-				request.setAttribute("closeDate", event.getCloseDate());
-				request.setAttribute("note", event.getNote());
-				request.setAttribute("status", event.getStatus());
-				request.setAttribute("rejectReason", event.getRejectReason());
-				request.setAttribute("isDelete", event.getIsDelete());
-				request.setAttribute("createdBy", event.getCreatedBy());
-				request.setAttribute("createDate", event.getCreatedDate());
-				request.setAttribute("updatedBy", event.getUpdatedBy());
-				request.setAttribute("updatedDate", event.getUpdatedDate());
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-
-			}
-
-			request.setAttribute("action", request.getParameter("action"));
-		} else {
-			request.setAttribute("action", "insert");
-		}
-		defaultList(request);
-	}
-
-	@RequestMapping("/form-insert")
+	@RequestMapping("/form-event")
 	public String index() {
 		return "event/form-event";
 	}
 
 	@RequestMapping("/insert")
-	public void insert(Model model, HttpServletRequest request) {
+	public void insert(Model model, HttpServletRequest req) {
 		try {
-			
 			Event event = new Event();
-			event.setCode(request.getParameter("code"));
-			event.setStatus(1);
-			eventService.insert(event);
+			Employee employee = new Employee();
+			employee.setId(1);
+			event.setCode(req.getParameter("code"));
+			event.setEventname(req.getParameter("eventName"));
+			event.setPlace(req.getParameter("place"));
+			event.setStartDate(sdf.parse(req.getParameter("startDate")));
+			event.setEndDate(sdf.parse(req.getParameter("endDate")));
+			event.setBudget(Long.parseLong(req.getParameter("budget")));
+			event.setNote(req.getParameter("note"));
+			//event.setRequestByDesc(employee);
 			
+			Personel user = getUser();
+			Date currentDate = new Date();
+
+			event.setCreatedBy(user.getUsername());
+			event.setCreatedDate(currentDate);
+			event.setRequestBy(user.getId());
+			event.setRequestDate(currentDate);
+			event.setStatus(1);
+			event.setIsDelete(0);
+			eventService.insert(event);
 
 			model.addAttribute("success", true);
-			
 		} catch (Exception e) {
-			model.addAttribute("gagal nih", false);
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
 		}
+
 	}
 
-	public void defaultList(HttpServletRequest request) {
-		Collection<Event> eventCollection = new ArrayList<Event>();
+	@RequestMapping("/get-data")
+	public void getData(Model model, HttpServletRequest req) {
 		try {
-			eventCollection = eventService.listAll();
+			Collection<Event> listEvent = eventService.listAll();
+			
+			Collection<ViewEvent> listViewEvent = new ArrayList<>();
+			for (Event event : listEvent) {
+				ViewEvent v = new ViewEvent();
+				v.setCode(event.getCode());
+				v.setEventName(event.getEventname());
+				//v.setRequestBy(event.getRequestByDesc().getFirstName());
+				v.setRequestDate(event.getRequestDate());
+				v.setEndDate(event.getEndDate());
+				v.setStatus(event.getStatusDesc().getStatus());
+				v.setCreatedDate(event.getCreatedDate());
+				v.setCreateBy(event.getCreatedBy());
+				v.setIdEvent(event.getId());
+				listViewEvent.add(v);
+			}
+			model.addAttribute("listEvent", listViewEvent);
+			model.addAttribute("success", true);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			request.setAttribute("errorMessage", ExceptionUtils.getRootCauseMessage(e));
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
 		}
-		request.setAttribute("eventCollection", eventCollection);
+		
 	}
 
+	@RequestMapping("/delete")
+	public void delete(Model model, HttpServletRequest req) {
+		try {
+			String idEventReq = req.getParameter("idEvent");
+			int idEvent = Integer.parseInt(idEventReq);
+			Event event = eventService.get(idEvent);
+			//set is deletenya 1, artinya delete
+			event.setIsDelete(GeneralVariable.ISDELETE_TRUE);
+			
+			//update bukunya
+			eventService.update(event);
+			
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+		
+		
+		
+	}
+	
+	
 }

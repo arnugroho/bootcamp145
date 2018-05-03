@@ -1,6 +1,5 @@
 package com.xsis.bootcamp.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,8 +17,7 @@ import com.xsis.bootcamp.service.DesignService;
 public class DesignController {
 	@Autowired
 	DesignService designService;
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
-
+	
 	@RequestMapping(value= {"/design/form-design.html"})
 	public String Design(Model model, HttpServletRequest request) {
 		request.setAttribute("action", "insert");

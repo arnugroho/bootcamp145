@@ -49,8 +49,10 @@ public class DesignDaoImpl extends SessionHibernate implements DesignDao {
 
 	@SuppressWarnings("unchecked")
 	public Collection<Design> listAll() throws Exception {
-		String query = new StringBuilder().append("from t_promotion").toString();
+		String query = new StringBuilder().append("from Design").toString();
 		return getSession().createQuery(query).list();
 	}
 
 }
+
+

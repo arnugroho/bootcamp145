@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.xsis.bootcamp.model.common.CommonModel;
 
@@ -24,30 +26,39 @@ public class Event extends CommonModel {
 	@TableGenerator(name = Event.TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = Event.TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = Event.TABLE_NAME)
 	private int id;
-	@Column(name = "code", length = 50, nullable = true)
+	@Column(name = "code", length = 50, nullable = false)
 	private String code;
-	@Column(name = "event_name", length = 255, nullable = true)
+	@Column(name = "event_name", length = 255, nullable = false)
 	private String eventName;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
 	private Date startDate;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "end_date")
 	private Date endDate;
 	@Column(name = "place", length = 255)
 	private String place;
 	@Column(name = "budget", length = 50)
 	private Long budget;
-	@Column(name = "request_by", length = 11, nullable = true)
-	private int requestBy;
-	@Column(name = "request_date", nullable = true)
+	
+	@Column(name = "request_by", length = 11, nullable = false)
+	private Long requestBy;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "request_date", nullable = false)
 	private Date requestDate;
-	@Column(name = "approved_by", length = 11, nullable = true)
+	
+	@Column(name = "approved_by", length = 11)
 	private int approvedBy;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "approved_date")
 	private Date approvedDate;
+	
 	@Column(name = "assign_to", length = 11)
 	private int assignTo;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "close_date")
 	private Date closeDate;
+	
 	@Column(name = "note", length = 255)
 	private String note;
 	@Column(name = "status", length = 255)
@@ -56,9 +67,28 @@ public class Event extends CommonModel {
 	private String rejectReason;
 	
 	@ManyToOne
-	@JoinColumn(name = "status", updatable = false, insertable = false)
+	@JoinColumn(name="status",insertable=false,updatable=false)
 	private Status statusDesc;
 	
+/*	@ManyToOne
+	@JoinColumn(name="m_employee",insertable=false,updatable=false)
+	private Employee requestByDesc;
+	
+	public Employee getRequestByDesc() {
+		return requestByDesc;
+	}
+
+	public void setRequestByDesc(Employee requestByDesc) {
+		this.requestByDesc = requestByDesc;
+	}
+*/
+	public Status getStatusDesc() {
+		return statusDesc;
+	}
+
+	public void setStatusDesc(Status statusDesc) {
+		this.statusDesc = statusDesc;
+	}
 
 	public int getId() {
 		return id;
@@ -116,11 +146,11 @@ public class Event extends CommonModel {
 		this.budget = budget;
 	}
 
-	public int getRequestBy() {
+	public Long getRequestBy() {
 		return requestBy;
 	}
 
-	public void setRequestBy(int requestBy) {
+	public void setRequestBy(Long requestBy) {
 		this.requestBy = requestBy;
 	}
 
@@ -194,14 +224,6 @@ public class Event extends CommonModel {
 
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
-	}
-
-	public Status getStatusDesc() {
-		return statusDesc;
-	}
-
-	public void setStatusDesc(Status statusDesc) {
-		this.statusDesc = statusDesc;
 	}
 
 
