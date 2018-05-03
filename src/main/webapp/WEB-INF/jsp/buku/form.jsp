@@ -29,7 +29,7 @@ $(document).ready(function() {
 	});
 	
 	$("#btnTambah").click(function(){
-		
+		prepareForm();
 		$("#btnUpdate").hide();
 		$('#btnInsert').show();
 		
@@ -38,6 +38,27 @@ $(document).ready(function() {
 	
 
 } );
+
+function prepareForm() {
+	$.ajax({
+		url : contextName + '/buku/prepare-form.json',
+		type : 'post',
+		dataType : 'json',
+		success : function(result) {
+				
+			var requestBy = result.requestBy;
+			$('#request').val(requestBy);
+			
+			notifySuccess('Berhasil Prepare Form');
+			
+		},
+		error : function() {
+			notifyError('Gagal Prepare Form');
+		}
+	});
+}
+
+
 
 
 

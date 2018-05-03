@@ -41,5 +41,8 @@ public interface GeneralVariable {
 	public static final Integer ISDELETE_TRUE = 1;
 	public static final Integer ISDELETE_FALSE = 0;
 	
+	//KODE
+	public static final String KODE_BUKU = "KB";
+	
 
 }

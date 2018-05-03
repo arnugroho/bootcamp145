@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.xsis.bootcamp.model.Buku;
 import com.xsis.bootcamp.model.Employee;
 import com.xsis.bootcamp.model.Event;
 import com.xsis.bootcamp.model.Personel;
@@ -78,7 +79,7 @@ public class EventController extends BaseController {
 				ViewEvent v = new ViewEvent();
 				v.setCode(event.getCode());
 				v.setEventName(event.getEventname());
-				//v.setRequestBy(event.getRequestByDesc().getFirstName());
+				v.setRequestBy(event.getRequestBy());
 				v.setRequestDate(event.getRequestDate());
 				v.setEndDate(event.getEndDate());
 				v.setStatus(event.getStatusDesc().getStatus());
@@ -116,6 +117,53 @@ public class EventController extends BaseController {
 		
 		
 		
+	}
+	
+	@RequestMapping("/view")
+	public void view(Model model, HttpServletRequest req) {
+		try {
+		/**/
+			String idEventReq = req.getParameter("idEvent");
+			int idEvent = Integer.parseInt(idEventReq);
+			Event event = eventService.get(idEvent);
+	
+			
+			model.addAttribute("event", event);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+	}
+	
+	@RequestMapping("/update")
+	public void update(Model model, HttpServletRequest req) {
+		try {
+			Personel user = getUser();
+			Date currentDate = new Date();
+			String idReq = req.getParameter("id");
+			int idEvent = Integer.parseInt(idReq);
+			Event event = eventService.get(idEvent);
+			
+			
+			event.setCode(req.getParameter("code"));
+			event.setEventname(req.getParameter("eventName"));
+			event.setPlace(req.getParameter("place"));
+			event.setStartDate(sdf.parse(req.getParameter("startDate")));
+			event.setEndDate(sdf.parse(req.getParameter("endDate")));
+			event.setBudget(Long.parseLong(req.getParameter("budget")));
+			event.setNote(req.getParameter("note"));
+			event.setUpdatedBy(user.getUsername());
+			event.setRequestDate(currentDate);
+			eventService.update(event);
+			
+			
+			
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
 	}
 	
 	

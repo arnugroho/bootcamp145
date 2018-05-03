@@ -70,13 +70,13 @@
 
 					$('#registerRole').modal('hide');
 
-					notifySuccess('Berhasil Insert Data');
+					notifySuccess('Berhasil Update Data');
 				} else {
-					notifyError('Gagal Insert Data');
+					notifyError('Gagal Update Table');
 				}
 			},
 			error : function() {
-				notifyError('Gagal Insert Data');
+				notifyError('Gagal Update Data');
 			}
 		});
 	}
@@ -188,13 +188,13 @@
 					$("#description").val(result.mrole.description)
 					$("#idRole").val(result.mrole.id)
 
-					notifySuccess('Berhasil Delete Data');
+					 notifySuccess('Berhasil Update Data'); 
 				} else {
-					notifyError('Gagal Delete Data');
+					notifyError('Gagal Update Data');
 				}
 			},
 			error : function() {
-				notifyError('Gagal Delete Data');
+				notifyError('Gagal Update Data');
 			}
 		});
 	}
