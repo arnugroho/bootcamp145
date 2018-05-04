@@ -5,7 +5,10 @@ import java.util.Collection;
 import com.xsis.bootcamp.model.Muser;
 
 public interface MuserDao {
-	public Muser getUser(int id) throws Exception;
+	
+	public Muser getByUserame(String pUsername) throws Exception;
+
+	public Muser get(Long idUser) throws Exception;
 
 	public abstract void insert(Muser muser) throws Exception;
 

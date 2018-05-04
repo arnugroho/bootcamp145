@@ -5,7 +5,9 @@ import java.util.Collection;
 import com.xsis.bootcamp.model.Muser;
 
 public interface MuserService {
-	public Muser getUser(int id) throws Exception;
+	public Muser get(Long idUser) throws Exception;
+
+	public Muser getByUsername(String pUsername) throws Exception;
 
 	public abstract void insert(Muser muser) throws Exception;
 

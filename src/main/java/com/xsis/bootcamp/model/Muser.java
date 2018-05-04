@@ -21,17 +21,17 @@ public class Muser extends CommonModel {
 	@Column(name = "id", length = 11)
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = Muser.TABLE_NAME)
 	@TableGenerator(name = Muser.TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = Muser.TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
-	private Integer id;
+	private Long id;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@Column(name = "username", nullable = false, unique = true, length = 50)
+	@Column(name = "username", nullable = false, length = 50)
 	private String username;
 
 	public String getUsername() {
