@@ -37,7 +37,10 @@ public class MroleServiceImpl implements MroleService {
 	}
 
 	@Override
-	public Mrole get(Long idRole) throws Exception {
+	public Mrole get(Integer idRole) throws Exception {
+		// TODO Auto-generated method stub
 		return mroleDao.get(idRole);
 	}
+
+	
 }

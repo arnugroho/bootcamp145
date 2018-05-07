@@ -36,20 +36,34 @@ public class MroleController extends BaseController {
 	@RequestMapping("/insert")
 	public void insert(Model model, HttpServletRequest request) {
 		try {
-			String code = request.getParameter("code");
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
+			
 			Personel personel = getUser();
 			Date currentDate = new Date();
-
 			Mrole mrole = new Mrole();
-			mrole.setCode(code);
 			mrole.setName(name);
-			mrole.setDescription(description);
-			mrole.setCreatedBy(personel.getUsername());
+			mrole.setCode("");
 			mrole.setCreatedDate(currentDate);
+			mrole.setCreatedBy(personel.getUsername());
+			mrole.setDescription(description);
 			mrole.setIsDelete(0);
 			mroleService.insert(mrole);
+			
+			StringBuilder codeRole = new StringBuilder();
+			codeRole.append(GeneralVariable.KODE_ROLE);
+			String idRole = String.valueOf(mrole.getId());
+			if(idRole.length()<2) {
+				idRole = "000" + idRole;
+			} else if(idRole.length()<3) {
+				idRole ="00" + idRole;
+			} else if(idRole.length()<4) {
+				idRole = "0" + idRole;
+			}
+			
+			codeRole.append(idRole);
+			mrole.setCode(codeRole.toString());
+			mroleService.update(mrole);
 
 			model.addAttribute("success", true);
 
@@ -85,7 +99,7 @@ public class MroleController extends BaseController {
 	public void delete(Model model, HttpServletRequest request) {
 		try {
 			String idRoleReq = request.getParameter("idRole");
-			Long idRole = Long.parseLong(idRoleReq);
+			Integer idRole = Integer.parseInt(idRoleReq);
 			Mrole mrole = mroleService.get(idRole);
 			mrole.setIsDelete(GeneralVariable.ISDELETE_TRUE);
 
@@ -101,7 +115,7 @@ public class MroleController extends BaseController {
 	public void view(Model model, HttpServletRequest request) {
 		try {
 			String idRoleReq = request.getParameter("idRole");
-			Long idRole = Long.parseLong(idRoleReq);
+			Integer idRole = Integer.parseInt(idRoleReq);
 			Mrole mrole = mroleService.get(idRole);
 
 			model.addAttribute("mrole", mrole);
@@ -121,7 +135,7 @@ public class MroleController extends BaseController {
 			String code = request.getParameter("code");
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
-			Long idRole = Long.parseLong(idReq);
+			Integer idRole = Integer.parseInt(idReq);
 
 			Mrole mrole = mroleService.get(idRole);
 			mrole.setCode(code);

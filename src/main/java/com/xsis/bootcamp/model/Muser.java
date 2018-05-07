@@ -21,17 +21,17 @@ public class Muser extends CommonModel {
 	@Column(name = "id", length = 11)
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = Muser.TABLE_NAME)
 	@TableGenerator(name = Muser.TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = Muser.TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
-	private Integer id;
+	private Long id;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@Column(name = "username", nullable = false, unique = true, length = 50)
+	@Column(name = "username", nullable = false, length = 50)
 	private String username;
 
 	public String getUsername() {
@@ -53,7 +53,7 @@ public class Muser extends CommonModel {
 		this.password = password;
 	}
 
-	@Column(name = "m_employee_id", nullable = false, length = 11)
+	@Column(name = "m_employee_id",length = 11)
 	private Integer mEmployeeId;
 
 	public Integer getmEmployeeId() {
@@ -64,7 +64,7 @@ public class Muser extends CommonModel {
 		this.mEmployeeId = mEmployeeId;
 	}
 
-	@Column(name = "m_role_id", nullable = false)
+	@Column(name = "m_role_id", length=11)
 	private Integer mRoleId;
 
 	public Integer getmRoleId() {
@@ -74,21 +74,21 @@ public class Muser extends CommonModel {
 	public void setmRoleId(Integer mRoleId) {
 		this.mRoleId = mRoleId;
 	}
-
+	
 	@ManyToOne
-	@JoinColumn(name = "m_role")
-	private Role roleDesc;
+	@JoinColumn(name="m_role", insertable=false, updatable=false)
+	private Mrole roleDesc;
 
-	public Role getRoleDesc() {
+	public Mrole getRoleDesc() {
 		return roleDesc;
 	}
 
-	public void setRoleDesc(Role roleDesc) {
+	public void setRoleDesc(Mrole roleDesc) {
 		this.roleDesc = roleDesc;
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "m_employee")
+	@JoinColumn(name = "m_employee", insertable=false, updatable=false)
 	private Employee employeeDesc;
 
 	public Employee getEmployeeDesc() {

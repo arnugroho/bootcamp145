@@ -38,7 +38,11 @@ public interface GeneralVariable {
 
 	// KODE
 	public static final String KODE_BUKU = "KB";
+
+	public static final String CODE_EVENT = "TRWOEV";
+	
 	public static final String KODE_ROLE = "RO";
 	public static final String KODE_UNIT = "UN";
+
 
 }

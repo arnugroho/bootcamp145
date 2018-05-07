@@ -17,32 +17,32 @@ public class MuserServiceImpl implements MuserService {
 	private MuserDao muserDao;
 
 	@Override
-	public Muser getUser(int id) throws Exception {
-		return muserDao.getUser(id);
+	public Muser get(Long idUser) throws Exception {
+		return muserDao.get(idUser);
+	}
+
+	@Override
+	public Muser getByUsername(String pUsername) throws Exception {
+		return muserDao.getByUserame(pUsername);
 	}
 
 	@Override
 	public void insert(Muser muser) throws Exception {
 		muserDao.insert(muser);
-
 	}
 
 	@Override
 	public void update(Muser muser) throws Exception {
-		// TODO Auto-generated method stub
 		muserDao.update(muser);
 	}
 
 	@Override
 	public void delete(Muser muser) throws Exception {
-		// TODO Auto-generated method stub
 		muserDao.delete(muser);
 	}
 
 	@Override
 	public Collection<Muser> listAll() throws Exception {
-		// TODO Auto-generated method stub
 		return muserDao.listAll();
 	}
-
 }

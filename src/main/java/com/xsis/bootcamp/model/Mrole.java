@@ -21,13 +21,13 @@ public class Mrole extends CommonModel {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = TABLE_NAME)
 	@TableGenerator(name = TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
-	private Long id;
+	private Integer id;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
