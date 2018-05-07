@@ -99,7 +99,7 @@ public class MroleController extends BaseController {
 	public void delete(Model model, HttpServletRequest request) {
 		try {
 			String idRoleReq = request.getParameter("idRole");
-			Long idRole = Long.parseLong(idRoleReq);
+			Integer idRole = Integer.parseInt(idRoleReq);
 			Mrole mrole = mroleService.get(idRole);
 			mrole.setIsDelete(GeneralVariable.ISDELETE_TRUE);
 
@@ -115,7 +115,7 @@ public class MroleController extends BaseController {
 	public void view(Model model, HttpServletRequest request) {
 		try {
 			String idRoleReq = request.getParameter("idRole");
-			Long idRole = Long.parseLong(idRoleReq);
+			Integer idRole = Integer.parseInt(idRoleReq);
 			Mrole mrole = mroleService.get(idRole);
 
 			model.addAttribute("mrole", mrole);
@@ -135,7 +135,7 @@ public class MroleController extends BaseController {
 			String code = request.getParameter("code");
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
-			Long idRole = Long.parseLong(idReq);
+			Integer idRole = Integer.parseInt(idReq);
 
 			Mrole mrole = mroleService.get(idRole);
 			mrole.setCode(code);

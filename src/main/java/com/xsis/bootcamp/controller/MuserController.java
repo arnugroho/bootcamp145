@@ -1,5 +1,7 @@
 package com.xsis.bootcamp.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.xsis.bootcamp.model.Mrole;
 import com.xsis.bootcamp.model.Muser;
+import com.xsis.bootcamp.model.Personel;
 import com.xsis.bootcamp.service.MuserService;
+import com.xsis.bootcamp.viewmodel.ViewUser;
 
 @Controller
 @RequestMapping("/member")
@@ -39,13 +42,13 @@ public class MuserController extends BaseController {
 				model.addAttribute("message","Username" + pUsername + "Telah di Miliki");
 				model.addAttribute("success",false);
 			} else {
+				Personel personel = getUser();
 				Muser muser = new Muser();
-				Mrole mrole = new Mrole();
 				Date currentDate = new Date();
 				muser.setUsername(pUsername);
 				muser.setPassword(pPassword);
 				muser.setCreatedDate(currentDate);
-				muser.setCreatedBy(mrole.getName());
+				muser.setCreatedBy(personel.getUsername());
 				muser.setIsDelete(0);
 				muserService.insert(muser);
 				
@@ -56,6 +59,29 @@ public class MuserController extends BaseController {
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			model.addAttribute("message", "Gagal Melakukan Registrasi");
+			model.addAttribute("success",false);
+		}
+	}
+	
+	@RequestMapping("/get-data")
+	public void getData(Model model, HttpServletRequest request) {
+		try {
+			Collection<Muser> listUser = muserService.listAll();
+			Collection<ViewUser> listViewUser = new ArrayList<>();
+			for(Muser muser : listUser) {
+				ViewUser v = new ViewUser();
+				v.setNameEmployee(muser.getEmployeeDesc().getFirstName());
+				v.setNameRole(muser.getRoleDesc().getName());
+				v.setUsername(muser.getUsername());
+				v.setCreatedDate(muser.getCreatedDate());
+				v.setCreatedBy(muser.getCreatedBy());
+				v.setIdUser(muser.getId());
+				listViewUser.add(v);
+			}
+			model.addAttribute("listUser", listViewUser);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
 			model.addAttribute("success",false);
 		}
 	}

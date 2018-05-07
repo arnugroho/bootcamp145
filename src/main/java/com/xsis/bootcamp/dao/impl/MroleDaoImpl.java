@@ -32,7 +32,7 @@ public class MroleDaoImpl extends SessionHibernate implements MroleDao {
 	}
 
 	@Override
-	public Mrole get(Long idRole) throws Exception {
+	public Mrole get(Integer idRole) throws Exception {
 		Mrole mrole = getSession().get(Mrole.class, idRole);
 		return mrole;
 	}

@@ -18,37 +18,34 @@
 							<!-- form start -->
 							<form role="form">
 								<div class="box-body">
-									<div class="form-group col-md-6" >
-										<label for="code">Role Name</label> <input
-											class="form-control" id="name" name="name"
-											placeholder="Select Role Name" type="text">
+									<div class="form-group col-md-6">
+										<label>Role Name</label> <input class="form-control" id="name"
+											name="name" placeholder="Select Role Name" type="text">
 									</div>
 									<div class="form-group col-md-6">
-										<label for="eventName">Username</label> <input
-											class="form-control" id="username" name="username"
-											placeholder="Type Username" type="text">
+										<label>Username</label> <input class="form-control"
+											id="username" name="username" placeholder="Type Username"
+											type="text">
 									</div>
 									<div class="form-group col-md-6">
-										<label for="eventName">Employee Name</label> <input
-											class="form-control" id="name" name="name"
+										<label>Employee Name</label> <input class="form-control"
+											id="employeeName" name="employeeName"
 											placeholder="Select Employee" type="text">
 									</div>
-
 									<div class="form-group col-md-6">
-										<label for="startDate">Password</label> <input
-											class="form-control" id="registerPassword" name="password"
-											placeholder="Type Password" type="password">
+										<label>Password</label><input class="form-control"
+											id="regisPassword" name="regisrPassword"
+											placeholder="Password" type="password">
 									</div>
 									<div class="col-md-6"></div>
 									<div class="form-group col-md-6">
-										<label for="startDate">Retype Password</label> <input
-											class="form-control" id="retypePassword" name="retypePassword"
+										<label>Retype Password</label> <input class="form-control"
+											id="retypePassword" name="retypePassword"
 											placeholder="Retype Password" type="password">
 									</div>
-									<input
-											class="form-control" id="idEvent" name="idEvent"
-											 type="hidden">
-									
+									--> <input class="form-control" id="idUser" name="idUser"
+										type="hidden">
+
 								</div>
 								<!-- /.box-body -->
 							</form>
@@ -58,7 +55,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" id="btnDaftar" class="btn btn-primary">Daftar</button>
+				<button type="button" id="btnInsert" class="btn btn-primary">Daftar</button>
 				<button type="button" id="btnUpdate" class="btn btn-primary">Update</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>

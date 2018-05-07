@@ -53,7 +53,7 @@ public class Muser extends CommonModel {
 		this.password = password;
 	}
 
-	@Column(name = "m_employee_id", nullable = false, length = 11)
+	@Column(name = "m_employee_id",length = 11)
 	private Integer mEmployeeId;
 
 	public Integer getmEmployeeId() {
@@ -64,7 +64,7 @@ public class Muser extends CommonModel {
 		this.mEmployeeId = mEmployeeId;
 	}
 
-	@Column(name = "m_role_id", nullable = false)
+	@Column(name = "m_role_id", length=11)
 	private Integer mRoleId;
 
 	public Integer getmRoleId() {
@@ -74,21 +74,21 @@ public class Muser extends CommonModel {
 	public void setmRoleId(Integer mRoleId) {
 		this.mRoleId = mRoleId;
 	}
-
+	
 	@ManyToOne
-	@JoinColumn(name = "m_role")
-	private Role roleDesc;
+	@JoinColumn(name="m_role", insertable=false, updatable=false)
+	private Mrole roleDesc;
 
-	public Role getRoleDesc() {
+	public Mrole getRoleDesc() {
 		return roleDesc;
 	}
 
-	public void setRoleDesc(Role roleDesc) {
+	public void setRoleDesc(Mrole roleDesc) {
 		this.roleDesc = roleDesc;
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "m_employee")
+	@JoinColumn(name = "m_employee", insertable=false, updatable=false)
 	private Employee employeeDesc;
 
 	public Employee getEmployeeDesc() {

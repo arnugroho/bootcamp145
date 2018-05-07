@@ -5,7 +5,7 @@ import java.util.Collection;
 import com.xsis.bootcamp.model.Mrole;
 
 public interface MroleDao {
-	public Mrole get(Long idRole) throws Exception;
+	public Mrole get(Integer idRole) throws Exception;
 
 	public abstract void insert(Mrole mrole) throws Exception;
 
