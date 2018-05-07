@@ -9,10 +9,28 @@
 <div id="notif"></div>
 
 <script type="text/javascript">
-$(function(){
-	$("#modalFormEvent")[0].reset();
+
+function prepareForm() {
+	$.ajax({
+		url : contextName + '/event/prepare-form.json',
+		type : 'post',
+		dataType : 'json',
+		success : function(result) {
+				
+			var requestBy = result.requestBy;
+			$('#request').val(requestBy);
+			
+			notifySuccess('Berhasil Prepare Form');
+			
+		},
+		error : function() {
+			notifyError('Gagal Prepare Form');
+		}
 	});
-	
+}
+
+
+
 	$(document).ready(function() {
 		prepareDatatable();
 

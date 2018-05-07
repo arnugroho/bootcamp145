@@ -48,8 +48,8 @@ public class EventController extends BaseController {
 			event.setEndDate(sdf.parse(req.getParameter("endDate")));
 			event.setBudget(Long.parseLong(req.getParameter("budget")));
 			event.setNote(req.getParameter("note"));
-			//event.setRequestByDesc(employee);
-			
+			// event.setRequestByDesc(employee);
+
 			Personel user = getUser();
 			Date currentDate = new Date();
 
@@ -61,22 +61,20 @@ public class EventController extends BaseController {
 			event.setIsDelete(0);
 			eventService.insert(event);
 
-					 
 			StringBuilder code = new StringBuilder();
 			code.append(GeneralVariable.CODE_EVENT);
 			String idEvent = String.valueOf(event.getId());
-			if(idEvent.length() < 2) {
-				idEvent = "000"+idEvent;
-			}else if(idEvent.length() < 3) {
-				idEvent = "00"+idEvent;
-			}else if(idEvent.length() < 4) {
-				idEvent = "0"+idEvent;
+			if (idEvent.length() < 2) {
+				idEvent = "000" + idEvent;
+			} else if (idEvent.length() < 3) {
+				idEvent = "00" + idEvent;
+			} else if (idEvent.length() < 4) {
+				idEvent = "0" + idEvent;
 			}
 			code.append(idEvent);
 			event.setCode(code.toString());
 			eventService.update(event);
 
-			  
 			model.addAttribute("success", true);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -89,7 +87,7 @@ public class EventController extends BaseController {
 	public void getData(Model model, HttpServletRequest req) {
 		try {
 			Collection<Event> listEvent = eventService.listAll();
-			
+
 			Collection<ViewEvent> listViewEvent = new ArrayList<>();
 			for (Event event : listEvent) {
 				ViewEvent v = new ViewEvent();
@@ -110,7 +108,7 @@ public class EventController extends BaseController {
 			log.error(e.getMessage(), e);
 			model.addAttribute("success", false);
 		}
-		
+
 	}
 
 	@RequestMapping("/delete")
@@ -119,31 +117,28 @@ public class EventController extends BaseController {
 			String idEventReq = req.getParameter("idEvent");
 			int idEvent = Integer.parseInt(idEventReq);
 			Event event = eventService.get(idEvent);
-			//set is deletenya 1, artinya delete
+			// set is deletenya 1, artinya delete
 			event.setIsDelete(GeneralVariable.ISDELETE_TRUE);
-			
-			//update bukunya
+
+			// update bukunya
 			eventService.update(event);
-			
+
 			model.addAttribute("success", true);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			model.addAttribute("success", false);
 		}
-		
-		
-		
+
 	}
-	
+
 	@RequestMapping("/view")
 	public void view(Model model, HttpServletRequest req) {
 		try {
-		/**/
+			/**/
 			String idEventReq = req.getParameter("idEvent");
 			int idEvent = Integer.parseInt(idEventReq);
 			Event event = eventService.get(idEvent);
-	
-			
+
 			model.addAttribute("event", event);
 			model.addAttribute("success", true);
 		} catch (Exception e) {
@@ -151,7 +146,7 @@ public class EventController extends BaseController {
 			model.addAttribute("success", false);
 		}
 	}
-	
+
 	@RequestMapping("/update")
 	public void update(Model model, HttpServletRequest req) {
 		try {
@@ -160,8 +155,7 @@ public class EventController extends BaseController {
 			String idReq = req.getParameter("id");
 			int idEvent = Integer.parseInt(idReq);
 			Event event = eventService.get(idEvent);
-			
-			
+
 			event.setCode(req.getParameter("code"));
 			event.setEventname(req.getParameter("eventName"));
 			event.setPlace(req.getParameter("place"));
@@ -172,15 +166,19 @@ public class EventController extends BaseController {
 			event.setUpdatedBy(user.getUsername());
 			event.setRequestDate(currentDate);
 			eventService.update(event);
-			
-			
-			
+
 			model.addAttribute("success", true);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			model.addAttribute("success", false);
 		}
 	}
-	
-	
+
+	@RequestMapping("/prepare-form")
+	public void prepareForm(Model model) {
+		Personel user = getUser();
+		model.addAttribute("requestBy", user.getUsername());
+
+	}
+
 }
