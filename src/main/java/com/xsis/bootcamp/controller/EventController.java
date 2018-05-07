@@ -181,6 +181,26 @@ public class EventController extends BaseController {
 		}
 	}
 
+	@RequestMapping("/updateReject")
+	public void updateReject(Model model, HttpServletRequest req) {
+		try {
+			String idReq = req.getParameter("id");
+			int idEvent = Integer.parseInt(idReq);
+			Event event = eventService.get(idEvent);
+			
+			event.setAssignTo(Integer.parseInt(req.getParameter("assignTo")));
+			event.setRejectReason(req.getParameter("rejectReason"));
+			event.setStatus(0);
+			eventService.update(event);
+
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+	}
+
+	
 	@RequestMapping("/prepare-form")
 	public void prepareForm(Model model) {
 		Personel user = getUser();

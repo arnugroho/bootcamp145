@@ -19,7 +19,7 @@
 							</div>
 							<!-- /.box-header -->
 							<!-- form start -->
-							<form role="form">
+							<form role="form" id="form">
 								<div class="box-body">
 									<div class="form-group col-md-6" >
 										<label for="code">Transaction Code</label> <input
@@ -91,7 +91,7 @@
 			<div class="modal-footer">
 				<button type="button" id="btnInsert" class="btn btn-primary">Insert</button>
 				<button type="button" id="btnUpdate" class="btn btn-primary">Update</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal" value="reset">Close</button>
 			</div>
 		</div>
 	</div>

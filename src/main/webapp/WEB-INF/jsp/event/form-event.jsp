@@ -1,39 +1,51 @@
 <%@ include file="/taglibs.jsp"%>
 <%@ include file="modal-form.jsp"%>
 <%@ include file="modal-form2.jsp"%>
+<%@ include file="reject.jsp"%>
 <!-- Trigger the modal with a button -->
-<button type="button" id="btnTambah" class="btn btn-success btn-lg" data-toggle="modal"
-	data-target="#modalFormEvent" >add</button>
+<button type="button" id="btnTambah" class="btn btn-success btn-lg"
+	data-toggle="modal" data-target="#modalFormEvent">add</button>
 <hr>
 <table id="tableEvent" class="display" width="100%"></table>
 <div id="notif"></div>
 
 <script type="text/javascript">
-
-function prepareForm() {
-	$.ajax({
-		url : contextName + '/event/prepare-form.json',
-		type : 'post',
-		dataType : 'json',
-		success : function(result) {
-				
-			var requestBy = result.requestBy;
-			$('#requestBy').val(requestBy);
-			
-			var requestDate =result.requestDate;
-			$('#requestDate').val(requestDate);
-			
-			
-			notifySuccess('Berhasil Prepare Form');
-			
-		},
-		error : function() {
-			notifyError('Gagal Prepare Form');
-		}
+	//============RESET===========================		
+	$("#btnClose").click(function() {
+		document.getElementById("form").reset();
 	});
-}
 
+	$("#btnClose2").click(function() {
+		document.getElementById("form2").reset();
+	});
 
+	$("#closeReject").click(function() {
+		document.getElementById("formReject").reset();
+	});
+
+	//==========BUTTON REJECT=================	
+
+	$("#btnReject").click(function() {
+		$('#rejectForm').modal('show');
+
+	});
+
+	$("#btnSaveReject").click(function() {
+		insertReject();
+
+	});
+
+	// =========================INSERT DATA=========================
+
+	$("#btnTambah").click(function() {
+		prepareForm();
+		$("#btnUpdate").hide();
+		$('#btnInsert').show();
+		$('#judulinsert').show();
+		$('#judulupdate').hide();
+		$('#status').hide();
+		$('#labelstat').hide();
+	});
 
 	$(document).ready(function() {
 		prepareDatatable();
@@ -46,21 +58,27 @@ function prepareForm() {
 
 	});
 
-	$("#btnUpdate").click(function() {
+	function prepareForm() {
+		$.ajax({
+			url : contextName + '/event/prepare-form.json',
+			type : 'post',
+			dataType : 'json',
+			success : function(result) {
 
-		updateData();
+				var requestBy = result.requestBy;
+				$('#requestBy').val(requestBy);
 
-	});
+				var requestDate = result.requestDate;
+				$('#requestDate').val(requestDate);
 
-	$("#btnTambah").click(function() {
-		prepareForm();
-		$("#btnUpdate").hide();
-		$('#btnInsert').show();
-		$('#judulinsert').show();
-		$('#judulupdate').hide();
-		$('#status').hide();
-		$('#labelstat').hide();
-	});
+				notifySuccess('Berhasil Prepare Form');
+
+			},
+			error : function() {
+				notifyError('Gagal Prepare Form');
+			}
+		});
+	}
 
 	function insertData() {
 		$.ajax({
@@ -81,7 +99,7 @@ function prepareForm() {
 					$('#tableEvent').DataTable().destroy()
 					prepareDatatable()
 					// ------ //
-					
+
 					$('#modalFormEvent').modal('hide');
 					// ----//
 					$('#notif').html("berhasil hore")
@@ -96,35 +114,14 @@ function prepareForm() {
 		});
 	}
 
-	function insertReject() {
-		$.ajax({
-			url : contextName + '/event/insert.json',
-			data : {
-				'reject' : $("#reject").val(),
-			
-			},
-			type : 'post',
-			dataType : 'json',
-			success : function(result) {
-				if (result.success) {
-					
-					
-					$('#modalFormEvent').modal('hide');
-					// ----//
-					$('#notif').html("berhasil hore")
-					notifySuccess('Berhasil Insert Data');
-				} else {
-					notifyError('Gagal Insert Data');
-				}
-			},
-			error : function() {
-				notifyError('Gagal Insert Data');
-			}
-		});
-	}
-		
-	
-	function updateEvent(idEvent){
+	//=====================UPDATE DATA============================
+	$("#btnUpdate").click(function() {
+
+		updateData();
+
+	});
+
+	function updateEvent(idEvent) {
 		$('#btnInsert').hide();
 		$('#btnUpdate').show();
 		$('#judulinsert').hide();
@@ -140,7 +137,7 @@ function prepareForm() {
 			},
 			dataType : 'json',
 			success : function(result) {
-				if(result.success){
+				if (result.success) {
 					$("#code").val(result.event.code)
 					$("#eventName").val(result.event.eventName)
 					$("#place").val(result.event.place)
@@ -151,9 +148,9 @@ function prepareForm() {
 					$("#requestDate").val(result.event.requestDate)
 					$("#status").val(result.event.statusDesc.status)
 					$("#idEvent").val(result.event.id)
-					
+
 					notifySuccess('Berhasil Menampilkan Data');
-				}else {
+				} else {
 					notifyError('Gagal Menampilkan Data');
 				}
 			},
@@ -162,7 +159,7 @@ function prepareForm() {
 			}
 		});
 	}
-	
+
 	function updateData() {
 		$.ajax({
 			url : contextName + '/event/update.json',
@@ -179,19 +176,18 @@ function prepareForm() {
 			type : 'post',
 			dataType : 'json',
 			success : function(result) {
-				if(result.success){
+				if (result.success) {
 					//agar table ter refresh
 					$('#tableEvent').DataTable().destroy()
 					prepareDatatable()
 					// ------ //
-					
+
 					//modal di hide 
 					$('#modalFormEvent').modal('hide');
 					// ----//
-					
-					
+
 					notifySuccess('Berhasil Update Data');
-				}else {
+				} else {
 					notifyError('Gagal Update Data');
 				}
 			},
@@ -200,7 +196,8 @@ function prepareForm() {
 			}
 		});
 	}
-	
+
+	//==============================Table View=============================	
 	function prepareDatatable() {
 		$
 				.ajax({
@@ -248,14 +245,17 @@ function prepareForm() {
 													// this case `data: 0`.
 													"render" : function(data,
 															type, row) {
-														var s = '<button type="button" onClick="view('+ data + ')">'															
-														s = s+ ' <i class="fa fa-search"></i> </button>'
-														
-														s += '<button type="button"  onClick="updateEvent('+ data + ')">'
+														var s = '<button type="button" onClick="view('
+																+ data + ')">'
+														s = s
+																+ ' <i class="fa fa-search"></i> </button>'
+
+														s += '<button type="button"  onClick="updateEvent('
+																+ data + ')">'
 														s += '<i class="fa fa-pencil"></i> </button>'
-		
-													/* 	s += '<button type="button"  onClick="view('+ data + ')">'
-														s += '<i class="fa fa-search"></i> </button>' */
+
+														/* 	s += '<button type="button"  onClick="view('+ data + ')">'
+															s += '<i class="fa fa-search"></i> </button>' */
 														return s;
 													},
 													// column keberapa render diaplikasikan
@@ -274,6 +274,40 @@ function prepareForm() {
 				});
 	}
 
+	//====================INSERT REJECT============================
+	function insertReject() {
+		$.ajax({
+			url : contextName + '/event/updateReject.json',
+			data : {
+				'assignTo' : $("#assignTo").val(),
+				'rejectReason' : $("#rejectReason").val(),
+				'id' : $("#idEvent").val(),
+			},
+			type : 'post',
+			dataType : 'json',
+			success : function(result) {
+				if (result.success) {
+					//agar table ter refresh
+					$('#tableEvent').DataTable().destroy()
+					prepareDatatable()
+					// ------ //
+
+					//modal di hide 
+					$('#rejectForm').modal('hide');
+					// ----//
+
+					notifySuccess('Berhasil Update Data');
+				} else {
+					notifyError('Gagal Update Data');
+				}
+			},
+			error : function() {
+				notifyError('Gagal Update Data');
+			}
+		});
+	}
+
+	//======================DELETE EVENT===========================
 	function deleteEvent(idEvent) {
 		$.ajax({
 			url : contextName + '/event/delete.json',
@@ -284,7 +318,7 @@ function prepareForm() {
 			dataType : 'json',
 			success : function(result) {
 				if (result.success) {
-					
+
 					//agar table ter refresh
 					$('#tableEvent').DataTable().destroy()
 					prepareDatatable()
@@ -301,11 +335,11 @@ function prepareForm() {
 		});
 	}
 
-
-	function view(idEvent){
+	//=================VIEW DATA=========================
+	function view(idEvent) {
 		$('#labelstat').show();
 		$('#viewdata').modal('show');
-		 			$.ajax({
+		$.ajax({
 			url : contextName + '/event/view.json',
 			type : 'post',
 			data : {
@@ -313,8 +347,8 @@ function prepareForm() {
 			},
 			dataType : 'json',
 			success : function(result) {
-				 if(result.success){
-					 $("#code2").val(result.event.code)
+				if (result.success) {
+					$("#code2").val(result.event.code)
 					$("#eventName2").val(result.event.eventName)
 					$("#place2").val(result.event.place)
 					$("#startDate2").val(result.event.startDate)
@@ -324,21 +358,19 @@ function prepareForm() {
 					$("#requestDate2").val(result.event.requestDate)
 					$("#note2").val(result.event.note);
 					$("#status2").val(result.event.statusDesc.status)
-					
+
 					$("#idEvent").val(result.event.id)
-					
-				 	notifySuccess('Berhasil Menampilkan Data');
-				}else {
+
+					notifySuccess('Berhasil Menampilkan Data');
+				} else {
 					notifyError('Gagal Menampilkan Data');
 				}
 			},
 			error : function() {
 				notifyError('Gagal Menampilkan Data');
 			}
-		}); 
+		});
 	}
-	
-	
 </script>
 
 
