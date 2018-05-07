@@ -95,7 +95,8 @@
 			<div class="modal-footer">
 				<button type="button" id="btnAproved" class="btn btn-primary">Aproved</button>
 				<button type="button" id="btnReject" class="btn btn-danger">Reject</button>
-				<button type="button" id="btnClose2" class="btn btn-warning" data-dismiss="modal" value="reset">Close</button>
+				<button type="button" id="btnDone" class="btn btn-danger">Close Project</button>
+				<button type="button" id="btnClose2" class="btn btn-warning" data-dismiss="modal" value="reset">Cancel</button>
 			</div>
 		</div>
 	</div>

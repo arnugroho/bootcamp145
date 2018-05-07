@@ -31,11 +31,24 @@ public class EventController extends BaseController {
 	@Autowired
 	EventService eventService;
 
+//==================HOME EVENT==============	
 	@RequestMapping("/form-event")
 	public String index() {
 		return "event/form-event";
 	}
 
+//===============INSERT DATA===============
+	@RequestMapping("/prepare-form")
+	public void prepareForm(Model model) {
+		Personel user = getUser();
+		Date curentDate=new Date();
+		DateFormat sdf =new SimpleDateFormat("dd/MM/yyyy");
+		String sc= sdf.format(curentDate);
+		model.addAttribute("requestBy", user.getUsername());
+		model.addAttribute("requestDate",sc);
+	}
+
+	
 	@RequestMapping("/insert")
 	public void insert(Model model, HttpServletRequest req) {
 		try {
@@ -89,55 +102,7 @@ public class EventController extends BaseController {
 		}
 
 	}
-
-	@RequestMapping("/get-data")
-	public void getData(Model model, HttpServletRequest req) {
-		try {
-			Collection<Event> listEvent = eventService.listAll();
-
-			Collection<ViewEvent> listViewEvent = new ArrayList<>();
-			for (Event event : listEvent) {
-				ViewEvent v = new ViewEvent();
-				v.setCode(event.getCode());
-				v.setEventName(event.getEventname());
-				v.setRequestBy(event.getRequestBy());
-				v.setRequestDate(event.getRequestDate());
-				v.setEndDate(event.getEndDate());
-				v.setStatus(event.getStatusDesc().getStatus());
-				v.setCreatedDate(event.getCreatedDate());
-				v.setCreateBy(event.getCreatedBy());
-				v.setIdEvent(event.getId());
-				listViewEvent.add(v);
-			}
-			model.addAttribute("listEvent", listViewEvent);
-			model.addAttribute("success", true);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			model.addAttribute("success", false);
-		}
-
-	}
-
-	@RequestMapping("/delete")
-	public void delete(Model model, HttpServletRequest req) {
-		try {
-			String idEventReq = req.getParameter("idEvent");
-			int idEvent = Integer.parseInt(idEventReq);
-			Event event = eventService.get(idEvent);
-			// set is deletenya 1, artinya delete
-			event.setIsDelete(GeneralVariable.ISDELETE_TRUE);
-
-			// update bukunya
-			eventService.update(event);
-
-			model.addAttribute("success", true);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			model.addAttribute("success", false);
-		}
-
-	}
-
+//=========================== VIEW & EDIT ================================
 	@RequestMapping("/view")
 	public void view(Model model, HttpServletRequest req) {
 		try {
@@ -181,6 +146,10 @@ public class EventController extends BaseController {
 		}
 	}
 
+	
+	
+
+//====================APROVED REJECT CLOSE========================
 	@RequestMapping("/updateReject")
 	public void updateReject(Model model, HttpServletRequest req) {
 		try {
@@ -200,15 +169,97 @@ public class EventController extends BaseController {
 		}
 	}
 
-	
-	@RequestMapping("/prepare-form")
-	public void prepareForm(Model model) {
-		Personel user = getUser();
-		Date curentDate=new Date();
-		DateFormat sdf =new SimpleDateFormat("dd/MM/yyyy");
-		String sc= sdf.format(curentDate);
-		model.addAttribute("requestBy", user.getUsername());
-		model.addAttribute("requestDate",sc);
+
+	@RequestMapping("/updateAproved")
+	public void updateAproved(Model model, HttpServletRequest req) {
+		try {
+			String idReq = req.getParameter("id");
+			int idEvent = Integer.parseInt(idReq);
+			Event event = eventService.get(idEvent);
+			
+			event.setAssignTo(Integer.parseInt(req.getParameter("assignTo")));
+			event.setStatus(2);
+			eventService.update(event);
+
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
 	}
+
+	@RequestMapping("/updateDone")
+	public void updateDone(Model model, HttpServletRequest req) {
+		try {
+			String idReq = req.getParameter("id");
+			int idEvent = Integer.parseInt(idReq);
+			Event event = eventService.get(idEvent);
+			
+			event.setAssignTo(Integer.parseInt(req.getParameter("assignTo")));
+			event.setStatus(3);
+			eventService.update(event);
+
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+	}	
+	
+
+
+//============================TAMPIL TABEL============================
+	@RequestMapping("/get-data")
+	public void getData(Model model, HttpServletRequest req) {
+		try {
+			Collection<Event> listEvent = eventService.listAll();
+
+			Collection<ViewEvent> listViewEvent = new ArrayList<>();
+			for (Event event : listEvent) {
+				ViewEvent v = new ViewEvent();
+				v.setCode(event.getCode());
+				v.setEventName(event.getEventname());
+				v.setRequestBy(event.getRequestBy());
+				v.setRequestDate(event.getRequestDate());
+				v.setEndDate(event.getEndDate());
+				v.setStatus(event.getStatusDesc().getStatus());
+				v.setCreatedDate(event.getCreatedDate());
+				v.setCreateBy(event.getCreatedBy());
+				v.setIdEvent(event.getId());
+				listViewEvent.add(v);
+			}
+			model.addAttribute("listEvent", listViewEvent);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+
+	}
+
+//====================DELETE===============================
+	@RequestMapping("/delete")
+	public void delete(Model model, HttpServletRequest req) {
+		try {
+			String idEventReq = req.getParameter("idEvent");
+			int idEvent = Integer.parseInt(idEventReq);
+			Event event = eventService.get(idEvent);
+			// set is deletenya 1, artinya delete
+			event.setIsDelete(GeneralVariable.ISDELETE_TRUE);
+
+			// update bukunya
+			eventService.update(event);
+
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+
+	}
+
+
+
+
 
 }
