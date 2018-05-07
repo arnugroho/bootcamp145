@@ -13,9 +13,9 @@
 
 				<li><a href="${contextName}/design/form-design.html"><i class="fa fa-book"></i><span>Form Design</span></a></li>
 				<li><a href="${contextName}/event/form-event.html"><i class="glyphicon glyphicon-qrcode"></i><span>Event</span></a></li>
-				<li><a href="${contextName}/role/role.html"><i class="fa fa-book"></i><span>Role</span></a></li>
-				<li><a href="${contextName}/member/user.html"><i class="fa fa-book"></i><span>User</span></a></li>
-				<li><a href="${contextName}/unit/unit.html"><i class="fa fa-book"></i><span>Unit</span></a></li>
+				<li><a href="${contextName}/role/role.html"><i class="glyphicon glyphicon-user"></i><span>Role</span></a></li>
+				<li><a href="${contextName}/member/member.html"><i class="fa fa-user-secret"></i><span>User</span></a></li>
+				<li><a href="${contextName}/unit/unit.html"><i class="glyphicon glyphicon-inbox"></i><span>Unit</span></a></li>
 				<li><a href="${contextName}/menu/form.html"><i class="fa fa-book"></i><span>Menu</span></a></li>
 				<li><a href="${contextName}/menu-access/form.html"><i class="fa fa-book"></i><span>Menu Access</span></a></li>
 

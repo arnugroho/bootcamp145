@@ -18,7 +18,11 @@ function prepareForm() {
 		success : function(result) {
 				
 			var requestBy = result.requestBy;
-			$('#request').val(requestBy);
+			$('#requestBy').val(requestBy);
+			
+			var requestDate =result.requestDate;
+			$('#requestDate').val(requestDate);
+			
 			
 			notifySuccess('Berhasil Prepare Form');
 			
@@ -49,7 +53,7 @@ function prepareForm() {
 	});
 
 	$("#btnTambah").click(function() {
-		'on click'
+		prepareForm();
 		$("#btnUpdate").hide();
 		$('#btnInsert').show();
 		$('#judulinsert').show();
@@ -92,7 +96,32 @@ function prepareForm() {
 		});
 	}
 
-
+	function insertReject() {
+		$.ajax({
+			url : contextName + '/event/insert.json',
+			data : {
+				'reject' : $("#reject").val(),
+			
+			},
+			type : 'post',
+			dataType : 'json',
+			success : function(result) {
+				if (result.success) {
+					
+					
+					$('#modalFormEvent').modal('hide');
+					// ----//
+					$('#notif').html("berhasil hore")
+					notifySuccess('Berhasil Insert Data');
+				} else {
+					notifyError('Gagal Insert Data');
+				}
+			},
+			error : function() {
+				notifyError('Gagal Insert Data');
+			}
+		});
+	}
 		
 	
 	function updateEvent(idEvent){
@@ -219,14 +248,14 @@ function prepareForm() {
 													// this case `data: 0`.
 													"render" : function(data,
 															type, row) {
-														var s = '<button type="button" onClick="deleteEvent('+ data + ')">'															
-														s = s+ ' <i class="fa fa-trash"></i> </button>'
+														var s = '<button type="button" onClick="view('+ data + ')">'															
+														s = s+ ' <i class="fa fa-search"></i> </button>'
 														
 														s += '<button type="button"  onClick="updateEvent('+ data + ')">'
-														s += '<i class="fa fa-edit"></i> </button>'
+														s += '<i class="fa fa-pencil"></i> </button>'
 		
-														s += '<button type="button"  onClick="view('+ data + ')">'
-														s += '<i class="fa fa-search"></i> </button>'
+													/* 	s += '<button type="button"  onClick="view('+ data + ')">'
+														s += '<i class="fa fa-search"></i> </button>' */
 														return s;
 													},
 													// column keberapa render diaplikasikan
@@ -293,7 +322,9 @@ function prepareForm() {
 					$("#budget2").val(result.event.budget)
 					$("#requestBy2").val(result.event.requestBy)
 					$("#requestDate2").val(result.event.requestDate)
+					$("#note2").val(result.event.note);
 					$("#status2").val(result.event.statusDesc.status)
+					
 					$("#idEvent").val(result.event.id)
 					
 				 	notifySuccess('Berhasil Menampilkan Data');

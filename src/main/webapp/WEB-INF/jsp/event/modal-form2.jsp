@@ -70,7 +70,7 @@
 									<div class="form-group col-md-6">
 										<label for="note">note</label>
 										<textarea rows="6" cols="5px" class="form-control" id="note2"
-											name="note" placeholder="note" type="text" disabled></textarea>
+											name="note2" placeholder="note" type="text" disabled></textarea>
 									</div>
 									<div class="col-md-6">
 									
@@ -94,7 +94,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" id="btnAproved" class="btn btn-primary">Aproved</button>
-				<button type="button" id="btnReject" class="btn btn-danger">Reject</button>
+				<button href="#reject" type="button" id="btnReject" class="btn btn-danger">Reject</button>
 				<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 			</div>
 		</div>

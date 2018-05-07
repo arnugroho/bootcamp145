@@ -117,18 +117,18 @@
 												"columnDefs" : [ {
 													"render" : function(data,
 															type, row) {
-														var s = '<button type="button" class="btn btn-danger" onClick="deleteRole('
+														var s = '<button type="button" class="btn btn-default" onClick="deleteRole('
 																+ data + ')">'
 														s = s
 																+ ' <i class="fa fa-trash"></i> </button>'
-														s += '<button type="button" class="btn btn-warning" onClick="updateRole('
+														s += '<button type="button" class="btn btn-default" onClick="updateRole('
 																+ data + ')">'
 														s = s
 																+ ' <i class="fa fa-pencil"></i> </button>'
-														s += '<button type="button" class="btn btn-success" onClick="viewRole('
+														s += '<button type="button" class="btn btn-default" onClick="viewRole('
 																+ data + ')">'
 														s = s
-																+ ' <i class="fa fa-pencil"></i> </button>'
+																+ ' <i class="fa fa-search"></i> </button>'
 														return s;
 													},
 													"targets" : 4

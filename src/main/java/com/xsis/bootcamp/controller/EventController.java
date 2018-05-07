@@ -1,5 +1,6 @@
 package com.xsis.bootcamp.controller;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,7 +63,12 @@ public class EventController extends BaseController {
 			eventService.insert(event);
 
 			StringBuilder code = new StringBuilder();
+			
+			DateFormat sdf =new SimpleDateFormat("ddMMyy");
+			String sc= sdf.format(currentDate);
+			
 			code.append(GeneralVariable.CODE_EVENT);
+			code.append(sc);
 			String idEvent = String.valueOf(event.getId());
 			if (idEvent.length() < 2) {
 				idEvent = "000" + idEvent;
@@ -71,6 +77,7 @@ public class EventController extends BaseController {
 			} else if (idEvent.length() < 4) {
 				idEvent = "0" + idEvent;
 			}
+			
 			code.append(idEvent);
 			event.setCode(code.toString());
 			eventService.update(event);
@@ -177,8 +184,11 @@ public class EventController extends BaseController {
 	@RequestMapping("/prepare-form")
 	public void prepareForm(Model model) {
 		Personel user = getUser();
+		Date curentDate=new Date();
+		DateFormat sdf =new SimpleDateFormat("dd/MM/yyyy");
+		String sc= sdf.format(curentDate);
 		model.addAttribute("requestBy", user.getUsername());
-
+		model.addAttribute("requestDate",sc);
 	}
 
 }

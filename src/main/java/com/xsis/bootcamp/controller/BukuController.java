@@ -166,6 +166,7 @@ public class BukuController extends BaseController{
 	@RequestMapping("/prepare-form")
 	public void prepareForm(Model model) {
 		Personel user = getUser();
+		
 		model.addAttribute("requestBy", user.getUsername());
 		
 	}

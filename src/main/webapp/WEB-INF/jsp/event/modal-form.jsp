@@ -24,7 +24,7 @@
 									<div class="form-group col-md-6" >
 										<label for="code">Transaction Code</label> <input
 											class="form-control" id="code" name="code"
-											placeholder="Transaction Code" type="text">
+											placeholder="Auto Generate" type="text" Disabled>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="eventName">Event Name</label> <input
@@ -56,12 +56,12 @@
 									<div class="form-group col-md-6">
 										<label for="requestBy">Request By</label> <input
 											class="form-control" id="requestBy" name="requestBy"
-											placeholder="requestBy" type="text">
+											placeholder="requestBy" type="text" disabled>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="requestDate">Request Date</label> <input
 											class="form-control" id="requestDate" name="requestDate"
-											type="date" disabled>
+											type="text" disabled>
 
 									</div>
 									<div class="col-md-6"></div>
