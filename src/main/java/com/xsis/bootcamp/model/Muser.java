@@ -21,13 +21,13 @@ public class Muser extends CommonModel {
 	@Column(name = "id", length = 11)
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = Muser.TABLE_NAME)
 	@TableGenerator(name = Muser.TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = Muser.TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
-	private Long id;
+	private Integer id;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

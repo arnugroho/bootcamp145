@@ -8,7 +8,7 @@ public class ViewUser {
 	public String username;
 	public Date createdDate;
 	public String createdBy;
-	private Long idUser;
+	private Integer idUser;
 	
 	public String getNameEmployee() {
 		return nameEmployee;
@@ -40,10 +40,10 @@ public class ViewUser {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	public Long getIdUser() {
+	public Integer getIdUser() {
 		return idUser;
 	}
-	public void setIdUser(Long idUser) {
+	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
 	

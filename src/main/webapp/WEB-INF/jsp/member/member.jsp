@@ -72,6 +72,35 @@
 			}
 		});
 	}
+	
+	function updateData() {
+		$.ajax({
+			url : contextName + '/member/update.json',
+			data : {
+				'username' : $("#username").val(),
+				'password' : $("#regisPassword").val(),
+				'mRoleId' : $("#listMrole").find(':selected').val(),
+				'id' : $("#idUser").val(),
+			},
+			type : 'post',
+			dataType : 'json',
+			success : function(result) {
+				if (result.success) {
+					$('#tableUser').DataTable().destroy()
+					prepareDatatable()
+
+					$('#registerUser2').modal('hide');
+
+					notifySuccess('Berhasil Update Data');
+				} else {
+					notifyError('Gagal Update Table');
+				}
+			},
+			error : function() {
+				notifyError('Gagal Update Data');
+			}
+		});
+	}
 
 	function prepareDatatable() {
 		$
@@ -164,7 +193,78 @@
 			}
 		});
 	}
+	
+	function updateUser(idUser) {
+		$('#btnInsert').hide();
+		$('#btnUpdate').show();
+		$('#registerUser2').modal('show');
+		$.ajax({
+			url : contextName + '/member/view.json',
+			type : 'post',
+			data : {
+				idUser : idUser
+			},
+			dataType : 'json',
+			success : function(result) {
+				if (result.success) {
+					$("#username").val(result.muser.username)
+					$("#password").val(result.muser.password)
+					$("#mRoleId").val(result.muser.mRoleId)
+					$("#idUser").val(result.muser.id)
+				
+	/* 	
+						'username' : $("#username").val(),
+					'password' : $("#regisPassword").val(),
+					'mRoleId' : $("#listMrole").find(':selected').val(),
+					'id' : $("#idUser").val(),
+						
+						$("#code").val(result.mrole.code)
+						$("#name").val(result.mrole.name)
+						$("#description").val(result.mrole.description)
+						$("#idRole").val(result.mrole.id) */
 
+					notifySuccess('Berhasil Update Data');
+				} else {
+					notifyError('Gagal Update Data');
+				}
+			},
+			error : function() {
+				notifyError('Gagal Update Data');
+			}
+		});
+	}
+	
+	function viewUser(idUser) {
+		$('#btnInsert').hide();
+		$('#btnUpdate').hide();
+		$('#registerUser2').modal('show');
+		$.ajax({
+			url : contextName + '/member/view.json',
+			type : 'post',
+			data : {
+				idUser : idUser
+			},
+			dataType : 'json',
+			success : function(result) {
+				if (result.success) {
+					$("#username").val(result.muser.username)
+					$("#password").val(result.muser.password)
+					$("#mRoleId").val(result.muser.mRoleId)
+					$("#idUser").val(result.muser.id)
+					
+					/* $("#code").val(result.mrole.code)
+					$("#name").val(result.mrole.name)
+					$("#description").val(result.mrole.description)
+					$("#idRole").val(result.mrole.id) */
+				} else {
+					notifyError('Gagal Load Data');
+				}
+			},
+			error : function() {
+				notifyError('Gagal Load Data');
+			}
+		});
+	}
 	function getName() {
 		$
 				.ajax({

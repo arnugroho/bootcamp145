@@ -110,7 +110,7 @@ public class MuserController extends BaseController {
 	public void delete(Model model, HttpServletRequest request) {
 		try {
 			String idUserReq = request.getParameter("idUser");
-			Long idUser = Long.parseLong(idUserReq);
+			Integer idUser = Integer.parseInt(idUserReq);
 			Muser muser= muserService.get(idUser);
 			muser.setIsDelete(GeneralVariable.ISDELETE_TRUE);
 			
@@ -118,6 +118,50 @@ public class MuserController extends BaseController {
 			model.addAttribute("success", true);
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
+			model.addAttribute("success", false);
+		}
+	}
+	
+	@RequestMapping("/view")
+	public void view(Model model, HttpServletRequest request) {
+		try {
+			String idUserReq = request.getParameter("idUser");
+			Integer idUser = Integer.parseInt(idUserReq);
+			Muser muser = muserService.get(idUser);
+			
+
+			model.addAttribute("muser", muser);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
+	}
+	
+
+	@RequestMapping("/update")
+	public void update(Model model, HttpServletRequest request) {
+		try {
+			Personel user = getUser();
+			Date currentDate = new Date();
+			String idReq = request.getParameter("id");
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String mRoleId = request.getParameter("mRoleId");
+			Integer RoleId = Integer.parseInt(mRoleId);
+			Integer idUser = Integer.parseInt(idReq);
+			Muser muser = muserService.get(idUser);
+			muser.setUsername(username);
+			muser.setPassword(password);
+			muser.setmRoleId(RoleId);
+			muser.setUpdatedBy(user.getUsername());
+			muser.setUpdatedDate(currentDate);
+			muserService.update(muser);
+			
+
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
 			model.addAttribute("success", false);
 		}
 	}

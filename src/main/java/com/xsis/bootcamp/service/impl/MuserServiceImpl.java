@@ -16,10 +16,6 @@ public class MuserServiceImpl implements MuserService {
 	@Autowired
 	private MuserDao muserDao;
 
-	@Override
-	public Muser get(Long idUser) throws Exception {
-		return muserDao.get(idUser);
-	}
 
 	@Override
 	public Muser getByUsername(String pUsername) throws Exception {
@@ -44,5 +40,10 @@ public class MuserServiceImpl implements MuserService {
 	@Override
 	public Collection<Muser> listAll() throws Exception {
 		return muserDao.listAll();
+	}
+
+	@Override
+	public Muser get(Integer idUser) throws Exception {
+		return muserDao.get(idUser);
 	}
 }

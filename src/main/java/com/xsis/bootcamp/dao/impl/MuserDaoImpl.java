@@ -31,7 +31,7 @@ public class MuserDaoImpl extends SessionHibernate implements MuserDao {
 	}
 
 	@Override
-	public Muser get(Long idUser) throws Exception {
+	public Muser get(Integer idUser) throws Exception {
 		Muser muser = getSession().get(Muser.class, idUser);
 		return muser;
 	}

@@ -8,7 +8,7 @@ public interface MuserDao {
 	
 	public Muser getByUserame(String pUsername) throws Exception;
 
-	public Muser get(Long idUser) throws Exception;
+	public Muser get(Integer idUser) throws Exception;
 
 	public abstract void insert(Muser muser) throws Exception;
 
