@@ -17,7 +17,7 @@
 							
 							<!-- /.box-header -->
 							<!-- form start -->
-							<form role="form">
+							<form role="form" id="form2">
 								<div class="box-body">
 									<div class="form-group col-md-6" >
 										<label for="code">Transaction Code</label> <input
@@ -64,7 +64,7 @@
 									</div>
 									<div class="col-md-6">
 									<label for="assignTo">Assign To</label>
-										<input rows="12" cols="5px" class="form-control" id="AssignTo"
+										<input rows="12" cols="5px" class="form-control" id="assignTo"
 											name="assignTo"  type="text" ></input>
 									</div>
 									<div class="form-group col-md-6">
@@ -94,8 +94,9 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" id="btnAproved" class="btn btn-primary">Aproved</button>
-				<button href="#reject" type="button" id="btnReject" class="btn btn-danger">Reject</button>
-				<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+				<button type="button" id="btnReject" class="btn btn-danger">Reject</button>
+				<button type="button" id="btnDone" class="btn btn-danger">Close Project</button>
+				<button type="button" id="btnClose2" class="btn btn-warning" data-dismiss="modal" value="reset">Cancel</button>
 			</div>
 		</div>
 	</div>

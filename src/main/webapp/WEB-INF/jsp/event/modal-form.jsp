@@ -19,7 +19,7 @@
 							</div>
 							<!-- /.box-header -->
 							<!-- form start -->
-							<form role="form">
+							<form role="form" id="form">
 								<div class="box-body">
 									<div class="form-group col-md-6" >
 										<label for="code">Transaction Code</label> <input
@@ -29,34 +29,34 @@
 									<div class="form-group col-md-6">
 										<label for="eventName">Event Name</label> <input
 											class="form-control" id="eventName" name="eventName"
-											placeholder="eventName" type="text">
+											placeholder=" Input Event Name" type="text">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="place">Place</label> <input class="form-control"
-											id="place" name="place" placeholder="Place" type="text">
+											id="place" name="place" placeholder="Input Place" type="text">
 									</div>
 
 									<div class="form-group col-md-6">
 										<label for="startDate">StartDate</label> <input
 											class="form-control" id="startDate" name="startDate"
-											placeholder="startDate" type="date">
+											 type="date">
 									</div>
 
 									<div class="form-group col-md-6">
 										<label for="endDate">End Date</label> <input
 											class="form-control" id="endDate" name="endDate"
-											placeholder="endDate" type="date">
+										 type="date">
 									</div>
 									
 									<div class="form-group col-md-6">
 										<label for="evenetName">budget</label> <input
-											class="form-control" pattern="[0-9]+"title=" numeric characters only" id="budget" name="budget"
-											placeholder="Budget" type="text">
+											class="form-control" title=" numeric characters only" id="budget" name="budget"
+											placeholder="Input Budget" type="number">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="requestBy">Request By</label> <input
 											class="form-control" id="requestBy" name="requestBy"
-											placeholder="requestBy" type="text" disabled>
+											placeholder="Request By" type="text" disabled>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="requestDate">Request Date</label> <input
@@ -91,7 +91,7 @@
 			<div class="modal-footer">
 				<button type="button" id="btnInsert" class="btn btn-primary">Insert</button>
 				<button type="button" id="btnUpdate" class="btn btn-primary">Update</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal" value="reset">Close</button>
 			</div>
 		</div>
 	</div>
