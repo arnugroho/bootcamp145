@@ -20,7 +20,10 @@ public class Status {
 	}
 
 	@Column(name = "status", length = 12)
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 4a87c5508da4591d5fd9d6eb58f63bddee8df251
 	public String getStatus() {
 		return status;
 	}

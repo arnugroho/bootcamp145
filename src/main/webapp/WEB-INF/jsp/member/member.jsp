@@ -18,9 +18,14 @@
 		});
 
 		$("#btnTambah").click(function() {
+			getName();
 			$("#btnUpdate").hide();
 			$('#btnInsert').show();
 		});
+
+	/* 	$("#btnClose").click(function() {
+			$("#formAddUser")[0].reset();
+		}); */
 
 	});
 
@@ -89,15 +94,15 @@
 												"columnDefs" : [ {
 													"render" : function(data,
 															type, row) {
-														var s = '<button type="button" class="btn btn-default" onClick="deleteRole('
+														var s = '<button type="button" class="btn btn-default" onClick="deleteUser('
 																+ data + ')">'
 														s = s
 																+ ' <i class="fa fa-trash"></i> </button>'
-														s += '<button type="button" class="btn btn-default" onClick="updateRole('
+														s += '<button type="button" class="btn btn-default" onClick="updateUser('
 																+ data + ')">'
 														s = s
 																+ ' <i class="fa fa-pencil"></i> </button>'
-														s += '<button type="button" class="btn btn-default" onClick="viewRole('
+														s += '<button type="button" class="btn btn-default" onClick="viewUser('
 																+ data + ')">'
 														s = s
 																+ ' <i class="fa fa-search"></i> </button>'
@@ -114,6 +119,46 @@
 					},
 					error : function() {
 						notifyError('Gagal Create Table');
+					}
+				});
+	}
+
+	function deleteUser(idUser) {
+		$.ajax({
+			url : contextName + '/member/delete.json',
+			type : 'post',
+			data : {
+				idUser : idUser
+			},
+			dataType : 'json',
+			success : function(result) {
+				if (result.success) {
+					$('#tableUser').DataTable().destroy()
+					prepareDatatable()
+
+					notifySuccess('Berhasil Delete Data');
+				} else {
+					notifyError('Gagal Delete Data');
+				}
+			},
+			error : function() {
+				notifyError('Gagal Delete Data');
+			}
+		});
+	}
+
+	function getName() {
+		$.ajax({
+					url : contextName + '/member/getname.json',
+					type : 'post',
+					dataType : 'json',
+					success : function(result) {
+						$.each(result.listMrole, function(index, value) {
+											$("#listMrole").append('<option value= '+value.id+' label='+value.name+'/>');
+										})
+					},
+					error : function() {
+						notifyError('Gagal Delete Data');
 					}
 				});
 	}

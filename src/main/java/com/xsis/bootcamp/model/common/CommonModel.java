@@ -15,11 +15,19 @@ public abstract class CommonModel implements Serializable{
 	private static final long serialVersionUID = -4336637522858803239L;
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 4a87c5508da4591d5fd9d6eb58f63bddee8df251
 
+
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a87c5508da4591d5fd9d6eb58f63bddee8df251
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created_date", nullable = true)

@@ -13,9 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.xsis.bootcamp.model.Mrole;
 import com.xsis.bootcamp.model.Muser;
 import com.xsis.bootcamp.model.Personel;
+import com.xsis.bootcamp.service.MroleService;
 import com.xsis.bootcamp.service.MuserService;
+import com.xsis.bootcamp.util.GeneralVariable;
 import com.xsis.bootcamp.viewmodel.ViewUser;
 
 @Controller
@@ -26,6 +29,9 @@ public class MuserController extends BaseController {
 
 	@Autowired
 	MuserService muserService;
+	
+	@Autowired
+	MroleService mroleService;
 
 	@RequestMapping("/member")
 	public String index() {
@@ -83,6 +89,36 @@ public class MuserController extends BaseController {
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			model.addAttribute("success",false);
+		}
+	}
+	
+	@RequestMapping("/delete")
+	public void delete(Model model, HttpServletRequest request) {
+		try {
+			String idUserReq = request.getParameter("idUser");
+			Long idUser = Long.parseLong(idUserReq);
+			Muser muser= muserService.get(idUser);
+			muser.setIsDelete(GeneralVariable.ISDELETE_TRUE);
+			
+			muserService.update(muser);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			model.addAttribute("success", false);
+		}
+	}
+	
+	@RequestMapping("/getname")
+	public void getName(Model model, HttpServletRequest request) {
+		try {
+			Collection<Mrole> listMrole = mroleService.listAll();
+			
+			model.addAttribute("listMrole", listMrole);
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			model.addAttribute("success", false);
+			
 		}
 	}
 }
