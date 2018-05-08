@@ -6,7 +6,7 @@ import com.xsis.bootcamp.model.Design;
 
 public interface DesignService {
 
-	public Design getByCode(String dCode) throws Exception;
+	public Design get(Integer idDesign) throws Exception;
 
 	public abstract void insert(Design design) throws Exception;
 

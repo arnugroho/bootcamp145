@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xsis.bootcamp.model.Menu;
+import com.xsis.bootcamp.model.Menu;
 import com.xsis.bootcamp.model.Personel;
 import com.xsis.bootcamp.service.MenuService;
 import com.xsis.bootcamp.util.GeneralVariable;
@@ -37,19 +38,36 @@ public class MenuController extends BaseController{
 	public void insert(Model model, HttpServletRequest req) {
 		try {
 			String name =  req.getParameter("name");
-			String controller = req.getParameter("cotroller");
+			String controller = req.getParameter("controller");
 			//bisa memanggil getUser() karena extend BaseController
 			//fungsi getUser() ada di BaseController
 			Personel user = getUser();
 			Date currentDate = new Date();
 			
 			Menu menu = new Menu();
+			menu.setCode("");
 			menu.setName(name);
 			menu.setController(controller);
 			menu.setCreatedBy(user.getUsername());
 			menu.setCreatedDate(currentDate);
 			menu.setIsDelete(0);
+			menu.setParentId(1);
 			menuService.insert(menu);
+			
+			StringBuilder codeMenu = new StringBuilder();
+			codeMenu.append(GeneralVariable.KODE_MENU);
+			String idMenu = String.valueOf(menu.getId());
+			if(idMenu.length()<2) {
+				idMenu = "000" + idMenu;
+			} else if(idMenu.length()<3) {
+				idMenu ="00" + idMenu;
+			} else if(idMenu.length()<4) {
+				idMenu = "0" + idMenu;
+			}
+			
+			codeMenu.append(idMenu);
+			menu.setCode(codeMenu.toString());
+			menuService.update(menu);
 			
 			model.addAttribute("success", true);
 		} catch (Exception e) {
@@ -59,6 +77,30 @@ public class MenuController extends BaseController{
 		
 		
 		
+	}
+	
+	@RequestMapping("/update")
+	public void update(Model model, HttpServletRequest request) {
+		try {
+			Personel user = getUser();
+			Date currentDate = new Date();
+			String idReq = request.getParameter("id");
+			String code = request.getParameter("code");
+			String name = request.getParameter("name");
+			Long idMenu = Long.parseLong(idReq);
+
+			Menu menu = menuService.getById(idMenu);
+			menu.setCode(code);
+			menu.setName(name);
+			menu.setUpdatedBy(user.getUsername());
+			menu.setUpdatedDate(currentDate);
+			menuService.update(menu);
+
+			model.addAttribute("success", true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			model.addAttribute("success", false);
+		}
 	}
 	
 	@RequestMapping("/get-data")
@@ -71,9 +113,11 @@ public class MenuController extends BaseController{
 			Collection<ViewMenu> listViewMenu = new ArrayList<>();
 			for (Menu menu : listMenu) {
 				ViewMenu v = new ViewMenu();
+				v.setCode(menu.getCode());
 				v.setName(menu.getName());
 				v.setController(menu.getController());
-				v.setId(menu.getId());
+				v.setCreatedBy(menu.getCreatedBy());
+				v.setmId(menu.getId());
 				listViewMenu.add(v);
 			}
 			model.addAttribute("listMenu", listViewMenu);
@@ -90,9 +134,9 @@ public class MenuController extends BaseController{
 	@RequestMapping("/delete")
 	public void delete(Model model, HttpServletRequest req) {
 		try {
-			String idMenuReq = req.getParameter("idMenu");
-			String idMenu = idMenuReq;
-			Menu menu = menuService.getByCode(idMenu);
+			String mIdReq = req.getParameter("mId");
+			Long mId = Long.parseLong(mIdReq);
+			Menu menu = menuService.getById(mId);
 			//set is deletenya 1, artinya delete
 			menu.setIsDelete(GeneralVariable.ISDELETE_TRUE);
 			
@@ -106,6 +150,15 @@ public class MenuController extends BaseController{
 		}
 		
 		
+		
+	}
+	
+
+	@RequestMapping("/prepare-form")
+	public void prepareForm(Model model) {
+		Personel user = getUser();
+		model.addAttribute("createdBy", user.getUsername());
+
 		
 	}
 	

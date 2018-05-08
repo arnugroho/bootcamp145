@@ -20,6 +20,7 @@ public class Status {
 	}
 
 	@Column(name = "status", length = 12)
+
 	public String getStatus() {
 		return status;
 	}

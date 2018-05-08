@@ -17,16 +17,9 @@ public class DesignDaoImpl extends SessionHibernate implements DesignDao {
 	Log log = LogFactory.getLog(super.getClass());
 	
 	@Override
-	public Design getByCode(String dCode) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "from t_promotion where code = :dCode";
-		Query query = session.createQuery(hql);
-		query.setString("dCode", dCode);
-		if (query.list().size() > 0) {
-			return (Design) query.list().get(0);
-		} else {
-			return null;
-		}
+	public Design get(Integer idDesign) throws Exception {
+		Design design = getSession().get(Design.class, idDesign);
+		return design;
 	}
 
 	@Override

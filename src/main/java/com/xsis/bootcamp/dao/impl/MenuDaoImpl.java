@@ -18,11 +18,11 @@ public class MenuDaoImpl extends SessionHibernate implements MenuDao{
 	Log log = LogFactory.getLog(super.getClass());
 	
 	@Override
-	public Menu getByCode(String mCode) throws Exception {
+	public Menu getById(Long mId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Menu where code = :mCode";
+		String hql = "from Menu where code = :mId";
 		Query query = session.createQuery(hql);
-		query.setString("mCode", mCode);
+		query.setLong("mId", mId);
 		if (query.list().size() > 0) {
 			return (Menu) query.list().get(0);
 		} else {
