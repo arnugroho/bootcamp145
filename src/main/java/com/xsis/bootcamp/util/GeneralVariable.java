@@ -44,6 +44,7 @@ public interface GeneralVariable {
 	public static final String KODE_ROLE = "RO";
 	public static final String KODE_DESIGN = "TRWODS";
 	public static final String KODE_UNIT = "UN";
+	public static final String KODE_MENU = "ME";
 
 
 }

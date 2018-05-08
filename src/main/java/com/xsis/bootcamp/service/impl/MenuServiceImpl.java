@@ -17,9 +17,9 @@ public class MenuServiceImpl implements MenuService{
 	private MenuDao menuDao;
 
 	@Override
-	public Menu getByCode(String mCode) throws Exception {
+	public Menu getById(Long mId) throws Exception {
 		// TODO Auto-generated method stub
-		return menuDao.getByCode(mCode);
+		return menuDao.getById(mId);
 	}
 
 	@Override

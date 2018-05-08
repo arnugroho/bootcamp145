@@ -2,7 +2,7 @@
 <%@ include file="modal-form.jsp"%>
 
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalFormMenu">Tambah</button>
+<button type="button" id="btnTambah" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalFormMenu">Tambah</button>
 <hr>
 <table id="tableMenu" class="display" width="100%"></table>
 
@@ -17,12 +17,48 @@ $(document).ready(function() {
 	
 	//mendefinisikan ketika tombol btnInsert diklik memanggil insertData()
 	$("#btnInsert").click(function(){
+		
 		insertData();
+		
+	});
+	
+	$("#btnUpdate").click(function(){
+		
+		updateData();
+		
+	});
+	
+	$("#btnTambah").click(function(){
+		prepareForm();
+		$("#btnUpdate").hide();
+		$('#btnInsert').show();
+		
 	});
 
 	
 
 } );
+
+function prepareForm() {
+	$.ajax({
+		url : contextName + '/menu/prepare-form.json',
+		type : 'post',
+		dataType : 'json',
+		success : function(result) {
+				
+			var createdBy = result.createdBy;
+			$('#created').val(createdBy);
+			
+			notifySuccess('Berhasil Prepare Form');
+			
+		},
+		error : function() {
+			notifyError('Gagal Prepare Form');
+		}
+	});
+}
+
+
 
 
 
@@ -32,7 +68,7 @@ function insertData() {
 	$.ajax({
 		url : contextName + '/menu/insert.json',
 		data : {
-			'namaMenu' : $("#namaMenu").val(),
+			'name' : $("#name").val(),
 			'controller' : $("#controller").val(),
 		},
 		type : 'post',
@@ -60,6 +96,39 @@ function insertData() {
 	});
 }
 
+function updateData() {
+	$.ajax({
+		url : contextName + '/menu/update.json',
+		data : {
+			'name' : $("#name").val(),
+			'controller' : $("#controller").val(),
+			'mId' : $("#mId").val(),
+		},
+		type : 'post',
+		dataType : 'json',
+		success : function(result) {
+			if(result.success){
+				//agar table ter refresh
+				$('#tableMenu').DataTable().destroy()
+				prepareDatatable()
+				// ------ //
+				
+				//modal di hide 
+				$('#modalFormMenu').modal('hide');
+				// ----//
+				
+				
+				notifySuccess('Berhasil Update Data');
+			}else {
+				notifyError('Gagal Update Data');
+			}
+		},
+		error : function() {
+			notifyError('Gagal Update Data');
+		}
+	});
+}
+
 
 function prepareDatatable() {
 	$.ajax({
@@ -81,22 +150,27 @@ function prepareDatatable() {
 				    $('#tableMenu').DataTable( {
 				        data: dataSet,
 				        columns: [
+				            { title: "Code" },
 				            { title: "Nama Menu" },
 				            { title: "Controller" },
+				            { title: "Created By" },
 				            { title: "Action" }
 				           ],
 				           "columnDefs": [
 				               {
 				                   // The `data` parameter refers to the data for the cell (defined by the
-				                   // `data` option, which defaults to the column being worked with, in
+				                   // `datac` option, which defaults to the column being worked with, in
 				                   // this case `data: 0`.
 				                   "render": function ( data, type, row ) {
-				                	   var s = '<button type="button" class="btn btn-danger btn-add" onClick="deleteMenu('+data+')">'
+				                	   var s = '<button type="button" class="btn btn-danger" onClick="deleteMenu('+data+')">'
 				   					   s = s + ' <i class="fa fa-trash"></i> </button>'
+				   						s += '<button type="button" class="btn btn-warning" onClick="updateMenu('+data+')">'
+				   					   s += '<i class="fa fa-edit"></i> </button>'
+				   					   
 				                       return s;
 				                   },
 				                   // column keberapa render diaplikasikan
-				                   "targets": 2
+				                   "targets": 4
 				               }
 				           ]
 				    } );
@@ -114,12 +188,12 @@ function prepareDatatable() {
 }
 
 
-function deleteMenu(idMenu){
+function deleteMenu(mId){
 	$.ajax({
 		url : contextName + '/menu/delete.json',
 		type : 'post',
 		data : {
-			idMenu : idMenu
+			mId : mId
 		},
 		dataType : 'json',
 		success : function(result) {
@@ -137,6 +211,35 @@ function deleteMenu(idMenu){
 		},
 		error : function() {
 			notifyError('Gagal Delete Data');
+		}
+	});
+}
+
+
+function updateMenu(mId){
+	$('#btnInsert').hide();
+	$('#btnUpdate').show();
+	$('#modalFormMenu').modal('show');
+	$.ajax({
+		url : contextName + '/menu/view.json',
+		type : 'post',
+		data : {
+			mId : mId
+		},
+		dataType : 'json',
+		success : function(result) {
+			if(result.success){
+				$("#name").val(result.menu.name)
+				$("#controller").val(result.menu.controller)
+				$("#mId").val(result.menu.mId)
+				
+				notifySuccess('Berhasil Menampilkan Data');
+			}else {
+				notifyError('Gagal Menampilkan Data');
+			}
+		},
+		error : function() {
+			notifyError('Gagal Menampilkan Data');
 		}
 	});
 }

@@ -24,7 +24,7 @@ public class Menu extends CommonModel{
 	@TableGenerator(name = TABLE_NAME, table = "T_SEQUENCE", pkColumnName = "SEQ_NAME", pkColumnValue = TABLE_NAME, valueColumnName = "SEQ_VAL", allocationSize = 1, initialValue = 1)
 	private Long id;
 	
-	@Column(name = "code", length = 50, nullable = false, unique=true)
+	@Column(name = "code", length = 50, unique=true)
 	private String code;
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;

@@ -6,7 +6,7 @@ import com.xsis.bootcamp.model.Menu;
 
 public interface MenuDao{
 
-	public Menu getByCode(String mCode) throws Exception;
+	public Menu getById(Long mId) throws Exception;
 	
 	public abstract void insert(Menu menu) throws Exception;
 
