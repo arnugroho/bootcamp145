@@ -13,11 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.xsis.bootcamp.dao.RoleDao;
+import com.xsis.bootcamp.model.Employee;
 import com.xsis.bootcamp.model.Mrole;
 import com.xsis.bootcamp.model.Muser;
 import com.xsis.bootcamp.model.Personel;
+import com.xsis.bootcamp.model.Role;
 import com.xsis.bootcamp.service.MroleService;
 import com.xsis.bootcamp.service.MuserService;
+import com.xsis.bootcamp.service.RoleService;
 import com.xsis.bootcamp.util.GeneralVariable;
 import com.xsis.bootcamp.viewmodel.ViewUser;
 
@@ -29,9 +33,12 @@ public class MuserController extends BaseController {
 
 	@Autowired
 	MuserService muserService;
-	
+
 	@Autowired
 	MroleService mroleService;
+	
+	/*@Autowired
+	RoleService roleService;*/
 
 	@RequestMapping("/member")
 	public String index() {
@@ -40,8 +47,10 @@ public class MuserController extends BaseController {
 	
 	@RequestMapping("/insert")
 	public void insert(Model model,HttpServletRequest request) {
-		String pUsername = request.getParameter("usernmae");
+		String pUsername = request.getParameter("username");
 		String pPassword = request.getParameter("password");
+		String mRoleId = request.getParameter("mRoleId");
+		Integer RoleId = Integer.parseInt(mRoleId);
 		try {
 			Muser m = muserService.getByUsername(pUsername);
 			if (m!=null) {
@@ -53,6 +62,8 @@ public class MuserController extends BaseController {
 				Date currentDate = new Date();
 				muser.setUsername(pUsername);
 				muser.setPassword(pPassword);
+				muser.setmRoleId(RoleId);
+				muser.setmEmployeeId(2);
 				muser.setCreatedDate(currentDate);
 				muser.setCreatedBy(personel.getUsername());
 				muser.setIsDelete(0);
@@ -76,8 +87,11 @@ public class MuserController extends BaseController {
 			Collection<ViewUser> listViewUser = new ArrayList<>();
 			for(Muser muser : listUser) {
 				ViewUser v = new ViewUser();
-				v.setNameEmployee(muser.getEmployeeDesc().getFirstName());
-				v.setNameRole(muser.getRoleDesc().getName());
+				Mrole mrole = mroleService.get(muser.getmRoleId());
+				/*Role role = roleService.get(muser.getmRoleId());*/
+				
+				/*v.setNameRole(role.getRoleName());*/
+				v.setNameRole(mrole.getName());
 				v.setUsername(muser.getUsername());
 				v.setCreatedDate(muser.getCreatedDate());
 				v.setCreatedBy(muser.getCreatedBy());
@@ -111,8 +125,9 @@ public class MuserController extends BaseController {
 	@RequestMapping("/getname")
 	public void getName(Model model, HttpServletRequest request) {
 		try {
+//			Collection<Role> listRole = roleService.listAll();
 			Collection<Mrole> listMrole = mroleService.listAll();
-			
+//			model.addAttribute("listRole", listRole);
 			model.addAttribute("listMrole", listMrole);
 			model.addAttribute("success", true);
 		} catch (Exception e) {

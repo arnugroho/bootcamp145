@@ -8,9 +8,25 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('#retypePassword').change(function(){
+			var pass = $('#regisPassword').val();
+			var repass = $('#retypePassword').val();
+			if (pass == repass) {
+				notifySuccess('Password sesuai');
+			} else {
+				notifyError('Password Tidak Sama');
+			}
+		});
 		prepareDatatable();
 		$("#btnInsert").click(function() {
-			insertData();
+			var pass = $('#regisPassword').val();
+			var repass = $('#retypePassword').val();
+			if (pass == repass) {
+				insertData();
+			} else {
+				notifyError('Password Tidak Sama');
+			}
+
 		});
 
 		$("#btnUpdate").click(function() {
@@ -23,9 +39,9 @@
 			$('#btnInsert').show();
 		});
 
-	/* 	$("#btnClose").click(function() {
-			$("#formAddUser")[0].reset();
-		}); */
+		/* 	$("#btnClose").click(function() {
+				$("#formAddUser")[0].reset();
+			}); */
 
 	});
 
@@ -34,7 +50,8 @@
 			url : contextName + '/member/insert.json',
 			data : {
 				'username' : $("#username").val(),
-				'password' : $("#password").val(),
+				'password' : $("#regisPassword").val(),
+				'mRoleId' : $("#listMrole").find(':selected').val(),
 			},
 			type : 'post',
 			dataType : 'json',
@@ -73,10 +90,11 @@
 							});
 
 							var dataSet = listUser;
-
+							
 							$('#tableUser')
 									.DataTable(
 											{
+												destroy :true,
 												data : dataSet,
 												columns : [ {
 													title : "Employee"
@@ -148,13 +166,22 @@
 	}
 
 	function getName() {
-		$.ajax({
+		$
+				.ajax({
 					url : contextName + '/member/getname.json',
 					type : 'post',
 					dataType : 'json',
 					success : function(result) {
-						$.each(result.listMrole, function(index, value) {
-											$("#listMrole").append('<option value= '+value.id+' label='+value.name+'/>');
+						$("#listMrole").html("");
+						$
+								.each(
+										result.listMrole,
+										function(index, value) {
+											// 							var div_data = "<option value=" + value.id + ">" + value.name + "</option>";							
+											// 							$(div_data).appendTo('#listMrole');
+											$("#listMrole")
+													.append(
+															'<option value= '+value.id+' label='+value.name+'/>');
 										})
 					},
 					error : function() {

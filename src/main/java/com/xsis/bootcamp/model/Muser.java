@@ -75,15 +75,15 @@ public class Muser extends CommonModel {
 		this.mRoleId = mRoleId;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="m_role", insertable=false, updatable=false)
-	private Mrole roleDesc;
+/*	@ManyToOne
+	@JoinColumn(name="tb_m_role", insertable=false, updatable=false)
+	private Role roleDesc;
 
-	public Mrole getRoleDesc() {
+	public Role getRoleDesc() {
 		return roleDesc;
 	}
 
-	public void setRoleDesc(Mrole roleDesc) {
+	public void setRoleDesc(Role roleDesc) {
 		this.roleDesc = roleDesc;
 	}
 
@@ -97,6 +97,6 @@ public class Muser extends CommonModel {
 
 	public void setEmployeeDesc(Employee employeeDesc) {
 		this.employeeDesc = employeeDesc;
-	}
+	}*/
 
 }

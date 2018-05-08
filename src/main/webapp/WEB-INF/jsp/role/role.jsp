@@ -202,12 +202,7 @@
 	function viewRole(idRole) {
 		$('#btnInsert').hide();
 		$('#btnUpdate').hide();
-		$('#registerRole').modal({
-			backdrop : 'static',
-			keyboard :false,
-			/* show : true, */
-				
-		});
+		$('#registerRole').modal('show');
 		$.ajax({
 			url : contextName + '/role/view.json',
 			type : 'post',

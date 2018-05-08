@@ -38,7 +38,7 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label>Password</label><input class="form-control"
-											id="regisPassword" name="regisrPassword"
+											id="regisPassword" name="regisPassword"
 											placeholder="Password" type="password">
 									</div>
 									<div class="col-md-6"></div>
