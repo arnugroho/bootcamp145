@@ -70,8 +70,12 @@ public class Event extends CommonModel {
 	@JoinColumn(name="status",insertable=false,updatable=false)
 	private Status statusDesc;
 	
-/*	@ManyToOne
-	@JoinColumn(name="m_employee",insertable=false,updatable=false)
+	
+	/*
+	
+	
+	@ManyToOne
+	@JoinColumn(name="request_by",insertable=false,updatable=false)
 	private Employee requestByDesc;
 	
 	public Employee getRequestByDesc() {
@@ -81,7 +85,11 @@ public class Event extends CommonModel {
 	public void setRequestByDesc(Employee requestByDesc) {
 		this.requestByDesc = requestByDesc;
 	}
-*/
+
+	
+	*/
+	
+	
 	public Status getStatusDesc() {
 		return statusDesc;
 	}

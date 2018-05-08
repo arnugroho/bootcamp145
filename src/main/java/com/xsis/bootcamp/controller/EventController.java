@@ -62,7 +62,7 @@ public class EventController extends BaseController {
 			event.setEndDate(sdf.parse(req.getParameter("endDate")));
 			event.setBudget(Long.parseLong(req.getParameter("budget")));
 			event.setNote(req.getParameter("note"));
-			// event.setRequestByDesc(employee);
+			//event.setRequestByDesc(employee);
 
 			Personel user = getUser();
 			Date currentDate = new Date();
@@ -71,7 +71,7 @@ public class EventController extends BaseController {
 			event.setCreatedDate(currentDate);
 			event.setRequestBy(user.getId());
 			event.setRequestDate(currentDate);
-			event.setStatus(1);
+			event.setStatus(1); 
 			event.setIsDelete(0);
 			eventService.insert(event);
 
@@ -216,10 +216,11 @@ public class EventController extends BaseController {
 
 			Collection<ViewEvent> listViewEvent = new ArrayList<>();
 			for (Event event : listEvent) {
-				ViewEvent v = new ViewEvent();
+				ViewEvent v = new ViewEvent();				
+				String rb = event.getRequestBy().toString();
 				v.setCode(event.getCode());
 				v.setEventName(event.getEventname());
-				v.setRequestBy(event.getRequestBy());
+				v.setRequestBy(rb);
 				v.setRequestDate(event.getRequestDate());
 				v.setEndDate(event.getEndDate());
 				v.setStatus(event.getStatusDesc().getStatus());
