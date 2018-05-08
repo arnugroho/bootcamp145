@@ -42,6 +42,7 @@ public interface GeneralVariable {
 	public static final String CODE_EVENT = "TRWOEV";
 	
 	public static final String KODE_ROLE = "RO";
+	public static final String KODE_DESIGN = "TRWODS";
 	public static final String KODE_UNIT = "UN";
 
 

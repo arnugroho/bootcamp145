@@ -18,9 +18,9 @@ public class DesignServiceImpl implements DesignService {
 	private DesignDao designDao;
 	
 	@Override
-	public Design getByCode(String dCode) throws Exception {
+	public Design get(Integer idDesign) throws Exception {
 		// TODO Auto-generated method stub
-		return designDao.getByCode(dCode);
+		return designDao.get(idDesign);
 	}
 
 	@Override
