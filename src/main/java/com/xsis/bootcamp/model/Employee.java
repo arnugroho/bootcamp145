@@ -13,8 +13,8 @@ import com.xsis.bootcamp.model.common.CommonModel;
 
 @Entity(name=Employee.TABLE_NAME)
 public class Employee extends CommonModel {
-	
-	private static final long serialversionUID = -410528525061506841L;
+
+	private static final long serialVersionUID = 1L;
 	public static final String TABLE_NAME = "m_employee";
 	
 	@Id
