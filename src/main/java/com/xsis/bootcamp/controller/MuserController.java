@@ -13,15 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.xsis.bootcamp.dao.RoleDao;
-import com.xsis.bootcamp.model.Employee;
+/*import com.xsis.bootcamp.model.Employee;*/
 import com.xsis.bootcamp.model.Mrole;
 import com.xsis.bootcamp.model.Muser;
 import com.xsis.bootcamp.model.Personel;
-import com.xsis.bootcamp.model.Role;
 import com.xsis.bootcamp.service.MroleService;
 import com.xsis.bootcamp.service.MuserService;
-import com.xsis.bootcamp.service.RoleService;
 import com.xsis.bootcamp.util.GeneralVariable;
 import com.xsis.bootcamp.viewmodel.ViewUser;
 
